@@ -4,5 +4,6 @@ export default defineCliConfig({
   api: {
     projectId: 'fzoco9f8',
     dataset: 'production'
-  }
+  },
+  studioHost: 'worldaffairs-admin'
 })
