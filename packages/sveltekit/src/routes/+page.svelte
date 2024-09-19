@@ -29,5 +29,6 @@
   .column {
     text-align: center;
     width: 40ch;
+    max-width: 85%;
   }
 </style>
