@@ -68,3 +68,17 @@ a:visited {
     font-family: var(--font-stack-mono);
     font-size: var(--font-size-small);
 }
+
+.pseudo-link {
+    color: var(--link-color);
+    cursor: pointer;
+    font-family: var(--font-stack-serif);
+    font-size: var(--font-size-base);
+    border: none;
+    background: transparent;
+}
+
+.pseudo-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+}

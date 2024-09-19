@@ -161,8 +161,13 @@ export type Release = {
   _updatedAt: string
   _rev: string
   title?: string
-  link?: string
   releaseDate?: string
+  links?: Array<{
+    label?: string
+    url?: string
+    _type: 'link'
+    _key: string
+  }>
 }
 
 export type About = {
