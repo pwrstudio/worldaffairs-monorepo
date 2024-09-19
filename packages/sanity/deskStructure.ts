@@ -1,7 +1,8 @@
-// ICONS
 import {
     MdHome,
-    MdMusicNote
+    MdMusicNote,
+    MdCalendarToday,
+    MdShop
 } from "react-icons/md"
 
 export default (S: any) =>
@@ -26,5 +27,25 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'release' })
+                ),
+            S.listItem()
+                .title('Tour dates')
+                .icon(MdCalendarToday)
+                .child(
+                    S.documentList()
+                        .title('Tour dates')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'tourDate' })
+                ),
+            S.listItem()
+                .title('Shop')
+                .icon(MdShop)
+                .child(
+                    S.documentList()
+                        .title('Shop')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'product' })
                 ),
         ]);

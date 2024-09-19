@@ -1,72 +1,33 @@
 <script lang="ts">
-  import type { About, Release } from "@sanity-types"
+  import type { About, Release, TourDate, Product } from "@sanity-types"
+
+  import Title from "$lib/components/Title.svelte"
+  import Releases from "$lib/components/Releases.svelte"
+  import TourDates from "$lib/components/TourDates.svelte"
+  import Shop from "$lib/components/Shop.svelte"
+  import AboutComponent from "$lib/components/About.svelte"
 
   export let data: {
     about: About
     releases: Release[]
+    tourDates: TourDate[]
+    products: Product[]
   }
 
-  const { about, releases } = data
+  const { about, releases, tourDates, products } = data
 </script>
 
 <div class="column">
-  <!-- TITLE -->
-  <div class="title">
-    <h1>World Affairs AB</h1>
-  </div>
-  <!-- RELEASES -->
-  <div class="releases">
-    {#each releases as release}
-      <div class="release-item">
-        <a href={release.link} target="__blank">{release.title}</a>
-      </div>
-    {/each}
-  </div>
-  <!-- ABOUT-->
-  <div class="about">
-    <!-- CEO -->
-    <div class="about-section">
-      <div class="label">{about.ceoLabel}</div>
-      <div class="value">{about.ceoName}</div>
-    </div>
-    <!-- CONTACT -->
-    <div class="about-section">
-      <div class="label">{about.contactLabel}</div>
-      <div class="value">
-        <a href={`mailto:${about.contactEmail}`}>
-          {about.contactEmail}
-        </a>
-      </div>
-      <div class="value">
-        <a
-          href={`https://www.instagram.com/${about.contactInstagram}`}
-          target="_blank"
-        >
-          @{about.contactInstagram}
-        </a>
-      </div>
-    </div>
-  </div>
+  <Title />
+  <Releases {releases} />
+  <TourDates {tourDates} />
+  <Shop {products} />
+  <AboutComponent {about} />
 </div>
 
 <style lang="scss">
   .column {
     text-align: center;
-
-    .releases {
-      margin-bottom: 1em;
-    }
-
-    .about {
-      font-size: var(--font-size-small);
-      font-family: var(--font-stack-mono);
-
-      .about-section {
-        margin-bottom: 1em;
-        .label {
-          font-weight: bold;
-        }
-      }
-    }
+    width: 40ch;
   }
 </style>

@@ -1,11 +1,25 @@
 :root {
     --background: #d0d0d0;
+    --line: #b3b0b0;
     --foreground: #000000;
     --link-color: #0000ff;
     --font-size-base: 20px;
     --font-size-small: 16px;
+    --font-stack-serif: 'times new roman', times, serif;
     --font-stack-mono: 'courier new', courier, monospace;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+*::-moz-selection { /* Code for Firefox */
+    background: var(--line);
+  }
+  
+  *::selection {
+    background: var(--line);
+  }
 
 html, body {
     -webkit-font-smoothing: antialiased;
@@ -16,6 +30,7 @@ html, body {
     padding: 0;
     background: var(--background);
     font-size: var(--font-size-base);
+    font-family: var(--font-stack-serif)
 }
 
 @media (max-width: 800px) {
@@ -24,9 +39,10 @@ html, body {
     }  
 }
 
-h1 {
+h1, h2, h3 {
     font-size: var(--font-size-base);
 }
+
 
 a {
     text-decoration: none;
@@ -40,4 +56,15 @@ a:hover {
 
 a:visited {
     color: var(--link-color);
+}
+
+.section {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+.placeholder {
+    font-family: var(--font-stack-mono);
+    font-size: var(--font-size-small);
 }

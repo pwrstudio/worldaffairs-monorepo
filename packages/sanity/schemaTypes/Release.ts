@@ -1,7 +1,10 @@
+import { MdMusicNote } from "react-icons/md"
+
 export default {
     title: 'Release',
     name: 'release',
     type: 'document',
+    icon: MdMusicNote,
     fields: [
         {
             title: 'Title',
