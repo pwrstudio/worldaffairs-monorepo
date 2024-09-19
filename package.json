@@ -1,0 +1,23 @@
+{
+    "name": "worldaffairs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "dev:sveltekit": "pnpm --filter sveltekit dev",
+      "dev:sanity": "pnpm --filter sanity start",
+      "dev": "mprocs",
+      "deploy:sanity": "pnpm --filter sanity deploy",
+      "typegen:sanity": "pnpm --filter sanity typegen"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "workspaces": [
+      "packages/*"
+    ],
+    "devDependencies": {
+      "mprocs": "^0.7.1"
+    }
+  }
+  

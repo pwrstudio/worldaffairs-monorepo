@@ -1,0 +1,43 @@
+:root {
+    --background: #d0d0d0;
+    --foreground: #000000;
+    --link-color: #0000ff;
+    --font-size-base: 20px;
+    --font-size-small: 16px;
+    --font-stack-mono: 'courier new', courier, monospace;
+}
+
+html, body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    margin: 0;
+    padding: 0;
+    background: var(--background);
+    font-size: var(--font-size-base);
+}
+
+@media (max-width: 800px) {
+    body {
+        line-height: 1.3em;
+    }  
+}
+
+h1 {
+    font-size: var(--font-size-base);
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+}
+
+a:visited {
+    color: var(--link-color);
+}

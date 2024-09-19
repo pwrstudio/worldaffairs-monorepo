@@ -1,0 +1,7 @@
+procs:
+  sveltekit:
+    cwd: packages/sveltekit
+    shell: pnpm dev
+  sanity:
+    cwd: packages/sanity
+    shell: pnpm dev
