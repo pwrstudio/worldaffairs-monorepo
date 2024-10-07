@@ -11,18 +11,18 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.5",
-		"@sveltejs/kit": "^2.5.28",
+		"@sveltejs/kit": "^2.6.2",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
-		"sass-embedded": "^1.79.1",
+		"sass-embedded": "^1.79.4",
 		"svelte": "^4.2.19",
-		"svelte-check": "^4.0.2",
+		"svelte-check": "^4.0.4",
 		"typescript": "^5.6.2",
-		"vite": "^5.4.6"
+		"vite": "^5.4.8"
 	},
 	"type": "module",
 	"dependencies": {
 		"@sanity/block-content-to-html": "^2.0.0",
-		"@sanity/client": "^6.21.3",
+		"@sanity/client": "^6.22.1",
 		"@sanity/image-url": "^1.0.2"
 	}
 }
