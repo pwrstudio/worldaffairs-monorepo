@@ -13,6 +13,77 @@
  */
 
 // Source: schema.json
+export type Video = {
+  _id: string
+  _type: 'video'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  artist?: string
+  releaseDate?: string
+  links?: Array<{
+    label?: string
+    url?: string
+    _type: 'link'
+    _key: string
+  }>
+}
+
+export type Product = {
+  _id: string
+  _type: 'product'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+}
+
+export type Tour = {
+  _id: string
+  _type: 'tour'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  artist?: string
+  region?: string
+  tourDate?: string
+  link?: string
+}
+
+export type Release = {
+  _id: string
+  _type: 'release'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  type?: string
+  artist?: string
+  releaseDate?: string
+  links?: Array<{
+    label?: string
+    url?: string
+    _type: 'link'
+    _key: string
+  }>
+}
+
+export type About = {
+  _id: string
+  _type: 'about'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  ceoLabel?: string
+  ceoName?: string
+  contactLabel?: string
+  contactEmail?: string
+  contactInstagram?: string
+}
+
 export type SanityImagePaletteSwatch = {
   _type: 'sanity.imagePaletteSwatch'
   background?: string
@@ -131,60 +202,12 @@ export type SanityAssetSourceData = {
   url?: string
 }
 
-export type Product = {
-  _id: string
-  _type: 'product'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-}
-
-export type TourDate = {
-  _id: string
-  _type: 'tourDate'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  artist?: string
-  date?: string
-  venue?: string
-  city?: string
-  country?: string
-  link?: string
-}
-
-export type Release = {
-  _id: string
-  _type: 'release'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  releaseDate?: string
-  links?: Array<{
-    label?: string
-    url?: string
-    _type: 'link'
-    _key: string
-  }>
-}
-
-export type About = {
-  _id: string
-  _type: 'about'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  ceoLabel?: string
-  ceoName?: string
-  contactLabel?: string
-  contactEmail?: string
-  contactInstagram?: string
-}
-
 export type AllSanitySchemaTypes =
+  | Video
+  | Product
+  | Tour
+  | Release
+  | About
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -196,8 +219,4 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | Slug
   | SanityAssetSourceData
-  | Product
-  | TourDate
-  | Release
-  | About
 export declare const internalGroqTypeReferenceTo: unique symbol

@@ -5,6 +5,6 @@
 export const queries = {
     about: '*[_id == "about"][0]',
     releases: '*[_type == "release"] | order(releaseDate desc)',
-    tourDates: '*[_type == "tourDate"] | order(date desc)',
-    products: '*[_type == "product"]',
+    videos: '*[_type == "video"] | order(releaseDate desc)',
+    tours: '*[_type == "tour"] | order(tourDate desc)'
 }

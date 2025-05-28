@@ -1,20 +1,14 @@
-import { MdMusicNote } from "react-icons/md"
+import { MdVideocam } from "react-icons/md"
 
 export default {
-    title: 'Release',
-    name: 'release',
+    title: 'Video',
+    name: 'video',
     type: 'document',
-    icon: MdMusicNote,
+    icon: MdVideocam,
     fields: [
         {
             title: 'Title',
             name: 'title',
-            type: 'string',
-            validation: (Rule: any) => Rule.required()
-        },
-        {
-            title: 'Type',
-            name: 'type',
             type: 'string',
             validation: (Rule: any) => Rule.required()
         },

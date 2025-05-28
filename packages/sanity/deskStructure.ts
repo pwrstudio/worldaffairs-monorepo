@@ -1,8 +1,9 @@
 import {
     MdHome,
     MdMusicNote,
-    MdCalendarToday,
-    MdShop
+    MdShop,
+    MdVideocam,
+    MdTour
 } from "react-icons/md"
 
 export default (S: any) =>
@@ -29,14 +30,24 @@ export default (S: any) =>
                         .params({ type: 'release' })
                 ),
             S.listItem()
-                .title('Tour dates')
-                .icon(MdCalendarToday)
+                .title('Videos')
+                .icon(MdVideocam)
                 .child(
                     S.documentList()
-                        .title('Tour dates')
+                        .title('Videos')
                         .showIcons(true)
                         .filter('_type == $type')
-                        .params({ type: 'tourDate' })
+                        .params({ type: 'video' })
+                ),
+            S.listItem()
+                .title('Tours')
+                .icon(MdTour)
+                .child(
+                    S.documentList()
+                        .title('Tours')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'tour' })
                 ),
             S.listItem()
                 .title('Shop')

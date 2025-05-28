@@ -1,5 +1,5 @@
 :root {
-    --background: #d0d0d0;
+    --background: #ffffff;
     --line: #b3b0b0;
     --foreground: #000000;
     --link-color: #0000ff;
@@ -39,10 +39,9 @@ html, body {
     }  
 }
 
-h1, h2, h3 {
+/* h1, h2, h3 {
     font-size: var(--font-size-base);
-}
-
+} */
 
 a {
     text-decoration: none;

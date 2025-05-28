@@ -9,11 +9,12 @@
 
 <style lang="scss">
   main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    margin: 20px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    // padding-top: 80px;
+    // padding-bottom: 80px;
   }
 </style>
