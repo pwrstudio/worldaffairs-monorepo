@@ -63,7 +63,7 @@
 <div class="column">
   <div class="updated">Last updated: 2025-05-28 15:45</div>
   <div class="header">
-    <img src="/images/wa-logo.png" alt="logo" />
+    <img src="/images/wa-logo-alt.png" alt="logo" />
     <h1>World Affairs AB</h1>
     <div class="imprint">Momsregistreringsnummer (VAT): SE556123456701</div>
   </div>
@@ -115,15 +115,8 @@
 
 <style lang="scss">
   img {
-    width: 200px;
+    width: 340px;
     height: auto;
-  }
-
-  .header {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
   }
 
   .updated {
@@ -142,6 +135,7 @@
   }
 
   h1 {
+    margin-top: 0;
     margin-bottom: 0;
   }
 

@@ -50,11 +50,10 @@ a {
 
 a:hover {
     text-decoration: underline;
-    text-decoration-thickness: 1.5px;
 }
 
 a:visited {
-    color: var(--link-color);
+    color: darkmagenta;
 }
 
 .section {

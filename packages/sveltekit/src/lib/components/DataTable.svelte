@@ -88,12 +88,4 @@
   tr:hover {
     background-color: #e0e0e0;
   }
-
-  a {
-    color: #0000ee;
-    text-decoration: underline;
-    &:visited {
-      color: #551a8b;
-    }
-  }
 </style>
