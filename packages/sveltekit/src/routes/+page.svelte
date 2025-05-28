@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { About, Release, Tour, Video } from "@sanity-types"
-
   import DataTable from "$lib/components/DataTable.svelte"
+  import TabView from "$lib/components/TabView.svelte"
 
   export let data: {
     about: About
@@ -11,6 +11,14 @@
   }
 
   const { releases, tours, videos } = data
+
+  const tabs = [
+    { id: "music", label: "Music" },
+    { id: "video", label: "Video" },
+    { id: "tour", label: "Tour" },
+    { id: "store", label: "Store" },
+    { id: "contact", label: "Contact" },
+  ]
 
   // Common function to handle links
   function mapLinks(links?: Array<{ label?: string; url?: string }>) {
@@ -60,93 +68,138 @@
   const tour = tours.map(mapTour)
 </script>
 
-<div class="column">
-  <div class="updated">Last updated: 2025-05-28 15:45</div>
-  <div class="header">
-    <img src="/images/wa-logo-alt.png" alt="logo" />
-    <h1>World Affairs AB</h1>
+<div class="layout">
+  <header class="header">
+    <div class="header-content">
+      <div class="logo-section">
+        <img src="/images/wa-logo-alt.png" alt="logo" />
+        <h1>World Affairs AB</h1>
+      </div>
+      <div class="updated">Last updated: 2025-05-28 15:45</div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <TabView {tabs} let:activeTab>
+      {#if activeTab === "music"}
+        <DataTable title="Music" data={music} />
+      {:else if activeTab === "video"}
+        <DataTable title="Video" data={video} />
+      {:else if activeTab === "tour"}
+        <DataTable title="Tour" data={tour} />
+      {:else if activeTab === "store"}
+        <h3 id="store">Store</h3>
+        <a
+          href="https://store.worldaffairs.se/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button>World Affairs AB Store</button>
+        </a>
+      {:else if activeTab === "contact"}
+        <h3 id="contact">Contact</h3>
+        <p>
+          <a href="mailto:info@worldaffairs.se">info@worldaffairs.se</a>
+          <br />
+          <a
+            href="https://www.instagram.com/worldaffairsincorporated/"
+            target="_blank"
+            rel="noopener noreferrer">Instagram</a
+          >
+        </p>
+      {/if}
+    </TabView>
+  </main>
+
+  <footer class="footer">
     <div class="imprint">Momsregistreringsnummer (VAT): SE556123456701</div>
-  </div>
-  <hr />
-  <h2 class="toc-link">
-    <a href="#music">Music</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#video">Video</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#tour">Tour</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#store">Store</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#contact">Contact</a>
-  </h2>
-  <hr />
-  <DataTable title="Music" data={music} />
-  <hr />
-  <DataTable title="Video" data={video} />
-  <hr />
-  <DataTable title="Tour" data={tour} />
-  <hr />
-  <h3 id="store">Store</h3>
-  <a
-    href="https://store.worldaffairs.se/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <button>World Affairs AB Store</button>
-  </a>
-  <hr />
-  <h3 id="contact">Contact</h3>
-  <p>
-    <a href="mailto:info@worldaffairs.se">info@worldaffairs.se</a>
-    <br />
-    <a
-      href="https://www.instagram.com/worldaffairsincorporated/"
-      target="_blank"
-      rel="noopener noreferrer">Instagram</a
-    >
-  </p>
-  <hr />
-  <p class="imprint">© 2025 World Affairs AB</p>
+    <div class="copyright">© 2025 World Affairs AB</div>
+  </footer>
 </div>
 
 <style lang="scss">
-  img {
-    width: 340px;
-    height: auto;
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .header {
+    height: 80px;
+    background: var(--background);
+    border-bottom: 1px solid var(--line);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  .header-content {
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    img {
+      width: 60px;
+      height: auto;
+    }
+  }
+
+  .main-content {
+    position: fixed;
+    top: 80px;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+
+  .footer {
+    height: 40px;
+    background: var(--background);
+    border-top: 1px solid var(--line);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-size: var(--font-size-small);
+    z-index: 100;
   }
 
   .updated {
     font-size: var(--font-size-small);
     color: var(--foreground);
-    float: right;
   }
 
-  .toc-link {
-    display: block;
+  h1 {
+    margin: 0;
+    color: var(--foreground);
+    font-size: 1.5em;
   }
 
   h3 {
     color: var(--foreground);
   }
 
-  h2 {
-    margin-bottom: 0;
-    margin-top: 0;
-    color: var(--foreground);
-  }
-
-  h1 {
-    margin-top: 0;
-    margin-bottom: 0;
-    color: var(--foreground);
-  }
-
   .imprint {
-    font-size: var(--font-size-small);
+    color: var(--foreground);
+  }
+
+  .copyright {
     color: var(--foreground);
   }
 

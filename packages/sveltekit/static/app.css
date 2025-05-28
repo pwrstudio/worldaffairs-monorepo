@@ -1,12 +1,20 @@
 :root {
-    --background: #000000;
+    --background: #ffffff;
     --line: #b3b0b0;
-    --foreground: #fff;
+    --foreground: #000000;
     --link-color: #0000ff;
     --font-size-base: 20px;
     --font-size-small: 16px;
     --font-stack-serif: 'times new roman', times, serif;
     --font-stack-mono: 'courier new', courier, monospace;
+    
+    /* Spreadsheet interface colors */
+    --tab-bg: #f0f0f0;
+    --tab-border: #ccc;
+    --tab-inactive-bg: #e6e6e6;
+    --tab-hover-bg: #f5f5f5;
+    --tab-active-bg: var(--background);
+    --tab-text: #333;
 }
 
 * {
