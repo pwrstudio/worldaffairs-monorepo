@@ -1,7 +1,7 @@
 :root {
-    --background: #ffffff;
+    --background: #000000;
     --line: #b3b0b0;
-    --foreground: #000000;
+    --foreground: #fff;
     --link-color: #0000ff;
     --font-size-base: 20px;
     --font-size-small: 16px;

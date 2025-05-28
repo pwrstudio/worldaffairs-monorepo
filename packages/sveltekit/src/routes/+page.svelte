@@ -129,18 +129,25 @@
     display: block;
   }
 
+  h3 {
+    color: var(--foreground);
+  }
+
   h2 {
     margin-bottom: 0;
     margin-top: 0;
+    color: var(--foreground);
   }
 
   h1 {
     margin-top: 0;
     margin-bottom: 0;
+    color: var(--foreground);
   }
 
   .imprint {
     font-size: var(--font-size-small);
+    color: var(--foreground);
   }
 
   button {

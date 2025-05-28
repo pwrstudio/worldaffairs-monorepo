@@ -55,7 +55,7 @@
   .table-title {
     font-size: 1.2em;
     margin: 1em 0 0.5em 0;
-    color: #000;
+    color: var(--foreground);
   }
 
   table {
@@ -76,9 +76,13 @@
 
   th {
     font-weight: bold;
-    background-color: #ccc;
-    color: #000;
+    background-color: #797979;
+    color: var(--foreground);
     border: 2px groove #eee;
+  }
+
+  tr {
+    background-color: var(--foreground);
   }
 
   tr:nth-child(even) {
