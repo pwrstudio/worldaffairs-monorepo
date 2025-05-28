@@ -4,20 +4,20 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "dev:sveltekit": "pnpm --filter sveltekit dev",
-      "dev:sanity": "pnpm --filter sanity start",
-      "dev": "mprocs",
-      "deploy:sanity": "pnpm --filter sanity deploy",
-      "typegen:sanity": "pnpm --filter sanity typegen"
+        "dev:sveltekit": "pnpm --filter sveltekit dev",
+        "dev:sanity": "pnpm --filter sanity start",
+        "dev": "mprocs",
+        "deploy:sanity": "pnpm --filter sanity deploy",
+        "typegen:sanity": "pnpm --filter sanity typegen"
     },
     "keywords": [],
     "author": "",
     "license": "MIT",
     "workspaces": [
-      "packages/*"
+        "packages/*"
     ],
     "devDependencies": {
-      "mprocs": "^0.7.1"
-    }
-  }
-  
+        "mprocs": "^0.7.3"
+    },
+    "packageManager": "pnpm@9.15.9+sha512.68046141893c66fad01c079231128e9afb89ef87e2691d69e4d40eee228988295fd4682181bae55b58418c3a253bde65a505ec7c5f9403ece5cc3cd37dcf2531"
+}
