@@ -1,10 +1,22 @@
 <script lang="ts">
-  export let data: Record<string, any>[]
-  export let className: string = ""
-  export let title: string = ""
+  const {
+    data,
+    className = "",
+    title = "",
+    isNew = false,
+  } = $props<{
+    data: Record<string, any>[]
+    className?: string
+    title?: string
+    isNew?: boolean
+  }>()
 
   // Get all unique column headers from all objects
-  $: headers = [...new Set(data.flatMap(obj => Object.keys(obj)))]
+  let headers = $derived<string[]>([
+    ...new Set<string>(
+      data.flatMap((obj: Record<string, any>) => Object.keys(obj))
+    ),
+  ])
 
   function isUrl(str: string): boolean {
     try {
@@ -34,7 +46,13 @@
   <tbody>
     {#each data as row, i}
       <tr>
-        <td>{data.length - i}</td>
+        <td class:new={isNew}>
+          {#if isNew}
+            <img src="/images/fire.gif" alt="new" />
+          {:else}
+            {i + 1}
+          {/if}
+        </td>
         {#each headers as header}
           <td>
             {#if typeof row[header] === "string" && isUrl(row[header])}
@@ -72,6 +90,18 @@
     padding: 0.2em;
     text-align: left;
     border: 1px solid #000;
+
+    &.new {
+      padding: 0;
+      line-height: 0;
+
+      img {
+        width: 24px;
+        height: 24px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
   }
 
   th {

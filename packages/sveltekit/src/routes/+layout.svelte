@@ -10,6 +10,7 @@
 <style lang="scss">
   main {
     margin: 20px;
+    margin-top: 10px;
     // display: flex;
     // flex-direction: column;
     // justify-content: center;

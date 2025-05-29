@@ -1,16 +1,42 @@
 <script lang="ts">
   import type { About, Release, Tour, Video } from "@sanity-types"
-
   import DataTable from "$lib/components/DataTable.svelte"
+  import { onMount } from "svelte"
 
   export let data: {
     about: About
     releases: Release[]
     tours: Tour[]
     videos: Video[]
+    newPosts: (Release | Tour | Video)[]
   }
 
-  const { releases, tours, videos } = data
+  let stockholmTime = ""
+
+  function updateStockholmTime() {
+    const now = new Date()
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: "Europe/Stockholm",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    }
+    stockholmTime = now.toLocaleTimeString("en-US", options)
+  }
+
+  onMount(() => {
+    updateStockholmTime()
+    const interval = setInterval(updateStockholmTime, 1000)
+    return () => clearInterval(interval)
+  })
+
+  const { releases, tours, videos, newPosts } = data
+
+  console.log(newPosts)
 
   // Common function to handle links
   function mapLinks(links?: Array<{ label?: string; url?: string }>) {
@@ -55,19 +81,42 @@
     }
   }
 
+  function mapNewPost(post: any) {
+    if (!post || typeof post !== "object") {
+      throw new Error("Invalid post object")
+    }
+
+    if (post._type === "release") {
+      return mapRelease(post)
+    } else if (post._type === "video") {
+      return mapVideo(post)
+    } else if (post._type === "tour") {
+      return mapTour(post)
+    }
+    throw new Error(`Unknown post type: ${post._type}`)
+  }
+
   const music = releases.map(mapRelease)
   const video = videos.map(mapVideo)
   const tour = tours.map(mapTour)
+  const newPostsMapped = newPosts?.map(mapNewPost) || []
 </script>
 
 <div class="column">
-  <div class="updated">Last updated: 2025-05-28 15:45</div>
   <div class="header">
+    <div class="header-bar">
+      <div class="clock">Stockholm: {stockholmTime}</div>
+    </div>
     <img src="/images/wa-logo-alt.png" alt="logo" />
     <h1>World Affairs AB</h1>
     <div class="imprint">Momsregistreringsnummer (VAT): SE556123456701</div>
   </div>
   <hr />
+  {#if newPostsMapped.length > 0}
+    <h2 class="toc-link">
+      <a href="#new">New</a>
+    </h2>
+  {/if}
   <h2 class="toc-link">
     <a href="#music">Music</a>
   </h2>
@@ -83,6 +132,10 @@
   <h2 class="toc-link">
     <a href="#contact">Contact</a>
   </h2>
+  {#if newPostsMapped.length > 0}
+    <hr />
+    <DataTable title="New" data={newPostsMapped} isNew={true} />
+  {/if}
   <hr />
   <DataTable title="Music" data={music} />
   <hr />
@@ -110,7 +163,10 @@
     >
   </p>
   <hr />
-  <p class="imprint">© 2025 World Affairs AB</p>
+  <div class="footer">
+    <div class="imprint">© 2025 World Affairs AB</div>
+    <div class="updated">Last updated: 2025-05-28 15:45</div>
+  </div>
 </div>
 
 <style lang="scss">
@@ -149,5 +205,36 @@
     font-family: "Times New Roman", Times, serif;
     font-size: var(--font-size-base);
     margin-bottom: 1em;
+  }
+
+  img.new {
+    width: 24px;
+    height: 24px;
+  }
+
+  .clock {
+    font-size: var(--font-size-small);
+    color: var(--foreground);
+    // float: right;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+    font-size: var(--font-size-small);
+    color: var(--foreground);
+  }
+
+  .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+    font-size: var(--font-size-small);
+    color: var(--foreground);
+    margin-bottom: 0.5em;
   }
 </style>

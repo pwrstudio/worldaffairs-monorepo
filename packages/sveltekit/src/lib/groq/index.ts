@@ -6,5 +6,6 @@ export const queries = {
     about: '*[_id == "about"][0]',
     releases: '*[_type == "release"] | order(releaseDate desc)',
     videos: '*[_type == "video"] | order(releaseDate desc)',
-    tours: '*[_type == "tour"] | order(tourDate desc)'
+    tours: '*[_type == "tour"] | order(tourDate desc)',
+    newPosts: '*[_type == "newPosts"][0] {title, posts[]->{...}}'
 }

@@ -13,6 +13,35 @@
  */
 
 // Source: schema.json
+export type NewPosts = {
+  _id: string
+  _type: 'newPosts'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  posts?: Array<
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'tour'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'release'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'video'
+      }
+  >
+}
+
 export type Video = {
   _id: string
   _type: 'video'
@@ -203,6 +232,7 @@ export type SanityAssetSourceData = {
 }
 
 export type AllSanitySchemaTypes =
+  | NewPosts
   | Video
   | Product
   | Tour

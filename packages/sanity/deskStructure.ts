@@ -1,9 +1,9 @@
 import {
-    MdHome,
     MdMusicNote,
     MdShop,
     MdVideocam,
-    MdTour
+    MdTour,
+    MdStar
 } from "react-icons/md"
 
 export default (S: any) =>
@@ -11,13 +11,13 @@ export default (S: any) =>
         .title("World Affairs AB")
         .items([
             S.listItem()
-                .title("About")
-                .icon(MdHome)
+                .title("New posts")
+                .icon(MdStar)
                 .child(
                     S.editor()
-                        .id('about')
-                        .schemaType("about")
-                        .documentId("about")
+                        .id('new-posts')
+                        .schemaType("newPosts")
+                        .documentId("new-posts")
                 ),
             S.listItem()
                 .title('Releases')
