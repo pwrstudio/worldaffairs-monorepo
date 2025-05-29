@@ -132,7 +132,7 @@
     </div>
     <div class="column image">
       <img src="/images/wa-logo-alt.png" alt="logo" />
-      <img src="/images/wa-logo.png" alt="logo" />
+      <!-- <img src="/images/wa-logo.png" alt="logo" /> -->
     </div>
   </div>
   {#if newPostsMapped.length > 0}
