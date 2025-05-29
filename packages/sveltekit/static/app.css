@@ -1,6 +1,11 @@
 :root {
+    /* --background: #c2c2c2; */
     --background: #ffffff;
+
     --line: #b3b0b0;
+    /* --clock-color: rgb(93, 93, 93); */
+    --clock-color: #000000;
+
     --foreground: #000000;
     --link-color: #0000ff;
     --font-size-base: 20px;

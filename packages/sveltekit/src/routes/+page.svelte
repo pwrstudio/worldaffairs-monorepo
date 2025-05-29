@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { About, Release, Tour, Video } from "@sanity-types"
   import DataTable from "$lib/components/DataTable.svelte"
-  import { onMount } from "svelte"
+  import AnalogueClock from "$lib/components/AnalogueClock.svelte"
+  import CommodityMarquee from "$lib/components/CommodityMarquee.svelte"
 
   export let data: {
     about: About
@@ -11,32 +12,7 @@
     newPosts: (Release | Tour | Video)[]
   }
 
-  let stockholmTime = ""
-
-  function updateStockholmTime() {
-    const now = new Date()
-    const options: Intl.DateTimeFormatOptions = {
-      timeZone: "Europe/Stockholm",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-    }
-    stockholmTime = now.toLocaleTimeString("en-US", options)
-  }
-
-  onMount(() => {
-    updateStockholmTime()
-    const interval = setInterval(updateStockholmTime, 1000)
-    return () => clearInterval(interval)
-  })
-
   const { releases, tours, videos, newPosts } = data
-
-  console.log(newPosts)
 
   // Common function to handle links
   function mapLinks(links?: Array<{ label?: string; url?: string }>) {
@@ -103,35 +79,62 @@
 </script>
 
 <div class="column">
-  <div class="header">
-    <div class="header-bar">
-      <div class="clock">Stockholm: {stockholmTime}</div>
-    </div>
-    <img src="/images/wa-logo-alt.png" alt="logo" />
-    <h1>World Affairs AB</h1>
-    <div class="imprint">Momsregistreringsnummer (VAT): SE556123456701</div>
-  </div>
+  <CommodityMarquee />
   <hr />
-  {#if newPostsMapped.length > 0}
-    <h2 class="toc-link">
-      <a href="#new">New</a>
-    </h2>
-  {/if}
-  <h2 class="toc-link">
-    <a href="#music">Music</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#video">Video</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#tour">Tour</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#store">Store</a>
-  </h2>
-  <h2 class="toc-link">
-    <a href="#contact">Contact</a>
-  </h2>
+  <!-- Clocks -->
+  <div class="clocks">
+    <div class="clock-container">
+      <AnalogueClock timezone="Europe/Stockholm" label="Stockholm" />
+    </div>
+    <div class="clock-container">
+      <AnalogueClock timezone="Europe/London" label="London" />
+    </div>
+    <div class="clock-container">
+      <AnalogueClock timezone="America/New_York" label="New York" />
+    </div>
+    <div class="clock-container">
+      <AnalogueClock timezone="America/Los_Angeles" label="Los Angeles" />
+    </div>
+    <div class="clock-container">
+      <AnalogueClock timezone="Asia/Bangkok" label="Bangkok" />
+    </div>
+    <div class="clock-container">
+      <AnalogueClock timezone="Asia/Tokyo" label="Tokyo" />
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="header">
+    <div class="column">
+      <h1>World Affairs AB</h1>
+      <div class="imprint">Momsregistreringsnummer (VAT): SE556123456701</div>
+      {#if newPostsMapped.length > 0}
+        <h2 class="toc-link">
+          <a href="#new">New</a>
+        </h2>
+      {/if}
+      <h2 class="toc-link">
+        <a href="#music">Music</a>
+      </h2>
+      <h2 class="toc-link">
+        <a href="#video">Video</a>
+      </h2>
+      <h2 class="toc-link">
+        <a href="#tour">Tour</a>
+      </h2>
+      <h2 class="toc-link">
+        <a href="#store">Store</a>
+      </h2>
+      <h2 class="toc-link">
+        <a href="#contact">Contact</a>
+      </h2>
+    </div>
+    <div class="column image">
+      <img src="/images/wa-logo-alt.png" alt="logo" />
+      <img src="/images/wa-logo.png" alt="logo" />
+    </div>
+  </div>
   {#if newPostsMapped.length > 0}
     <hr />
     <DataTable title="New" data={newPostsMapped} isNew={true} />
@@ -212,10 +215,14 @@
     height: 24px;
   }
 
-  .clock {
+  .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
     font-size: var(--font-size-small);
     color: var(--foreground);
-    // float: right;
+    margin-bottom: 0.5em;
   }
 
   .footer {
@@ -227,14 +234,54 @@
     color: var(--foreground);
   }
 
-  .header-bar {
+  .clocks {
+    // background: red;
     display: flex;
-    align-items: center;
+    gap: 20px;
     justify-content: space-between;
-    align-items: center;
+    // margin-bottom: 1em;
+    // border-bottom: 1px solid var(--foreground);
+    // background: lightgray;
+
+    .clock-container {
+      // background: lightgray;
+      // background: blue;
+    }
+  }
+
+  .header {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    display: flex;
     margin-top: 1em;
     font-size: var(--font-size-small);
     color: var(--foreground);
     margin-bottom: 0.5em;
+    height: 280px;
+
+    .column {
+      width: 50%;
+      height: 100%;
+      padding-left: 10px;
+      // border-right: 1px ridge var(--foreground);
+
+      &.image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:first-child {
+        padding-left: 0;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+      }
+    }
+
+    img {
+      max-height: 100%;
+      width: auto;
+    }
   }
 </style>

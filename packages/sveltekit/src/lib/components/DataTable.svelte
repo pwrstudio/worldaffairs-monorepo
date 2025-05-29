@@ -83,6 +83,7 @@
     border: 1px solid #000;
     font-size: var(--font-size-small);
     margin-bottom: 2em;
+    background: white;
   }
 
   th,
