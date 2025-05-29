@@ -2,6 +2,7 @@
   import type { About, Release, Tour, Video } from "@sanity-types"
 
   import DataTable from "$lib/components/DataTable.svelte"
+  import WireframeSphere from "$lib/components/WireframeSphere.svelte"
 
   export let data: {
     about: About
@@ -59,6 +60,8 @@
   const video = videos.map(mapVideo)
   const tour = tours.map(mapTour)
 </script>
+
+<WireframeSphere />
 
 <div class="column">
   <div class="updated">Last updated: 2025-05-28 15:45</div>
@@ -156,5 +159,10 @@
     font-family: "Times New Roman", Times, serif;
     font-size: var(--font-size-base);
     margin-bottom: 1em;
+  }
+
+  .column {
+    position: relative;
+    z-index: 1;
   }
 </style>
