@@ -49,14 +49,4 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'tour' })
                 ),
-            S.listItem()
-                .title('Shop')
-                .icon(MdShop)
-                .child(
-                    S.documentList()
-                        .title('Shop')
-                        .showIcons(true)
-                        .filter('_type == $type')
-                        .params({ type: 'product' })
-                ),
         ]);

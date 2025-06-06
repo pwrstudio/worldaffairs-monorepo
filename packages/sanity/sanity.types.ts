@@ -59,15 +59,6 @@ export type Video = {
   }>
 }
 
-export type Product = {
-  _id: string
-  _type: 'product'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-}
-
 export type Tour = {
   _id: string
   _type: 'tour'
@@ -234,7 +225,6 @@ export type SanityAssetSourceData = {
 export type AllSanitySchemaTypes =
   | NewPosts
   | Video
-  | Product
   | Tour
   | Release
   | About
