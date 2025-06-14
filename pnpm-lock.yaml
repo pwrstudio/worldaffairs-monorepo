@@ -48,6 +48,12 @@ importers:
 
   packages/sveltekit:
     dependencies:
+      '@portabletext/to-html':
+        specifier: ^2.0.14
+        version: 2.0.14
+      '@portabletext/types':
+        specifier: ^2.0.13
+        version: 2.0.13
       '@sanity/block-content-to-html':
         specifier: ^2.0.0
         version: 2.0.0
