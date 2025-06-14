@@ -46,7 +46,7 @@
                     {link.label}
                   </a>
                   {#if linkIndex < row.links.length - 1}
-                    <span class="separator">/</span>
+                    <span class="separator">|</span>
                   {/if}
                 {/each}
               {/if}

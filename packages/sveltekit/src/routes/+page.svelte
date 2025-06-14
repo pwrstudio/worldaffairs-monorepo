@@ -29,34 +29,42 @@
 </script>
 
 <main>
-  <Ticker />
-  <hr />
-  <ClockGroup />
-  <hr />
-  <Header {hasNewPosts} />
-  <hr />
-  {#if hasNewPosts}
-    <NewTable {newPosts} />
+  <div class="main-inner-container">
+    <Ticker />
     <hr />
-  {/if}
-  <Store />
-  <hr />
-  <MusicTable {releases} />
-  <hr />
-  <VideoTable {videos} />
-  <hr />
-  <TourDateTable {tourDates} />
-  <hr />
-  <Newsletter />
-  <hr />
-  <Contact {about} />
-  <hr />
-  <Footer {siteLastUpdated} />
+    <ClockGroup />
+    <hr />
+    <Header {hasNewPosts} />
+    <hr />
+    {#if hasNewPosts}
+      <NewTable {newPosts} />
+      <hr />
+    {/if}
+    <Store />
+    <hr />
+    <MusicTable {releases} />
+    <hr />
+    <VideoTable {videos} />
+    <hr />
+    <TourDateTable {tourDates} />
+    <hr />
+    <Newsletter />
+    <hr />
+    <Contact {about} />
+    <hr />
+    <Footer {siteLastUpdated} />
+  </div>
 </main>
 
 <style lang="scss">
   main {
     margin: 20px;
     margin-top: 10px;
+
+    .main-inner-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
   }
 </style>
