@@ -1,15 +1,26 @@
 import {
     MdMusicNote,
-    MdShop,
     MdVideocam,
     MdTour,
-    MdStar
+    MdStar,
+    MdHome,
+    MdEvent
 } from "react-icons/md"
 
 export default (S: any) =>
     S.list()
         .title("World Affairs AB")
         .items([
+            S.listItem()
+            .title("About")
+            .icon(MdHome)
+            .child(
+                S.editor()
+                    .id('about')
+                    .schemaType("about")
+                    .documentId("about")
+            ),
+            S.divider(),
             S.listItem()
                 .title("New posts")
                 .icon(MdStar)
@@ -19,6 +30,7 @@ export default (S: any) =>
                         .schemaType("newPosts")
                         .documentId("new-posts")
                 ),
+            S.divider(),
             S.listItem()
                 .title('Releases')
                 .icon(MdMusicNote)
@@ -29,6 +41,7 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'release' })
                 ),
+            S.divider(),
             S.listItem()
                 .title('Videos')
                 .icon(MdVideocam)
@@ -39,6 +52,7 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'video' })
                 ),
+            S.divider(),
             S.listItem()
                 .title('Tours')
                 .icon(MdTour)
@@ -48,5 +62,16 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'tour' })
+                ),
+            S.divider(),
+            S.listItem()
+                .title('Tour dates')
+                .icon(MdEvent)
+                .child(
+                    S.documentList()
+                        .title('Tour dates')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'tourDate' })
                 ),
         ]);

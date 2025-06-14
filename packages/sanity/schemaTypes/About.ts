@@ -11,34 +11,15 @@ export default {
             readOnly: true
         },
         {
-            title: 'CEO label',
-            name: 'ceoLabel',
-            type: 'string',
-            validation: (Rule: any) => Rule.required()
-        },
-        {
-            title: "CEO name",
-            name: "ceoName",
-            type: "string",
-            validation: (Rule: any) => Rule.required()
-        },
-        {
-            title: "Contact label",
-            name: "contactLabel",
-            type: "string",
-            validation: (Rule: any) => Rule.required()
-        },
-        {
-            title: "Contact email",
+            title: "Contact: email",
             name: "contactEmail",
-            type: "string",
-            validation: (Rule: any) => Rule.required()
+            type: "string"
         },
         {
-            title: "Contact instagram handle",
-            name: "contactInstagram",
-            type: "string",
-            validation: (Rule: any) => Rule.required()
-        }
+            title: 'Contact: links',
+            name: 'contactLinks',
+            type: 'array',
+            of: [{ type: 'object', fields: [{ type: 'string', name: 'label' }, { type: 'string', name: 'url' }] }]
+        },
     ],
 }

@@ -97,11 +97,12 @@ export type About = {
   _updatedAt: string
   _rev: string
   title?: string
-  ceoLabel?: string
-  ceoName?: string
-  contactLabel?: string
   contactEmail?: string
-  contactInstagram?: string
+  contactLinks?: Array<{
+    label?: string
+    url?: string
+    _key: string
+  }>
 }
 
 export type SanityImagePaletteSwatch = {

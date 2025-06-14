@@ -18,7 +18,7 @@
     newPosts: (Release | Tour | Video)[]
   }
 
-  const { releases, tours, videos, newPosts } = data
+  const { about, releases, tours, videos, newPosts } = data
 
   const music = releases.map(mapRelease)
   const video = videos.map(mapVideo)
@@ -46,7 +46,7 @@
   <hr />
   <Store />
   <hr />
-  <Contact />
+  <Contact {about} />
   <hr />
   <Footer />
 </main>

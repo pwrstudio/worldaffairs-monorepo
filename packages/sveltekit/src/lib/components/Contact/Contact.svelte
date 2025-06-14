@@ -1,14 +1,18 @@
 <script lang="ts">
-  // ...
+  import type { About } from "@sanity-types"
+  const { about }: { about: About } = $props()
 </script>
 
 <h3 id="contact">Contact</h3>
 <p>
-  <a href="mailto:info@worldaffairs.se">info@worldaffairs.se</a>
-  <br />
-  <a
-    href="https://www.instagram.com/worldaffairsincorporated/"
-    target="_blank"
-    rel="noopener noreferrer">Instagram</a
-  >
+  <a href="mailto:{about.contactEmail}">{about.contactEmail}</a>
+  {#if about.contactLinks}
+    <br />
+    {#each about.contactLinks as link}
+      <a href={link.url} target="_blank" rel="noopener noreferrer">
+        {link.label}
+      </a>
+      <br />
+    {/each}
+  {/if}
 </p>
