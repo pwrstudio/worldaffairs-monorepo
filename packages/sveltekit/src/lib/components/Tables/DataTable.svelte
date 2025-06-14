@@ -104,6 +104,12 @@
 
       &.linkList {
         min-width: 80px;
+
+        a {
+          @media (max-width: 768px) {
+            display: block;
+          }
+        }
       }
     }
 
@@ -130,6 +136,10 @@
 
     .separator {
       margin: 0 0.25em;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
   }
 </style>
