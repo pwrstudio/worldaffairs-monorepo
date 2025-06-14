@@ -21,7 +21,7 @@
   <thead>
     <tr>
       {#each columns as column}
-        <th>
+        <th class:hide-on-mobile={column.hide}>
           {column.label}
         </th>
       {/each}
@@ -31,7 +31,7 @@
     {#each data as row, i}
       <tr>
         {#each columns as column}
-          <td class={column.type}>
+          <td class={column.type} class:hide-on-mobile={column.hide}>
             {#if column.type === "icon"}
               <!-- Icon -->
               <img src="/images/fire.gif" alt="new" />
@@ -120,6 +120,12 @@
 
     tr:hover {
       background-color: #e0e0e0;
+    }
+
+    .hide-on-mobile {
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
 
     .separator {

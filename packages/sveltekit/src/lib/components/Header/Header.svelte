@@ -3,7 +3,7 @@
 </script>
 
 <div class="header">
-  <div class="column">
+  <div class="column toc">
     <h1>World Affairs AB</h1>
     <div class="imprint">Momsregistreringsnummer (VAT): SE556886471301</div>
     {#if hasNewPosts}
@@ -79,10 +79,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @media (max-width: 768px) {
+          display: none;
+        }
       }
 
-      &:first-child {
+      &.toc {
         padding-left: 0;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
       }
     }
 

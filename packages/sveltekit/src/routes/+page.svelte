@@ -60,6 +60,11 @@
   main {
     margin: 20px;
     margin-top: 10px;
+    overflow-x: hidden;
+
+    @media (max-width: 768px) {
+      margin: 10px;
+    }
 
     .main-inner-container {
       max-width: 1600px;

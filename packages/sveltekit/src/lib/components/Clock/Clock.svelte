@@ -157,6 +157,7 @@
     color: var(--clock-color);
     margin-bottom: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
   }
 
   .date {
@@ -169,6 +170,10 @@
     width: 100%;
     max-height: 140px;
     aspect-ratio: 1;
+
+    @media (max-width: 768px) {
+      max-height: 200px;
+    }
   }
 
   .clock {

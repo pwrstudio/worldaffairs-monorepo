@@ -17,6 +17,12 @@
     font-size: var(--font-size-small);
     color: var(--foreground);
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 1em;
+    }
+
     .imprint {
       font-size: var(--font-size-small);
     }

@@ -9,11 +9,11 @@
   }>()
 
   const columns: Column[] = [
-    { type: "icon" },
-    { type: "text", label: "Title", key: "title" },
-    { type: "text", label: "Artist", key: "artist" },
-    { type: "text", label: "Date", key: "date" },
-    { type: "linkList", label: "Links" },
+    { type: "icon", hide: false },
+    { type: "text", label: "Title", key: "title", hide: false },
+    { type: "text", label: "Artist", key: "artist", hide: false },
+    { type: "text", label: "Date", key: "date", hide: true },
+    { type: "linkList", label: "Links", hide: false },
   ]
 </script>
 

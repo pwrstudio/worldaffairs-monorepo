@@ -26,4 +26,22 @@
     gap: 20px;
     justify-content: space-between;
   }
+
+  @media (max-width: 960px) {
+    .clock-container:nth-child(n + 5) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .clock-group {
+      flex-direction: column;
+      align-items: center;
+      gap: unset;
+    }
+
+    .clock-container:not(:first-child) {
+      display: none;
+    }
+  }
 </style>

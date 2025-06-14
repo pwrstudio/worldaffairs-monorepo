@@ -13,6 +13,7 @@ export type Column = {
   type: "index" | "icon" | "text" | "linkList" | "link"
   label?: string
   key?: string
+  hide: boolean
 }
 
 export type LinkListItem = {
