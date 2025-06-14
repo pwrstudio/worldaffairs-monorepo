@@ -1,10 +1,11 @@
 <script lang="ts">
   import { getCurrentYear } from "$lib/modules/utils"
+  const { siteLastUpdated }: { siteLastUpdated: string } = $props()
 </script>
 
 <div class="footer">
   <div class="imprint">© {getCurrentYear()} World Affairs AB</div>
-  <div class="updated">Last updated: 2025-05-28 15:45</div>
+  <div class="updated">Site last updated: {siteLastUpdated}</div>
 </div>
 
 <style lang="scss">

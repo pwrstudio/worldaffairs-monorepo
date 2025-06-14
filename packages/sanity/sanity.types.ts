@@ -42,6 +42,19 @@ export type NewPosts = {
   >
 }
 
+export type TourDate = {
+  _id: string
+  _type: 'tourDate'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  artist?: string
+  date?: string
+  location?: string
+  venue?: string
+  ticketLink?: string
+}
+
 export type Video = {
   _id: string
   _type: 'video'
@@ -225,6 +238,7 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes =
   | NewPosts
+  | TourDate
   | Video
   | Tour
   | Release

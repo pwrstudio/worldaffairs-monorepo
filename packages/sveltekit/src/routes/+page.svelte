@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { About, Release, Tour, Video } from "@sanity-types"
+  import type { About, Release, Tour, Video, TourDate } from "@sanity-types"
   import { mapRelease, mapVideo, mapTour, mapNewPost } from "$lib/modules/utils"
 
   import Ticker from "$lib/components/Ticker/Ticker.svelte"
@@ -13,12 +13,22 @@
   export let data: {
     about: About
     releases: Release[]
-    tours: Tour[]
     videos: Video[]
+    tours: Tour[]
+    tourDates: TourDate[]
     newPosts: (Release | Tour | Video)[]
+    siteLastUpdated: string
   }
 
-  const { about, releases, tours, videos, newPosts } = data
+  const {
+    about,
+    releases,
+    tours,
+    tourDates,
+    videos,
+    newPosts,
+    siteLastUpdated,
+  } = data
 
   const music = releases.map(mapRelease)
   const video = videos.map(mapVideo)
@@ -48,7 +58,7 @@
   <hr />
   <Contact {about} />
   <hr />
-  <Footer />
+  <Footer {siteLastUpdated} />
 </main>
 
 <style lang="scss">
