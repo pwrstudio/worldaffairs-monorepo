@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { isUrl, getUniqueKeys } from "$lib/modules/utils"
+
   const {
     data,
     className = "",
@@ -11,21 +13,7 @@
     isNew?: boolean
   }>()
 
-  // Get all unique column headers from all objects
-  let headers = $derived<string[]>([
-    ...new Set<string>(
-      data.flatMap((obj: Record<string, any>) => Object.keys(obj))
-    ),
-  ])
-
-  function isUrl(str: string): boolean {
-    try {
-      new URL(str)
-      return true
-    } catch {
-      return false
-    }
-  }
+  let headers = getUniqueKeys(data)
 </script>
 
 {#if title}
@@ -91,7 +79,9 @@
     padding: 0.2em;
     text-align: left;
     border: 1px solid #000;
+  }
 
+  td {
     &.new {
       padding: 0;
       line-height: 0;

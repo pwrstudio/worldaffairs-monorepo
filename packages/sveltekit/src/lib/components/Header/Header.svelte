@@ -1,0 +1,91 @@
+<script lang="ts">
+  const { hasNewPosts }: { hasNewPosts: boolean } = $props()
+</script>
+
+<div class="header">
+  <div class="column">
+    <h1>World Affairs AB</h1>
+    <div class="imprint">Momsregistreringsnummer (VAT): SE556123456701</div>
+    {#if hasNewPosts}
+      <h2 class="toc-link">
+        <a href="#new">New</a>
+      </h2>
+    {/if}
+    <h2 class="toc-link">
+      <a href="#music">Music</a>
+    </h2>
+    <h2 class="toc-link">
+      <a href="#video">Video</a>
+    </h2>
+    <h2 class="toc-link">
+      <a href="#tour">Tour</a>
+    </h2>
+    <h2 class="toc-link">
+      <a href="#store">Store</a>
+    </h2>
+    <h2 class="toc-link">
+      <a href="#contact">Contact</a>
+    </h2>
+  </div>
+  <div class="column image">
+    <img src="/images/wa-logo-alt.png" alt="logo" />
+    <!-- <img src="/images/wa-logo.png" alt="logo" /> -->
+  </div>
+</div>
+
+<style lang="scss">
+  img {
+    width: 340px;
+    height: auto;
+  }
+
+  .toc-link {
+    display: block;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .header {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    display: flex;
+    margin-top: 1em;
+    font-size: var(--font-size-small);
+    color: var(--foreground);
+    margin-bottom: 0.5em;
+    height: 280px;
+
+    .column {
+      width: 50%;
+      height: 100%;
+      padding-left: 10px;
+      // border-right: 1px ridge var(--foreground);
+
+      &.image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:first-child {
+        padding-left: 0;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+      }
+    }
+
+    img {
+      max-height: 100%;
+      width: auto;
+    }
+  }
+</style>

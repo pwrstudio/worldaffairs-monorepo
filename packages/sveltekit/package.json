@@ -16,13 +16,12 @@
 		"sass-embedded": "^1.89.0",
 		"svelte": "^5.34.1",
 		"svelte-check": "^4.2.1",
-		"vite": "^6.3.5"
+		"vite": "^6.3.5",
+		"@portabletext/types": "^2.0.13"
 	},
 	"type": "module",
 	"dependencies": {
 		"@portabletext/to-html": "^2.0.14",
-		"@portabletext/types": "^2.0.13",
-		"@sanity/block-content-to-html": "^2.0.0",
 		"@sanity/client": "^7.3.0",
 		"@sanity/image-url": "^1.1.0"
 	}

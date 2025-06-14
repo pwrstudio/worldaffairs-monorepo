@@ -1,7 +1,10 @@
 <script lang="ts">
+  import type { Commodity } from "$lib/types"
   import { onMount } from "svelte"
 
-  const commodities = [
+  import TickerItem from "$lib/components/Ticker/TickerItem.svelte"
+
+  const commodities: Commodity[] = [
     { name: "Gold", price: 2345.67, change: 12.34 },
     { name: "Silver", price: 28.45, change: -0.23 },
     { name: "Platinum", price: 987.65, change: 5.67 },
@@ -19,11 +22,11 @@
     { name: "Brent Oil", price: 82.34, change: 0.45 },
   ]
 
-  let marqueeContent: HTMLElement
-  let animationFrame: number
-  let position = 0
-  let speed = 1
-  let contentWidth = 0
+  let marqueeContent: HTMLElement | null = $state(null)
+  let animationFrame = $state(0)
+  let position = $state(0)
+  let speed = $state(1)
+  let contentWidth = $state(0)
 
   function updateMarquee() {
     if (!marqueeContent) return
@@ -57,31 +60,11 @@
   <div class="marquee" bind:this={marqueeContent}>
     <!-- First set of items -->
     {#each commodities as commodity}
-      <div class="commodity">
-        <span class="name">{commodity.name}</span>
-        <span class="price">${commodity.price.toFixed(2)}</span>
-        <span
-          class="change"
-          class:positive={commodity.change > 0}
-          class:negative={commodity.change < 0}
-        >
-          {commodity.change > 0 ? "+" : ""}{commodity.change.toFixed(2)}
-        </span>
-      </div>
+      <TickerItem {commodity} />
     {/each}
     <!-- Duplicate set for seamless loop -->
     {#each commodities as commodity}
-      <div class="commodity">
-        <span class="name">{commodity.name}</span>
-        <span class="price">${commodity.price.toFixed(2)}</span>
-        <span
-          class="change"
-          class:positive={commodity.change > 0}
-          class:negative={commodity.change < 0}
-        >
-          {commodity.change > 0 ? "+" : ""}{commodity.change.toFixed(2)}
-        </span>
-      </div>
+      <TickerItem {commodity} />
     {/each}
   </div>
 </div>
@@ -100,34 +83,5 @@
     position: absolute;
     white-space: nowrap;
     will-change: transform;
-  }
-
-  .commodity {
-    display: inline-flex;
-    align-items: center;
-    padding: 0 10px;
-    font-family: "times new roman", times, serif;
-    font-size: var(--font-size-small);
-    color: var(--foreground);
-    text-transform: uppercase;
-
-    .name {
-      font-weight: 500;
-      margin-right: 8px;
-    }
-
-    .price {
-      margin-right: 8px;
-    }
-
-    .change {
-      font-weight: bold;
-      //   &.positive {
-      //     color: #4caf50;
-      //   }
-      //   &.negative {
-      //     color: #f44336;
-      //   }
-    }
   }
 </style>

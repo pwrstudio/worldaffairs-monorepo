@@ -1,18 +1,18 @@
 <script lang="ts">
+  import type { ClockLocation } from "$lib/types"
   import { onMount } from "svelte"
 
-  export let timezone: string
-  export let label: string
+  const { clockLocation }: { clockLocation: ClockLocation } = $props()
 
-  let hours = 0
-  let minutes = 0
-  let seconds = 0
-  let date = "loading..."
+  let hours = $state(0)
+  let minutes = $state(0)
+  let seconds = $state(0)
+  let date = $state("loading...")
 
   function updateTime() {
     const now = new Date()
     const options: Intl.DateTimeFormatOptions = {
-      timeZone: timezone,
+      timeZone: clockLocation.timezone,
       hour: "numeric",
       minute: "numeric",
       second: "numeric",
@@ -20,7 +20,7 @@
     }
 
     const dateOptions: Intl.DateTimeFormatOptions = {
-      timeZone: timezone,
+      timeZone: clockLocation.timezone,
       weekday: "short",
       year: "numeric",
       month: "short",
@@ -42,13 +42,13 @@
     return () => clearInterval(interval)
   })
 
-  $: hourRotation = (hours % 12) * 30 + minutes * 0.5
-  $: minuteRotation = minutes * 6 + seconds * 0.1
-  $: secondRotation = seconds * 6
+  let hourRotation = $derived((hours % 12) * 30 + minutes * 0.5)
+  let minuteRotation = $derived(minutes * 6 + seconds * 0.1)
+  let secondRotation = $derived(seconds * 6)
 </script>
 
 <div class="clock-container">
-  <div class="label">{label}</div>
+  <div class="label">{clockLocation.label}</div>
   <div class="clock-wrapper">
     <svg viewBox="0 0 100 100" class="clock">
       <!-- Clock face -->
