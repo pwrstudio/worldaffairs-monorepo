@@ -1,0 +1,17 @@
+{
+  "name": "import-tour-date",
+  "version": "1.0.0",
+  "description": "",
+  "main": "import.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sanity/client": "^7.3.0",
+    "dotenv": "^16.5.0",
+    "uuid": "^11.1.0"
+  }
+}

@@ -1,16 +1,15 @@
 <script lang="ts">
+  import { TableType } from "$lib/components/enums"
   import { isUrl, getUniqueKeys } from "$lib/modules/utils"
 
   const {
+    tableType,
     data,
-    className = "",
     title = "",
-    isNew = false,
   } = $props<{
-    data: Record<string, any>[]
-    className?: string
+    tableType: TableType
     title?: string
-    isNew?: boolean
+    data: Record<string, any>[]
   }>()
 
   let headers = getUniqueKeys(data)
@@ -22,7 +21,7 @@
   </h3>
 {/if}
 
-<table class={className}>
+<table class={tableType}>
   <thead>
     <tr>
       <th>#</th>
@@ -34,8 +33,8 @@
   <tbody>
     {#each data as row, i}
       <tr>
-        <td class:new={isNew}>
-          {#if isNew}
+        <td class={tableType}>
+          {#if tableType === TableType.New}
             <img src="/images/fire.gif" alt="new" />
           {:else}
             {i + 1}

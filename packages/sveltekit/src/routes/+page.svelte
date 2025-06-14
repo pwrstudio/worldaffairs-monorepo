@@ -1,6 +1,12 @@
 <script lang="ts">
-  import type { About, Release, Tour, Video, TourDate } from "@sanity-types"
-  import { mapRelease, mapVideo, mapTour, mapNewPost } from "$lib/modules/utils"
+  import type { About, Release, Video, Tour, TourDate } from "@sanity-types"
+  import { TableType } from "$lib/components/enums"
+  import {
+    mapRelease,
+    mapVideo,
+    mapTourDate,
+    mapNewPost,
+  } from "$lib/modules/utils"
 
   import Ticker from "$lib/components/Ticker/Ticker.svelte"
   import ClockGroup from "$lib/components/Clock/ClockGroup.svelte"
@@ -20,19 +26,11 @@
     siteLastUpdated: string
   }
 
-  const {
-    about,
-    releases,
-    tours,
-    tourDates,
-    videos,
-    newPosts,
-    siteLastUpdated,
-  } = data
+  const { about, releases, tourDates, videos, newPosts, siteLastUpdated } = data
 
-  const music = releases.map(mapRelease)
-  const video = videos.map(mapVideo)
-  const tour = tours.map(mapTour)
+  const musicMapped = releases.map(mapRelease)
+  const videoMapped = videos.map(mapVideo)
+  const tourDatesMapped = tourDates.map(mapTourDate)
   const newPostsMapped = newPosts?.map(mapNewPost) || []
   const hasNewPosts = newPostsMapped.length > 0
 </script>
@@ -45,14 +43,18 @@
   <Header {hasNewPosts} />
   <hr />
   {#if hasNewPosts}
-    <DataTable title="New" data={newPostsMapped} isNew={true} />
+    <DataTable tableType={TableType.New} title="New" data={newPostsMapped} />
     <hr />
   {/if}
-  <DataTable title="Music" data={music} />
+  <DataTable tableType={TableType.Music} title="Music" data={musicMapped} />
   <hr />
-  <DataTable title="Video" data={video} />
+  <DataTable tableType={TableType.Video} title="Video" data={videoMapped} />
   <hr />
-  <DataTable title="Tour" data={tour} />
+  <DataTable
+    tableType={TableType.TourDates}
+    title="Tour dates"
+    data={tourDatesMapped}
+  />
   <hr />
   <Store />
   <hr />

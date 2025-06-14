@@ -7,7 +7,7 @@ export const queries = {
     releases: '*[_type == "release"] | order(releaseDate desc)',
     videos: '*[_type == "video"] | order(releaseDate desc)',
     tours: '*[_type == "tour"] | order(tourDate desc)',
-    tourDates: '*[_type == "tourDate"] | order(date desc)',
+    tourDates: '*[_type == "tourDate" && date >= now()] | order(date asc)',
     lastUpdatedPost: '*[] | order(_updatedAt desc)[0]',
     newPosts: '*[_type == "newPosts"][0] {title, posts[]->{...}}'
 }

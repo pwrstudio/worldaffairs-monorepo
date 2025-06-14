@@ -73,5 +73,6 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'tourDate' })
+                        .defaultOrdering([{field: 'date', direction: 'asc'}])
                 ),
         ]);

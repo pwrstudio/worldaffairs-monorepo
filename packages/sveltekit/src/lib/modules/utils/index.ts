@@ -1,4 +1,4 @@
-import type { Release, Video, Tour } from "@sanity-types"
+import type { Release, Video, Tour, TourDate } from "@sanity-types"
 
 // ================================
 // Map CMS data to table format
@@ -45,6 +45,21 @@ import type { Release, Video, Tour } from "@sanity-types"
       region: tour.region,
       tourDate: tour.tourDate,
       tickets: tour.link,
+    }
+  }
+
+  /**
+   * Map tour dates
+   * @param tourDate - TourDate object
+   * @returns Object with title, artist, date, location, venue, and ticketLink
+   */
+  export function mapTourDate(tourDate: TourDate) {
+    return {
+      title: tourDate.artist,
+      date: tourDate.date,
+      location: tourDate.location,
+      venue: tourDate.venue,
+      ticketLink: tourDate.ticketLink,
     }
   }
 
