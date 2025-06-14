@@ -4,6 +4,9 @@
 
 <div class="header">
   <div class="column toc">
+    <div class="small-image">
+      <img src="/images/wa-logo-alt.png" alt="logo" />
+    </div>
     <h1>World Affairs AB</h1>
     <div class="imprint">Momsregistreringsnummer (VAT): SE556886471301</div>
     {#if hasNewPosts}
@@ -65,6 +68,10 @@
     margin-bottom: 0.5em;
     height: 280px;
 
+    @media (max-width: 768px) {
+      height: auto;
+    }
+
     .column {
       width: 50%;
       height: 100%;
@@ -73,6 +80,19 @@
       .imprint {
         font-size: var(--font-size-small);
         margin-bottom: 0.5em;
+      }
+
+      .small-image {
+        display: none;
+        width: 200px;
+        @media (max-width: 768px) {
+          display: block;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+        }
       }
 
       &.image {

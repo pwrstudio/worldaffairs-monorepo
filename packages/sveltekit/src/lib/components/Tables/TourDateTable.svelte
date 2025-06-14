@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { TourDate } from "@sanity-types"
-  import { TableType } from "$lib/components/enums"
+  import { TableType } from "$lib/enums"
   import type { Column } from "$lib/types"
   import DataTable from "$lib/components/Tables/DataTable.svelte"
 

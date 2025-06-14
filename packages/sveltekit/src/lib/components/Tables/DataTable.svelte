@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TableType } from "$lib/components/enums"
+  import { TableType } from "$lib/enums"
   import type { Column } from "$lib/types"
 
   const { tableType, title, anchor, columns, data } = $props<{

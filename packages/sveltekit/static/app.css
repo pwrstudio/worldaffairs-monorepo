@@ -79,6 +79,7 @@ button {
     border: 1px solid var(--foreground);
     background-color: var(--table-header-bg);
     color: var(--foreground);
+    user-select: none;
   }
 
   button:hover {

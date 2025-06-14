@@ -24,6 +24,7 @@
     font-size: var(--font-size-small);
     color: var(--foreground);
     text-transform: uppercase;
+    user-select: none;
 
     .name {
       font-weight: 500;
@@ -36,12 +37,6 @@
 
     .change {
       font-weight: bold;
-      //   &.positive {
-      //     color: #4caf50;
-      //   }
-      //   &.negative {
-      //     color: #f44336;
-      //   }
     }
   }
 </style>
