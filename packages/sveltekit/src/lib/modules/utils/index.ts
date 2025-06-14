@@ -36,3 +36,13 @@
     export function getCurrentYear(): number {
       return new Date().getFullYear()
     }
+
+    /**
+     * Get a random number in a range
+     * @param min - Minimum number
+     * @param max - Maximum number
+     * @returns Random number
+     */
+    export function getRandomNumberInRange(min: number, max: number): number {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }

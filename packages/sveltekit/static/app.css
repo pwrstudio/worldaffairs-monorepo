@@ -77,13 +77,13 @@ button {
     margin-bottom: 1em;
     border-radius: 0;
     border: 1px solid var(--foreground);
-    background-color: var(--table-header-bg);
     color: var(--foreground);
     user-select: none;
+    background-color: var(--table-row-hover-bg);
   }
 
   button:hover {
-    background-color: var(--table-row-hover-bg);
+    background-color: var(--table-header-bg);
   }
 
   button:active {

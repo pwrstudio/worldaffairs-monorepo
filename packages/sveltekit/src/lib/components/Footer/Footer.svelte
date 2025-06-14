@@ -1,11 +1,16 @@
 <script lang="ts">
-  import { getCurrentYear } from "$lib/modules/utils"
+  import { getCurrentYear, getRandomNumberInRange } from "$lib/modules/utils"
   const { siteLastUpdated }: { siteLastUpdated: string } = $props()
 </script>
 
 <div class="footer">
   <div class="imprint">© {getCurrentYear()} World Affairs AB</div>
-  <div class="updated">Site last updated: {siteLastUpdated}</div>
+  <div class="updated">
+    <div class="updated-text">Site last updated: {siteLastUpdated}</div>
+    <div class="updated-text">
+      You are visitor number: {getRandomNumberInRange(10000, 99999)}
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
@@ -31,6 +36,11 @@
       font-size: var(--font-size-small);
       color: var(--foreground);
       float: right;
+      text-align: right;
+
+      @media (max-width: 768px) {
+        text-align: center;
+      }
     }
   }
 </style>

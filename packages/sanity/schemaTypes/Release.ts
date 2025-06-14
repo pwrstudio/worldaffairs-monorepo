@@ -54,4 +54,16 @@ export default {
             }]    
         }
     ],
+    preview: {
+        select: {
+            title: 'title',
+            artist: 'artist'
+        },
+        prepare({ title, artist }: { title: string, artist: string }) {
+            return {
+                title,
+                subtitle: artist
+            }
+        }
+    },
 }
