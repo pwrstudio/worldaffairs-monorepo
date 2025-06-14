@@ -16,7 +16,7 @@ export default {
             title: 'Posts',
             name: 'posts',
             type: 'array',
-            of: [{ type: 'reference', to: [{ type: 'tour' }, { type: 'release' }, { type: 'video' }] }],
+            of: [{ type: 'reference', to: [{ type: 'tour' }, { type: 'tourDate' }, { type: 'release' }, { type: 'video' }] }],
         },
     ],
 }

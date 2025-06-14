@@ -8,3 +8,14 @@ export type Commodity = {
   price: number
   change: number
 }
+
+export type Column = {
+  type: "index" | "icon" | "text" | "linkList" | "link"
+  label?: string
+  key?: string
+}
+
+export type LinkListItem = {
+  label: string
+  url: string
+}

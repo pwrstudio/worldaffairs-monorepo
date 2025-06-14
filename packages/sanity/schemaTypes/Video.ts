@@ -19,15 +19,15 @@ export default {
             validation: (Rule: any) => Rule.required()
         },
         {
-            title: 'Release Date',
-            name: 'releaseDate',
+            title: 'Release date',
+            name: 'date',
             type: 'date',
         },
         {
             title: 'Links',
             name: 'links',
             type: 'array',
-            of: [{ 
+            of: [{
                 title: 'Link',
                 name: 'link',
                 type: 'object',

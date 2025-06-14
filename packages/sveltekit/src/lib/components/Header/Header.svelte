@@ -5,12 +5,15 @@
 <div class="header">
   <div class="column">
     <h1>World Affairs AB</h1>
-    <div class="imprint">Momsregistreringsnummer (VAT): SE556123456701</div>
+    <div class="imprint">Momsregistreringsnummer (VAT): SE556886471301</div>
     {#if hasNewPosts}
       <h2 class="toc-link">
         <a href="#new">New</a>
       </h2>
     {/if}
+    <h2 class="toc-link">
+      <a href="#store">Store</a>
+    </h2>
     <h2 class="toc-link">
       <a href="#music">Music</a>
     </h2>
@@ -18,10 +21,7 @@
       <a href="#video">Video</a>
     </h2>
     <h2 class="toc-link">
-      <a href="#tour">Tour</a>
-    </h2>
-    <h2 class="toc-link">
-      <a href="#store">Store</a>
+      <a href="#tour-dates">Tour Dates</a>
     </h2>
     <h2 class="toc-link">
       <a href="#contact">Contact</a>
@@ -29,7 +29,6 @@
   </div>
   <div class="column image">
     <img src="/images/wa-logo-alt.png" alt="logo" />
-    <!-- <img src="/images/wa-logo.png" alt="logo" /> -->
   </div>
 </div>
 
@@ -67,7 +66,11 @@
       width: 50%;
       height: 100%;
       padding-left: 10px;
-      // border-right: 1px ridge var(--foreground);
+
+      .imprint {
+        font-size: var(--font-size-small);
+        margin-bottom: 0.5em;
+      }
 
       &.image {
         display: flex;
@@ -77,9 +80,6 @@
 
       &:first-child {
         padding-left: 0;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
       }
     }
 

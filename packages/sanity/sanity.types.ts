@@ -31,6 +31,12 @@ export type NewPosts = {
         _ref: string
         _type: 'reference'
         _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'tourDate'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
         [internalGroqTypeReferenceTo]?: 'release'
       }
     | {
@@ -52,7 +58,12 @@ export type TourDate = {
   date?: string
   location?: string
   venue?: string
-  ticketLink?: string
+  links?: Array<{
+    label?: string
+    url?: string
+    _type: 'link'
+    _key: string
+  }>
 }
 
 export type Video = {
@@ -63,7 +74,7 @@ export type Video = {
   _rev: string
   title?: string
   artist?: string
-  releaseDate?: string
+  date?: string
   links?: Array<{
     label?: string
     url?: string
@@ -81,8 +92,13 @@ export type Tour = {
   title?: string
   artist?: string
   region?: string
-  tourDate?: string
-  link?: string
+  date?: string
+  links?: Array<{
+    label?: string
+    url?: string
+    _type: 'link'
+    _key: string
+  }>
 }
 
 export type Release = {
@@ -94,7 +110,7 @@ export type Release = {
   title?: string
   type?: string
   artist?: string
-  releaseDate?: string
+  date?: string
   links?: Array<{
     label?: string
     url?: string

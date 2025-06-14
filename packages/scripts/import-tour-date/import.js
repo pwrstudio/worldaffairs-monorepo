@@ -21,11 +21,22 @@ async function importTourDates() {
       // Create a unique ID for the document
       const docId = uuidv4()
       
+      // Transform the data to match the new schema
+      const { ticketLink, ...rest } = tourDate
+      const transformedTourDate = {
+        ...rest,
+        links: [{
+          _key: uuidv4(),
+          label: 'Tickets',
+          url: ticketLink
+        }]
+      }
+      
       // Create the document in Sanity
       const result = await client.create({
         _id: docId,
         _type: 'tourDate',
-        ...tourDate
+        ...transformedTourDate
       })
       
       console.log(`Successfully imported tour date: ${tourDate.date} - ${tourDate.location}`)
