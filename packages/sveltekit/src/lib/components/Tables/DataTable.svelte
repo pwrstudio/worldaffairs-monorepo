@@ -105,9 +105,15 @@
       &.linkList {
         min-width: 80px;
 
+        @media (max-width: 768px) {
+          padding-right: 10px;
+        }
+
         a {
           @media (max-width: 768px) {
             display: block;
+            margin-bottom: 0.5em;
+            white-space: nowrap;
           }
         }
       }
