@@ -9,9 +9,8 @@
   }>()
 
   const columns: Column[] = [
-    { type: "index", label: "#" },
-    { type: "text", label: "Artist", key: "artist" },
     { type: "text", label: "Date", key: "date" },
+    { type: "text", label: "Artist", key: "artist" },
     { type: "text", label: "Location", key: "location" },
     { type: "text", label: "Venue", key: "venue" },
     { type: "linkList", label: "Links" },

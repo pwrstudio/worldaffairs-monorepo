@@ -24,6 +24,9 @@
       <a href="#tour-dates">Tour Dates</a>
     </h2>
     <h2 class="toc-link">
+      <a href="#newsletter">Newsletter</a>
+    </h2>
+    <h2 class="toc-link">
       <a href="#contact">Contact</a>
     </h2>
   </div>

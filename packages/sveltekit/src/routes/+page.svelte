@@ -5,6 +5,7 @@
   import ClockGroup from "$lib/components/Clock/ClockGroup.svelte"
   import Header from "$lib/components/Header/Header.svelte"
   import Store from "$lib/components/Store/Store.svelte"
+  import Newsletter from "$lib/components/NewsLetter/NewsLetter.svelte"
   import Contact from "$lib/components/Contact/Contact.svelte"
   import Footer from "$lib/components/Footer/Footer.svelte"
 
@@ -45,6 +46,8 @@
   <VideoTable {videos} />
   <hr />
   <TourDateTable {tourDates} />
+  <hr />
+  <Newsletter />
   <hr />
   <Contact {about} />
   <hr />

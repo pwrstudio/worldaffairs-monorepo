@@ -37,7 +37,7 @@
               <img src="/images/fire.gif" alt="new" />
             {:else if column.type === "index"}
               <!-- Index -->
-              {i + 1}
+              {data.length - i}
             {:else if column.type === "linkList"}
               <!-- Link -->
               {#if row.links && Array.isArray(row.links)}
