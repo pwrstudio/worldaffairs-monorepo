@@ -8,6 +8,7 @@
   let minutes = $state(0)
   let seconds = $state(0)
   let date = $state("loading...")
+  let isLoading = $state(true)
 
   function updateTime() {
     const now = new Date()
@@ -34,6 +35,7 @@
     minutes = m
     seconds = s
     date = now.toLocaleDateString("en-US", dateOptions)
+    isLoading = false
   }
 
   onMount(() => {
@@ -50,7 +52,7 @@
 <div class="clock-container">
   <div class="label">{clockLocation.label}</div>
   <div class="clock-wrapper">
-    <svg viewBox="0 0 100 100" class="clock">
+    <svg viewBox="0 0 100 100" class="clock" class:visible={!isLoading}>
       <!-- Clock face -->
       <circle
         cx="50"
@@ -172,5 +174,15 @@
   .clock {
     width: 100%;
     height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 </style>
