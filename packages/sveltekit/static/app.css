@@ -8,6 +8,14 @@
 
     --foreground: #000000;
     --link-color: #0000ff;
+
+    /* Table colors */
+    --table-border-color: #000;
+    --table-header-bg: #ccc;
+    --table-header-border: #eee;
+    --table-row-even-bg: #f0f0f0;
+    --table-row-hover-bg: #e0e0e0;
+
     --font-size-base: 20px;
     --font-size-small: 16px;
     --font-stack-serif: 'times new roman', times, serif;
@@ -60,3 +68,22 @@ a:hover {
 a:visited {
     color: darkmagenta;
 }
+
+button {
+    padding: 20px;
+    cursor: pointer;
+    font-family: "Times New Roman", Times, serif;
+    font-size: var(--font-size-base);
+    margin-bottom: 1em;
+    border-radius: 0;
+    border: 1px solid var(--foreground);
+    background-color: var(--table-header-bg);
+  }
+
+  button:hover {
+    background-color: var(--table-row-hover-bg);
+  }
+
+  button:active {
+    background-color: var(--table-row-even-bg);
+  }

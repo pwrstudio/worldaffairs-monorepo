@@ -65,14 +65,14 @@
   .table-title {
     font-size: 1.2em;
     margin: 1em 0 0.5em 0;
-    color: #000;
+    color: var(--table-border-color);
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
     margin: 0.5em 0;
-    border: 1px solid #000;
+    border: 1px solid var(--table-border-color);
     font-size: var(--font-size-small);
     margin-bottom: 2em;
     background: white;
@@ -81,7 +81,7 @@
     td {
       padding: 0.2em;
       text-align: left;
-      border: 1px solid #000;
+      border: 1px solid var(--table-border-color);
     }
 
     td {
@@ -109,17 +109,17 @@
 
     th {
       font-weight: bold;
-      background-color: #ccc;
-      color: #000;
-      border: 2px groove #eee;
+      background-color: var(--table-header-bg);
+      color: var(--table-border-color);
+      border: 2px groove var(--table-header-border);
     }
 
     tr:nth-child(even) {
-      background-color: #f0f0f0;
+      background-color: var(--table-row-even-bg);
     }
 
     tr:hover {
-      background-color: #e0e0e0;
+      background-color: var(--table-row-hover-bg);
     }
 
     .hide-on-mobile {

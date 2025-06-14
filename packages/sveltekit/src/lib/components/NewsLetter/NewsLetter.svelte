@@ -10,13 +10,3 @@
 >
   <button>World Affairs Newsletter</button>
 </a>
-
-<style lang="scss">
-  button {
-    padding: 20px;
-    cursor: pointer;
-    font-family: "Times New Roman", Times, serif;
-    font-size: var(--font-size-base);
-    margin-bottom: 1em;
-  }
-</style>
