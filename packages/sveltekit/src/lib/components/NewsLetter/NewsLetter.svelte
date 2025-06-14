@@ -8,5 +8,5 @@
   target="_blank"
   rel="noopener noreferrer"
 >
-  <button>World Affairs Newsletter</button>
+  <button>World Affairs AB Newsletter</button>
 </a>

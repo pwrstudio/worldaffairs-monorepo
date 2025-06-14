@@ -112,7 +112,7 @@
         a {
           @media (max-width: 768px) {
             display: block;
-            margin-bottom: 0.5em;
+            line-height: 1.8;
             white-space: nowrap;
           }
         }
