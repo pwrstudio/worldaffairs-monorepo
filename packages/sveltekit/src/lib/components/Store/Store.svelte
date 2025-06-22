@@ -8,5 +8,5 @@
   target="_blank"
   rel="noopener noreferrer"
 >
-  <button>World Affairs AB Store</button>
+  <button>Yung Lean Official Merchandise</button>
 </a>
