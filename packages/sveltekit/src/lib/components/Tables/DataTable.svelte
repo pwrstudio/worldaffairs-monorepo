@@ -77,6 +77,12 @@
     margin-bottom: 2em;
     background: white;
 
+    &.new {
+      td {
+        height: 48px;
+      }
+    }
+
     th,
     td {
       padding: 0.2em;
@@ -91,8 +97,8 @@
         width: 48px;
 
         img {
-          width: 24px;
-          height: 24px;
+          width: 48px;
+          height: 48px;
           display: block;
           margin: 0 auto;
         }
