@@ -17,7 +17,6 @@
   .footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-top: 1em;
     font-size: var(--font-size-small);
     color: var(--foreground);
