@@ -3,4 +3,5 @@ export enum TableType {
   Music = "music",
   Video = "video",
   TourDates = "tour-dates",
+  Products = "products",
 }

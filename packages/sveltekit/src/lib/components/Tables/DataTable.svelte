@@ -4,7 +4,7 @@
 
   const { tableType, title, anchor, columns, data } = $props<{
     tableType: TableType
-    title: string
+    title?: string
     anchor: string
     columns: Column[]
     data: Record<string, any>[]

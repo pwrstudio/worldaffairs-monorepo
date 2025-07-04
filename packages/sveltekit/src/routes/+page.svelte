@@ -1,5 +1,12 @@
 <script lang="ts">
-  import type { About, Release, Video, Tour, TourDate } from "@sanity-types"
+  import type {
+    About,
+    Release,
+    Video,
+    Tour,
+    TourDate,
+    Product,
+  } from "@sanity-types"
 
   import Ticker from "$lib/components/Ticker/Ticker.svelte"
   import ClockGroup from "$lib/components/Clock/ClockGroup.svelte"
@@ -20,10 +27,19 @@
     videos: Video[]
     tourDates: TourDate[]
     newPosts: (Release | Tour | TourDate | Video)[]
+    products: Product[]
     siteLastUpdated: string
   }
 
-  const { about, releases, tourDates, videos, newPosts, siteLastUpdated } = data
+  const {
+    about,
+    releases,
+    tourDates,
+    videos,
+    newPosts,
+    products,
+    siteLastUpdated,
+  } = data
 
   const hasNewPosts = newPosts.length > 0
 </script>
@@ -40,7 +56,7 @@
       <NewTable {newPosts} />
       <hr />
     {/if}
-    <Store />
+    <Store {products} />
     <hr />
     <MusicTable {releases} />
     <hr />

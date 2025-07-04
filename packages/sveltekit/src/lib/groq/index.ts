@@ -9,5 +9,6 @@ export const queries = {
     tours: '*[_type == "tour"] | order(date desc)',
     tourDates: '*[_type == "tourDate" && date >= now()] | order(date asc)',
     lastUpdatedPost: '*[] | order(_updatedAt desc)[0]',
-    newPosts: '*[_type == "newPosts"][0] {title, posts[]->{...}}'
+    newPosts: '*[_type == "newPosts"][0] {title, posts[]->{...}}',
+    storeList: '*[_type == "storeList"][0] {title, posts[]->{...}}'
 }
