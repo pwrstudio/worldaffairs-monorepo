@@ -41,7 +41,7 @@
     siteLastUpdated,
   } = data
 
-  const hasNewPosts = newPosts.length > 0
+  const hasNewPosts = (newPosts ?? []).length > 0
 </script>
 
 <main>
