@@ -4,7 +4,9 @@ import {
     MdTour,
     MdStar,
     MdHome,
-    MdEvent
+    MdEvent,
+    MdShop,
+    MdShoppingBag
 } from "react-icons/md"
 
 export default (S: any) =>
@@ -63,7 +65,6 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'tour' })
                 ),
-            S.divider(),
             S.listItem()
                 .title('Tour dates')
                 .icon(MdEvent)
@@ -74,5 +75,25 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'tourDate' })
                         .defaultOrdering([{field: 'date', direction: 'asc'}])
+                ),
+            S.divider(),
+            S.listItem()
+                .title('Store list')
+                .icon(MdShop)
+                .child(
+                    S.editor()
+                        .id('store-list')
+                        .schemaType("storeList")
+                        .documentId("store-list")
+                ),
+            S.listItem()
+                .title('Products')
+                .icon(MdShoppingBag)
+                .child(
+                    S.documentList()
+                        .title('Products')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'product' })
                 ),
         ]);

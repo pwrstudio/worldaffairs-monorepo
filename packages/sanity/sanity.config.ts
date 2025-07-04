@@ -18,7 +18,8 @@ export default defineConfig({
       const { type } = creationContext;
       const DISABLED_TYPES = [
         'about',
-        'newPosts'
+        'newPosts',
+        'storeList'
       ];
       if (type === 'global') {
         return prev.filter((template) => !DISABLED_TYPES.includes(template.templateId));

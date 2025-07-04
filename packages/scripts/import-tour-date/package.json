@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@sanity/client": "^7.6.0",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.0.1",
     "uuid": "^11.1.0"
   }
 }

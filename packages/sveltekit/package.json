@@ -16,7 +16,7 @@
 		"sass-embedded": "^1.89.0",
 		"svelte": "^5.35.2",
 		"svelte-check": "^4.2.2",
-		"vite": "^7.0.1",
+		"vite": "^7.0.2",
 		"@portabletext/types": "^2.0.13"
 	},
 	"type": "module",

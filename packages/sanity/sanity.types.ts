@@ -13,6 +13,39 @@
  */
 
 // Source: schema.json
+export type StoreList = {
+  _id: string
+  _type: 'storeList'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  posts?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'product'
+  }>
+}
+
+export type Product = {
+  _id: string
+  _type: 'product'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  information?: string
+  date?: string
+  links?: Array<{
+    label?: string
+    url?: string
+    _type: 'link'
+    _key: string
+  }>
+}
+
 export type NewPosts = {
   _id: string
   _type: 'newPosts'
@@ -44,6 +77,12 @@ export type NewPosts = {
         _type: 'reference'
         _weak?: boolean
         [internalGroqTypeReferenceTo]?: 'video'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'product'
       }
   >
 }
@@ -253,6 +292,8 @@ export type SanityAssetSourceData = {
 }
 
 export type AllSanitySchemaTypes =
+  | StoreList
+  | Product
   | NewPosts
   | TourDate
   | Video
