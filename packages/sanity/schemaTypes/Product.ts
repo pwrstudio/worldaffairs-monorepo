@@ -23,6 +23,11 @@ export default {
             type: 'date',
         },
         {
+            title: 'Price',
+            name: 'price',
+            type: 'string',
+        },
+        {
             title: 'Links',
             name: 'links',
             type: 'array',

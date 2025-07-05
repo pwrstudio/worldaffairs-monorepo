@@ -38,6 +38,7 @@ export type Product = {
   title?: string
   information?: string
   date?: string
+  price?: string
   links?: Array<{
     label?: string
     url?: string
