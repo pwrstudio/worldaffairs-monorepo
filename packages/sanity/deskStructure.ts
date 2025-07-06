@@ -42,6 +42,7 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'release' })
+                        .defaultOrdering([{field: 'date', direction: 'desc'}])
                 ),
             S.divider(),
             S.listItem()
@@ -53,6 +54,7 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'video' })
+                        .defaultOrdering([{field: 'date', direction: 'desc'}])
                 ),
             S.divider(),
             S.listItem()

@@ -28,6 +28,7 @@ export default {
             title: 'Release date',
             name: 'date',
             type: 'date',
+            validation: (Rule: any) => Rule.required()
         },
         {
             title: 'Links',

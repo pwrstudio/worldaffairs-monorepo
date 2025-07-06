@@ -15,7 +15,7 @@ export default {
         {
             title: 'Information',
             name: 'information',
-            type: 'text',
+            type: 'string',
         },
         {
             title: 'Release date',
