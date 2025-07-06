@@ -11,8 +11,8 @@
   console.log(products)
 
   const columns: Column[] = [
-    { type: "text", label: "Title", key: "title", hide: false },
-    { type: "text", label: "Information", key: "information", hide: false },
+    { type: "text", label: "Product", key: "title", hide: false },
+    { type: "text", label: "Information", key: "information", hide: true },
     { type: "linkList", label: "Links", hide: false },
   ]
 </script>
