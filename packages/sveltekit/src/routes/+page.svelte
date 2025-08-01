@@ -22,7 +22,7 @@
   import NewTable from "$lib/components/Tables/NewTable.svelte"
 
   export let data: {
-    about: About
+    about: About | null
     releases: Release[]
     videos: Video[]
     tourDates: TourDate[]

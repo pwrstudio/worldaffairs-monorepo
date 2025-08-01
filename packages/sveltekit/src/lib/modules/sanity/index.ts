@@ -46,11 +46,9 @@ export const urlFor = (source: any) => builder.image(source)
 export const loadData = async (query: string, params: any) => {
     try {
         const res = await client.fetch(query, params)
-        if (res === null) {
-            return Promise.reject(new Error("404"));
-        }
-        return res
+        return res || null // Return null if no data found, don't throw
     } catch (err) {
-        return Promise.reject(new Error("404"));
+        console.warn(`Failed to load data for query: ${query}`, err)
+        return null // Return null instead of throwing
     }
 }
