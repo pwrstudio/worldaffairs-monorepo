@@ -28,9 +28,9 @@ export default (S: any) =>
                 .icon(MdStar)
                 .child(
                     S.editor()
-                        .id('new-posts')
+                        .id('news')
                         .schemaType("newPosts")
-                        .documentId("new-posts")
+                        .documentId("news")
                 ),
             S.divider(),
             S.listItem()
