@@ -19,8 +19,8 @@
 
 <DataTable
   tableType={TableType.Video}
-  title="Videos"
-  anchor="videos"
+  title="Video"
+  anchor="video"
   {columns}
   data={videos}
 />

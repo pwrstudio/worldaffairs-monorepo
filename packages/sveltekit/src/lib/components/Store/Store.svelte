@@ -8,8 +8,6 @@
     products: Product[]
   }>()
 
-  console.log(products)
-
   const columns: Column[] = [
     { type: "text", label: "Product", key: "title", hide: false },
     { type: "text", label: "Information", key: "information", hide: true },
