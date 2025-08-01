@@ -4,6 +4,7 @@ export default {
     title: 'Release',
     name: 'release',
     type: 'document',
+    readOnly: true,
     icon: MdMusicNote,
     fields: [
         {
@@ -60,7 +61,8 @@ export default {
             title: 'title',
             artist: 'artist'
         },
-        prepare({ title, artist }: { title: string, artist: string }) {
+        prepare(value: Record<string, any>) {
+            const { title, artist } = value;
             return {
                 title,
                 subtitle: artist

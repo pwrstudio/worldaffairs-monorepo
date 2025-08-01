@@ -62,7 +62,8 @@ export default {
             date: 'date',
             location: 'location'
         },
-        prepare({ title, date, location }: { title: string, date: string, location: string }) {
+        prepare(value: Record<string, any>) {
+            const { title, date, location } = value;
             return {
                 title,
                 subtitle: `${date} – ${location}`

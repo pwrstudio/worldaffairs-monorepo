@@ -26,6 +26,18 @@ export default defineConfig({
       }
       return prev;
     },
+    
+    // Prevent deletion of certain document types
+    actions: (prev, { schemaType }) => {
+      const PROTECTED_TYPES = ['about', 'newPosts', 'storeList', 'release'];
+      
+      if (PROTECTED_TYPES.includes(schemaType)) {
+        // Remove the delete action for protected document types
+        return prev.filter(action => action.action !== 'delete');
+      }
+      
+      return prev;
+    },
   },
 
   schema: {

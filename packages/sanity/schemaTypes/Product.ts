@@ -57,7 +57,8 @@ export default {
             title: 'title',
             information: 'information'
         },
-        prepare({ title, information }: { title: string, information: string }) {
+        prepare(value: Record<string, any>) {
+            const { title, information } = value;
             return {
                 title,
                 subtitle: information
