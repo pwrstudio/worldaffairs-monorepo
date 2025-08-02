@@ -4,37 +4,39 @@ import { loadData } from "$lib/modules/sanity"
 import { queries } from "$lib/groq"
 
 export const load = (async () => {
-    // Fetch all data in parallel for better performance
-    const [
+    // Fetch all data in one optimized query
+    const allData = await loadData(queries.allData, {}) as {
+        about: About | null
+        releases: Release[] | null
+        videos: Video[] | null
+        tourDates: TourDate[] | null
+        newPosts: NewPosts | null
+        storeList: StoreList | null
+    }
+
+    // Extract data with fallbacks
+    const { about, releases, videos, tourDates, newPosts: newPostsDocument, storeList: storeListDocument } = allData
+    const newPosts = newPostsDocument?.posts ?? []
+    const products = storeListDocument?.posts as unknown as Product[] ?? []
+    
+    // Find the last updated document from all fetched data
+    const allDocuments = [
         about,
         storeListDocument,
         newPostsDocument,
-        releases,
-        videos,
-        tourDates,
-        lastUpdatedPost
-    ]: [
-        About | null,
-        StoreList | null,
-        NewPosts | null,
-        Release[] | null,
-        Video[] | null,
-        TourDate[] | null,
-        any | null
-    ] = await Promise.all([
-        loadData(queries.about, {}),
-        loadData(queries.storeList, {}),
-        loadData(queries.newPosts, {}),
-        loadData(queries.releases, {}),
-        loadData(queries.videos, {}),
-        loadData(queries.tourDates, {}),
-        loadData(queries.lastUpdatedPost, {})
-    ]);
-
-    // Process the data with fallbacks
-    const newPosts = newPostsDocument?.posts ?? []
-    const products = storeListDocument?.posts as unknown as Product[] ?? []
-    const siteLastUpdated = lastUpdatedPost?._updatedAt ?? new Date().toISOString()
+        ...(releases ?? []),
+        ...(videos ?? []),
+        ...(tourDates ?? []),
+        ...(newPosts ?? []),
+        ...(products ?? [])
+    ].filter(Boolean) as Array<{ _updatedAt?: string }>
+    
+    const siteLastUpdated = allDocuments.length > 0 
+        ? allDocuments.reduce((latest, doc) => {
+            if (!doc._updatedAt) return latest
+            return doc._updatedAt > latest ? doc._updatedAt : latest
+          }, allDocuments[0]?._updatedAt ?? new Date().toISOString())
+        : new Date().toISOString()
 
     // Log warnings for missing required documents
     if (!about) {
