@@ -19,6 +19,23 @@ export const load = (async () => {
     const newPosts = newPostsDocument?.posts ?? []
     const products = storeListDocument?.posts as unknown as Product[] ?? []
     
+    // This is a bit of a hack. It would be better to do this in the GROQ query.
+    // Filter tour dates to include only those on or after current date anywhere on earth
+    // We err on the side of keeping dates visible too long rather than too short
+    const filteredTourDates = (tourDates ?? []).filter(tourDate => {
+        if (!tourDate.date) return false
+        
+        // Get current UTC date minus 24 hours to be extra conservative
+        // This ensures dates are visible for the entire day they're happening, 
+        // even if the show is in the latest timezone (UTC+14) and server is in earliest (UTC-12)
+        const now = new Date()
+        const utcNow = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+        const conservativeDate = new Date(utcNow.getTime() - 24 * 60 * 60 * 1000) // Subtract 24 hours
+        const currentDateString = conservativeDate.toISOString().split('T')[0] // YYYY-MM-DD format
+        
+        return tourDate.date >= currentDateString
+    })
+    
     // Find the last updated document from all fetched data
     const allDocuments = [
         about,
@@ -26,7 +43,7 @@ export const load = (async () => {
         newPostsDocument,
         ...(releases ?? []),
         ...(videos ?? []),
-        ...(tourDates ?? []),
+        ...filteredTourDates,
         ...(newPosts ?? []),
         ...(products ?? [])
     ].filter(Boolean) as Array<{ _updatedAt?: string }>
@@ -53,7 +70,7 @@ export const load = (async () => {
         about, 
         releases: releases ?? [], 
         videos: videos ?? [], 
-        tourDates: tourDates ?? [], 
+        tourDates: filteredTourDates, 
         newPosts, 
         products, 
         siteLastUpdated 
