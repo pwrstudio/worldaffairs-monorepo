@@ -27,6 +27,7 @@
     const { about, releases, tourDates, videos, newPosts, products, siteLastUpdated } = data;
 
     const hasNewPosts = (newPosts ?? []).length > 0;
+    const hasTourDates = (tourDates ?? []).length > 0;
 </script>
 
 <main>
@@ -35,7 +36,7 @@
         <hr />
         <ClockGroup />
         <hr />
-        <Header {hasNewPosts} />
+        <Header {hasNewPosts} {hasTourDates} />
         <hr />
         {#if hasNewPosts}
             <NewTable {newPosts} />
@@ -47,8 +48,10 @@
         <hr />
         <VideoTable {videos} />
         <hr />
-        <TourDateTable {tourDates} />
-        <hr />
+        {#if hasTourDates}
+            <TourDateTable {tourDates} />
+            <hr />
+        {/if}
         <Newsletter />
         <hr />
         <Contact {about} />
