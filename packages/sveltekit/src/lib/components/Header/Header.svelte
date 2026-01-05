@@ -5,7 +5,7 @@
 <div class="header">
     <div class="column toc">
         <div class="small-image">
-            <img src="/images/wa-logo-alt.png" alt="logo" />
+            <img src="/images/wa-logo-alt.png" alt="logo" width="745" height="582" />
         </div>
         <h1>World Affairs AB</h1>
         <div class="imprint">Momsregistreringsnummer (VAT): SE556886471301</div>
@@ -36,7 +36,7 @@
         </h2>
     </div>
     <div class="column image">
-        <img src="/images/wa-logo-alt.png" alt="logo" />
+        <img src="/images/wa-logo-alt.png" alt="logo" width="745" height="582" />
     </div>
 </div>
 

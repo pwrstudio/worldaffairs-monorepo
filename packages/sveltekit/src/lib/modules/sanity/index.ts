@@ -1,6 +1,6 @@
 import { createClient } from '@sanity/client';
 import { toHTML } from '@portabletext/to-html';
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 import { SANITY_ID } from '$lib/constants';
 import type { PortableTextBlock } from '@portabletext/types';
 
@@ -39,7 +39,7 @@ export const toPlainText = (blocks: PortableTextBlock[]) => {
         .join('\n\n');
 };
 
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
 export const urlFor = (source: any) => builder.image(source);
 

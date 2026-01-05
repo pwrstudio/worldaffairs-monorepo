@@ -7,6 +7,6 @@ export default defineCliConfig({
     },
     deployment: {
         appId: 'aybc2ipc8mn1ih4mbfk0qdp3',
-      },
+    },
     studioHost: 'worldaffairs-admin',
 });
