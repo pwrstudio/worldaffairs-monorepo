@@ -1,4 +1,4 @@
-import { MdVideocam } from "react-icons/md"
+import { MdVideocam } from 'react-icons/md';
 
 export default {
     title: 'Video',
@@ -10,56 +10,58 @@ export default {
             title: 'Title',
             name: 'title',
             type: 'string',
-            validation: (Rule: any) => Rule.required()
+            validation: (Rule: any) => Rule.required(),
         },
         {
             title: 'Artist',
             name: 'artist',
             type: 'string',
-            validation: (Rule: any) => Rule.required()
+            validation: (Rule: any) => Rule.required(),
         },
         {
             title: 'Release date',
             name: 'date',
             type: 'date',
-            validation: (Rule: any) => Rule.required()
+            validation: (Rule: any) => Rule.required(),
         },
         {
             title: 'Links',
             name: 'links',
             type: 'array',
-            of: [{
-                title: 'Link',
-                name: 'link',
-                type: 'object',
-                fields: [
-                    {
-                        title: 'Label',
-                        name: 'label',
-                        type: 'string',
-                        validation: (Rule: any) => Rule.required()
-                    },
-                    {
-                        title: 'URL',
-                        name: 'url',
-                        type: 'url',
-                        validation: (Rule: any) => Rule.required()
-                    }
-                ]
-            }]    
-        }
+            of: [
+                {
+                    title: 'Link',
+                    name: 'link',
+                    type: 'object',
+                    fields: [
+                        {
+                            title: 'Label',
+                            name: 'label',
+                            type: 'string',
+                            validation: (Rule: any) => Rule.required(),
+                        },
+                        {
+                            title: 'URL',
+                            name: 'url',
+                            type: 'url',
+                            validation: (Rule: any) => Rule.required(),
+                        },
+                    ],
+                },
+            ],
+        },
     ],
     preview: {
         select: {
             title: 'title',
-            artist: 'artist'
+            artist: 'artist',
         },
         prepare(value: Record<string, any>) {
             const { title, artist } = value;
             return {
                 title,
-                subtitle: artist
-            }
-        }
+                subtitle: artist,
+            };
+        },
     },
-}
+};

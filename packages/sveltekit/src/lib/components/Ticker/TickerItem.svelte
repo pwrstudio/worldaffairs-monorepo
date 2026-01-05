@@ -1,42 +1,42 @@
 <script lang="ts">
-  import type { Commodity } from "$lib/types"
-  const { commodity }: { commodity: Commodity } = $props()
+    import type { Commodity } from '$lib/types';
+    const { commodity }: { commodity: Commodity } = $props();
 </script>
 
 <div class="commodity">
-  <span class="name">{commodity.name}</span>
-  <span class="price">${commodity.price.toFixed(2)}</span>
-  <span
-    class="change"
-    class:positive={commodity.change > 0}
-    class:negative={commodity.change < 0}
-  >
-    {commodity.change > 0 ? "+" : ""}{commodity.change.toFixed(2)}
-  </span>
+    <span class="name">{commodity.name}</span>
+    <span class="price">${commodity.price.toFixed(2)}</span>
+    <span
+        class="change"
+        class:positive={commodity.change > 0}
+        class:negative={commodity.change < 0}
+    >
+        {commodity.change > 0 ? '+' : ''}{commodity.change.toFixed(2)}
+    </span>
 </div>
 
 <style lang="scss">
-  .commodity {
-    display: inline-flex;
-    align-items: center;
-    padding: 0 10px;
-    font-family: "times new roman", times, serif;
-    font-size: var(--font-size-small);
-    color: var(--foreground);
-    text-transform: uppercase;
-    user-select: none;
+    .commodity {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 10px;
+        font-family: 'times new roman', times, serif;
+        font-size: var(--font-size-small);
+        color: var(--foreground);
+        text-transform: uppercase;
+        user-select: none;
 
-    .name {
-      font-weight: 500;
-      margin-right: 8px;
-    }
+        .name {
+            font-weight: 500;
+            margin-right: 8px;
+        }
 
-    .price {
-      margin-right: 8px;
-    }
+        .price {
+            margin-right: 8px;
+        }
 
-    .change {
-      font-weight: bold;
+        .change {
+            font-weight: bold;
+        }
     }
-  }
 </style>

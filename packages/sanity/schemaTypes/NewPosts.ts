@@ -1,4 +1,4 @@
-import { MdTour } from "react-icons/md"
+import { MdTour } from 'react-icons/md';
 
 export default {
     title: 'New posts',
@@ -11,14 +11,26 @@ export default {
             name: 'title',
             type: 'string',
             readOnly: true,
-            validation: (Rule: any) => Rule.required()
+            validation: (Rule: any) => Rule.required(),
         },
         {
             title: 'Posts',
-            description: 'Select and order the posts that will be displayed in the new posts section',
+            description:
+                'Select and order the posts that will be displayed in the new posts section',
             name: 'posts',
             type: 'array',
-            of: [{ type: 'reference', to: [{ type: 'tour' }, { type: 'tourDate' }, { type: 'release' }, { type: 'video' }, { type: 'product' }] }],
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        { type: 'tour' },
+                        { type: 'tourDate' },
+                        { type: 'release' },
+                        { type: 'video' },
+                        { type: 'product' },
+                    ],
+                },
+            ],
         },
     ],
-}
+};

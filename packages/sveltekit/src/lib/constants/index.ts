@@ -1,1 +1,1 @@
-export const SANITY_ID = 'fzoco9f8'
+export const SANITY_ID = 'fzoco9f8';

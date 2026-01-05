@@ -1,16 +1,16 @@
 $breakpoints: (
-  'small': (
-    max-width: 800px
-  ),
-  'medium': (
-    max-width: 900px
-  ),
-  'large': (
-    max-width: 1600px
-  ),
-  'short': (
-    max-height: 700px
-  )
+    'small': (
+        max-width: 800px,
+    ),
+    'medium': (
+        max-width: 900px,
+    ),
+    'large': (
+        max-width: 1600px,
+    ),
+    'short': (
+        max-height: 700px,
+    ),
 );
 
 /// Responsive manager.
@@ -18,17 +18,13 @@ $breakpoints: (
 /// @param {String} $breakpoint - Breakpoint
 /// @requires $breakpoints
 @mixin screen-size($breakpoint) {
-  $raw-query: map-get($breakpoints, $breakpoint);
-  @if $raw-query {
-    $query: if(
-      type-of($raw-query) == 'string',
-      unquote($raw-query),
-      inspect($raw-query)
-    );
-    @media #{$query} {
-      @content;
+    $raw-query: map-get($breakpoints, $breakpoint);
+    @if $raw-query {
+        $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+        @media #{$query} {
+            @content;
+        }
+    } @else {
+        @error 'No value found for `#{$breakpoint}`. ' + 'Please make sure it is defined in `$breakpoints` map.';
     }
-  } @else {
-    @error 'No value found for `#{$breakpoint}`. ' + 'Please make sure it is defined in `$breakpoints` map.';
-  }
 }

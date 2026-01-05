@@ -8,7 +8,8 @@
         "dev:sanity": "pnpm --filter sanity start",
         "dev": "mprocs",
         "deploy:sanity": "pnpm --filter sanity deploy",
-        "typegen:sanity": "pnpm --filter sanity typegen"
+        "typegen:sanity": "pnpm --filter sanity typegen",
+        "format": "prettier --write ."
     },
     "keywords": [],
     "author": "",
@@ -17,8 +18,10 @@
         "packages/*"
     ],
     "devDependencies": {
-        "mprocs": "^0.7.3",
-        "typescript": "^5.8.3"
+        "mprocs": "^0.8.2",
+        "prettier": "^3.4.2",
+        "prettier-plugin-svelte": "^3.3.3",
+        "typescript": "^5.9.3"
     },
     "packageManager": "pnpm@10.18.1"
 }

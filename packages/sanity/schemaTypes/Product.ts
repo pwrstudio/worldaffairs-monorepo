@@ -1,4 +1,4 @@
-import { MdShoppingBag } from "react-icons/md"
+import { MdShoppingBag } from 'react-icons/md';
 
 export default {
     title: 'Product',
@@ -10,7 +10,7 @@ export default {
             title: 'Title',
             name: 'title',
             type: 'string',
-            validation: (Rule: any) => Rule.required()
+            validation: (Rule: any) => Rule.required(),
         },
         {
             title: 'Information',
@@ -31,38 +31,40 @@ export default {
             title: 'Links',
             name: 'links',
             type: 'array',
-            of: [{ 
-                title: 'Link',
-                name: 'link',
-                type: 'object',
-                fields: [
-                    {
-                        title: 'Label',
-                        name: 'label',
-                        type: 'string',
-                        validation: (Rule: any) => Rule.required()
-                    },
-                    {
-                        title: 'URL',
-                        name: 'url',
-                        type: 'url',
-                        validation: (Rule: any) => Rule.required()
-                    }
-                ]
-            }]    
-        }
+            of: [
+                {
+                    title: 'Link',
+                    name: 'link',
+                    type: 'object',
+                    fields: [
+                        {
+                            title: 'Label',
+                            name: 'label',
+                            type: 'string',
+                            validation: (Rule: any) => Rule.required(),
+                        },
+                        {
+                            title: 'URL',
+                            name: 'url',
+                            type: 'url',
+                            validation: (Rule: any) => Rule.required(),
+                        },
+                    ],
+                },
+            ],
+        },
     ],
     preview: {
         select: {
             title: 'title',
-            information: 'information'
+            information: 'information',
         },
         prepare(value: Record<string, any>) {
             const { title, information } = value;
             return {
                 title,
-                subtitle: information
-            }
-        }
+                subtitle: information,
+            };
+        },
     },
-}
+};

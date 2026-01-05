@@ -1,17 +1,17 @@
 {
-  "name": "import-tour-date",
-  "version": "1.0.0",
-  "description": "",
-  "main": "import.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "@sanity/client": "^7.12.0",
-    "dotenv": "^17.2.3",
-    "uuid": "^13.0.0"
-  }
+    "name": "import-tour-date",
+    "version": "1.0.0",
+    "description": "",
+    "main": "import.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@sanity/client": "^7.13.2",
+        "dotenv": "^17.2.3",
+        "uuid": "^13.0.0"
+    }
 }

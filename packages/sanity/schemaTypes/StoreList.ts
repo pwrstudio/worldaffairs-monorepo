@@ -1,4 +1,4 @@
-import { MdShop } from "react-icons/md"
+import { MdShop } from 'react-icons/md';
 
 export default {
     title: 'Store list',
@@ -11,7 +11,7 @@ export default {
             name: 'title',
             type: 'string',
             readOnly: true,
-            validation: (Rule: any) => Rule.required()
+            validation: (Rule: any) => Rule.required(),
         },
         {
             title: 'Posts',
@@ -21,4 +21,4 @@ export default {
             of: [{ type: 'reference', to: [{ type: 'product' }] }],
         },
     ],
-}
+};

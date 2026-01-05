@@ -6,32 +6,22 @@ import {
     MdHome,
     MdEvent,
     MdShop,
-    MdShoppingBag
-} from "react-icons/md"
+    MdShoppingBag,
+} from 'react-icons/md';
 
 export default (S: any) =>
     S.list()
-        .title("World Affairs AB")
+        .title('World Affairs AB')
         .items([
             S.listItem()
-            .title("About")
-            .icon(MdHome)
-            .child(
-                S.editor()
-                    .id('about')
-                    .schemaType("about")
-                    .documentId("about")
-            ),
+                .title('About')
+                .icon(MdHome)
+                .child(S.editor().id('about').schemaType('about').documentId('about')),
             S.divider(),
             S.listItem()
-                .title("New posts")
+                .title('New posts')
                 .icon(MdStar)
-                .child(
-                    S.editor()
-                        .id('news')
-                        .schemaType("newPosts")
-                        .documentId("news")
-                ),
+                .child(S.editor().id('news').schemaType('newPosts').documentId('news')),
             S.divider(),
             S.listItem()
                 .title('Releases')
@@ -42,7 +32,7 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'release' })
-                        .defaultOrdering([{field: 'date', direction: 'desc'}])
+                        .defaultOrdering([{ field: 'date', direction: 'desc' }])
                 ),
             S.divider(),
             S.listItem()
@@ -54,7 +44,7 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'video' })
-                        .defaultOrdering([{field: 'date', direction: 'desc'}])
+                        .defaultOrdering([{ field: 'date', direction: 'desc' }])
                 ),
             S.divider(),
             S.listItem()
@@ -76,17 +66,14 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'tourDate' })
-                        .defaultOrdering([{field: 'date', direction: 'asc'}])
+                        .defaultOrdering([{ field: 'date', direction: 'asc' }])
                 ),
             S.divider(),
             S.listItem()
                 .title('Store list')
                 .icon(MdShop)
                 .child(
-                    S.editor()
-                        .id('store-list')
-                        .schemaType("storeList")
-                        .documentId("store-list")
+                    S.editor().id('store-list').schemaType('storeList').documentId('store-list')
                 ),
             S.listItem()
                 .title('Products')
