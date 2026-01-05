@@ -21,8 +21,8 @@
     },
     "type": "module",
     "dependencies": {
-        "@portabletext/to-html": "^3.0.0",
-        "@sanity/client": "^7.12.0",
-        "@sanity/image-url": "^1.2.0"
+        "@portabletext/to-html": "^5.0.1",
+        "@sanity/client": "^7.13.2",
+        "@sanity/image-url": "^2.0.2"
     }
 }
