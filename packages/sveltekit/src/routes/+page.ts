@@ -1,4 +1,14 @@
-import type { About, Release, Video, NewPosts, TourDate, StoreList, Product } from '@sanity-types';
+import type {
+    About,
+    Release,
+    Video,
+    NewPosts,
+    TourDate,
+    StoreList,
+    Product,
+    WorksList,
+    Work,
+} from '@sanity-types';
 import type { PageLoad } from './$types';
 import { loadData } from '$lib/modules/sanity';
 import { queries } from '$lib/groq';
@@ -12,6 +22,7 @@ export const load = (async () => {
         tourDates: TourDate[] | null;
         newPosts: NewPosts | null;
         storeList: StoreList | null;
+        worksList: WorksList | null;
     };
 
     // Extract data with fallbacks
@@ -22,9 +33,11 @@ export const load = (async () => {
         tourDates,
         newPosts: newPostsDocument,
         storeList: storeListDocument,
+        worksList: worksListDocument,
     } = allData;
     const newPosts = newPostsDocument?.posts ?? [];
     const products = (storeListDocument?.posts as unknown as Product[]) ?? [];
+    const works = (worksListDocument?.works as unknown as Work[]) ?? [];
 
     // This is a bit of a hack. It would be better to do this in the GROQ query.
     // Filter tour dates to include only those on or after current date anywhere on earth
@@ -55,11 +68,13 @@ export const load = (async () => {
         about,
         storeListDocument,
         newPostsDocument,
+        worksListDocument,
         ...(releases ?? []),
         ...(videos ?? []),
         ...filteredTourDates,
         ...(newPosts ?? []),
         ...(products ?? []),
+        ...(works ?? []),
     ].filter(Boolean) as Array<{ _updatedAt?: string }>;
 
     const siteLastUpdated =
@@ -88,6 +103,7 @@ export const load = (async () => {
         tourDates: filteredTourDates,
         newPosts,
         products,
+        works,
         siteLastUpdated,
     };
 }) satisfies PageLoad;

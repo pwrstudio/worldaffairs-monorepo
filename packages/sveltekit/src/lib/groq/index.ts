@@ -10,6 +10,17 @@ export const queries = {
         "videos": *[_type == "video"] | order(date desc),
         "tourDates": *[_type == "tourDate"] | order(date asc),
         "newPosts": *[_type == "newPosts"][0] {title, posts[]->{...}},
-        "storeList": *[_type == "storeList"][0] {title, posts[]->{...}}
+        "storeList": *[_type == "storeList"][0] {title, posts[]->{...}},
+        "worksList": *[_type == "worksList"][0] {title, works[]->{...}}
+    }`,
+
+    // Single work by slug
+    workBySlug: `*[_type == "work" && slug.current == $slug][0] {
+        ...,
+        media[] {
+            _type, _key, caption,
+            image { ..., asset-> },
+            file { ..., asset-> }
+        }
     }`,
 };

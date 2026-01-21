@@ -10,10 +10,11 @@ export type Commodity = {
 };
 
 export type Column = {
-    type: 'index' | 'icon' | 'text' | 'linkList' | 'link';
+    type: 'index' | 'icon' | 'text' | 'linkList' | 'link' | 'internalLink';
     label?: string;
     key?: string;
     hide: boolean;
+    linkPath?: string;
 };
 
 export type LinkListItem = {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { About, Release, Video, Tour, TourDate, Product } from '@sanity-types';
+    import type { About, Release, Video, Tour, TourDate, Product, Work } from '@sanity-types';
 
     import Ticker from '$lib/components/Ticker/Ticker.svelte';
     import ClockGroup from '$lib/components/Clock/ClockGroup.svelte';
@@ -13,6 +13,7 @@
     import VideoTable from '$lib/components/Tables/VideoTable.svelte';
     import TourDateTable from '$lib/components/Tables/TourDateTable.svelte';
     import NewTable from '$lib/components/Tables/NewTable.svelte';
+    import WorksTable from '$lib/components/Tables/WorksTable.svelte';
 
     export let data: {
         about: About | null;
@@ -21,13 +22,15 @@
         tourDates: TourDate[];
         newPosts: (Release | Tour | TourDate | Video)[];
         products: Product[];
+        works: Work[];
         siteLastUpdated: string;
     };
 
-    const { about, releases, tourDates, videos, newPosts, products, siteLastUpdated } = data;
+    const { about, releases, tourDates, videos, newPosts, products, works, siteLastUpdated } = data;
 
     const hasNewPosts = (newPosts ?? []).length > 0;
     const hasTourDates = (tourDates ?? []).length > 0;
+    const hasWorks = (works ?? []).length > 0;
 </script>
 
 <main>
@@ -36,7 +39,7 @@
         <hr />
         <ClockGroup />
         <hr />
-        <Header {hasNewPosts} {hasTourDates} />
+        <Header {hasNewPosts} {hasTourDates} {hasWorks} />
         <hr />
         {#if hasNewPosts}
             <NewTable {newPosts} />
@@ -48,6 +51,10 @@
         <hr />
         <VideoTable {videos} />
         <hr />
+        {#if hasWorks}
+            <WorksTable {works} />
+            <hr />
+        {/if}
         {#if hasTourDates}
             <TourDateTable {tourDates} />
             <hr />

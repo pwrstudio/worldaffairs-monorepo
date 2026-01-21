@@ -13,6 +13,113 @@
  */
 
 // Source: schema.json
+export type WorkReference = {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'work';
+};
+
+export type WorksList = {
+    _id: string;
+    _type: 'worksList';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title: string;
+    works?: Array<
+        {
+            _key: string;
+        } & WorkReference
+    >;
+};
+
+export type SanityImageAssetReference = {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+};
+
+export type SanityFileAssetReference = {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'sanity.fileAsset';
+};
+
+export type Work = {
+    _id: string;
+    _type: 'work';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title: string;
+    slug: Slug;
+    artist?: string;
+    intro?: string;
+    yearStart: number;
+    yearEnd?: number;
+    tags?: Array<string>;
+    credits?: string;
+    media?: Array<
+        | {
+              image: {
+                  asset?: SanityImageAssetReference;
+                  media?: unknown;
+                  hotspot?: SanityImageHotspot;
+                  crop?: SanityImageCrop;
+                  _type: 'image';
+              };
+              caption?: string;
+              _type: 'imageMedia';
+              _key: string;
+          }
+        | {
+              file: {
+                  asset?: SanityFileAssetReference;
+                  media?: unknown;
+                  _type: 'file';
+              };
+              caption?: string;
+              _type: 'audioMedia';
+              _key: string;
+          }
+        | {
+              file: {
+                  asset?: SanityFileAssetReference;
+                  media?: unknown;
+                  _type: 'file';
+              };
+              caption?: string;
+              _type: 'videoMedia';
+              _key: string;
+          }
+    >;
+};
+
+export type SanityImageCrop = {
+    _type: 'sanity.imageCrop';
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+};
+
+export type SanityImageHotspot = {
+    _type: 'sanity.imageHotspot';
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+};
+
+export type Slug = {
+    _type: 'slug';
+    current: string;
+    source?: string;
+};
+
 export type ProductReference = {
     _ref: string;
     _type: 'reference';
@@ -87,7 +194,7 @@ export type NewPosts = {
     _updatedAt: string;
     _rev: string;
     title: string;
-    posts?: Array<
+    posts?: ArrayOf<
         TourReference | TourDateReference | ReleaseReference | VideoReference | ProductReference
     >;
 };
@@ -216,22 +323,6 @@ export type SanityImageMetadata = {
     isOpaque?: boolean;
 };
 
-export type SanityImageHotspot = {
-    _type: 'sanity.imageHotspot';
-    x: number;
-    y: number;
-    height: number;
-    width: number;
-};
-
-export type SanityImageCrop = {
-    _type: 'sanity.imageCrop';
-    top: number;
-    bottom: number;
-    left: number;
-    right: number;
-};
-
 export type SanityFileAsset = {
     _id: string;
     _type: 'sanity.fileAsset';
@@ -291,13 +382,15 @@ export type Geopoint = {
     alt?: number;
 };
 
-export type Slug = {
-    _type: 'slug';
-    current: string;
-    source?: string;
-};
-
 export type AllSanitySchemaTypes =
+    | WorkReference
+    | WorksList
+    | SanityImageAssetReference
+    | SanityFileAssetReference
+    | Work
+    | SanityImageCrop
+    | SanityImageHotspot
+    | Slug
     | ProductReference
     | StoreList
     | Product
@@ -315,11 +408,15 @@ export type AllSanitySchemaTypes =
     | SanityImagePalette
     | SanityImageDimensions
     | SanityImageMetadata
-    | SanityImageHotspot
-    | SanityImageCrop
     | SanityFileAsset
     | SanityAssetSourceData
     | SanityImageAsset
-    | Geopoint
-    | Slug;
+    | Geopoint;
+
 export declare const internalGroqTypeReferenceTo: unique symbol;
+
+type ArrayOf<T> = Array<
+    T & {
+        _key: string;
+    }
+>;

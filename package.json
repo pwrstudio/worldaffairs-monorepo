@@ -8,7 +8,8 @@
         "dev:sanity": "pnpm --filter sanity start",
         "dev": "mprocs",
         "deploy:sanity": "pnpm --filter sanity deploy",
-        "typegen:sanity": "pnpm --filter sanity typegen",
+        "typegen:sanity": "pnpm --filter sanity exec sanity schema extract --enforce-required-fields && pnpm --filter sanity exec sanity typegen generate",
+        "check": "pnpm --filter sveltekit check",
         "format": "prettier --write ."
     },
     "keywords": [],

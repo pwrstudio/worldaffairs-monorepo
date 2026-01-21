@@ -7,6 +7,7 @@ import {
     MdEvent,
     MdShop,
     MdShoppingBag,
+    MdWork,
 } from 'react-icons/md';
 
 export default (S: any) =>
@@ -67,6 +68,24 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'tourDate' })
                         .defaultOrdering([{ field: 'date', direction: 'asc' }])
+                ),
+            S.divider(),
+            S.listItem()
+                .title('Works list')
+                .icon(MdWork)
+                .child(
+                    S.editor().id('works-list').schemaType('worksList').documentId('works-list')
+                ),
+            S.listItem()
+                .title('Works')
+                .icon(MdWork)
+                .child(
+                    S.documentList()
+                        .title('Works')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'work' })
+                        .defaultOrdering([{ field: 'yearStart', direction: 'desc' }])
                 ),
             S.divider(),
             S.listItem()

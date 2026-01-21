@@ -4,4 +4,5 @@ export enum TableType {
     Video = 'video',
     TourDates = 'tour-dates',
     Products = 'products',
+    Works = 'works',
 }

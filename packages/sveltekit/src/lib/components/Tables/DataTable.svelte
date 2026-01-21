@@ -42,14 +42,27 @@
                             <!-- Link -->
                             {#if row.links && Array.isArray(row.links)}
                                 {#each row.links as link, linkIndex}
-                                    <a href={link.url} target="_blank" rel="noopener noreferrer">
-                                        {link.label}
-                                    </a>
+                                    {#if link.url.startsWith('/')}
+                                        <a href={link.url}>
+                                            {link.label}
+                                        </a>
+                                    {:else}
+                                        <a
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    {/if}
                                     {#if linkIndex < row.links.length - 1}
                                         <span class="separator">|</span>
                                     {/if}
                                 {/each}
                             {/if}
+                        {:else if column.type === 'internalLink' && column.linkPath && column.key}
+                            <!-- Internal Link -->
+                            <a href="{column.linkPath}{row.slug?.current}">{row[column.key]}</a>
                         {:else if column.key}
                             <!-- Normal Value  -->
                             {row[column.key]}
