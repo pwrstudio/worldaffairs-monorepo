@@ -36,8 +36,8 @@
         figcaption {
             margin-top: 10px;
             font-size: var(--font-size-small);
-            color: #666;
-            font-family: 'Times New Roman', Times, serif;
+            color: var(--foreground-muted);
+            font-family: var(--font-stack-serif);
         }
     }
 </style>

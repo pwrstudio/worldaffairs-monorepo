@@ -9,9 +9,8 @@
     }>();
 
     const columns: Column[] = [
-        { type: 'index', label: '#', hide: true },
-        { type: 'text', label: 'Year', key: 'yearDisplay', hide: true },
         { type: 'text', label: 'Title', key: 'title', hide: false },
+        { type: 'text', label: 'Year', key: 'yearDisplay', hide: true },
         { type: 'text', label: 'Artist', key: 'artist', hide: false },
         { type: 'linkList', label: 'Links', hide: false },
     ];

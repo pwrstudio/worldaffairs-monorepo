@@ -50,36 +50,29 @@
 
 <div class="work-detail">
     <header class="top-bar">
-        <a href="/#works" class="back-link">Back</a>
+        <div class="top-left">
+            <a href="/#works">Back</a>
+        </div>
         <div class="title-section">
             <span class="title">{work.title}</span>
             {#if work.yearStart}
                 <span class="year">({yearDisplay})</span>
             {/if}
         </div>
-        <nav class="view-links">
+        <nav class="view-buttons">
             {#if hasMedia}
                 <button
-                    class="view-link"
                     class:active={viewMode === 'slideshow'}
                     onclick={() => setViewMode('slideshow')}
                 >
                     image
                 </button>
             {/if}
-            <button
-                class="view-link"
-                class:active={viewMode === 'text'}
-                onclick={() => setViewMode('text')}
-            >
+            <button class:active={viewMode === 'text'} onclick={() => setViewMode('text')}>
                 text
             </button>
             {#if hasMedia}
-                <button
-                    class="view-link"
-                    class:active={viewMode === 'grid'}
-                    onclick={() => setViewMode('grid')}
-                >
+                <button class:active={viewMode === 'grid'} onclick={() => setViewMode('grid')}>
                     grid
                 </button>
             {/if}
@@ -108,21 +101,27 @@
                 {/if}
             </div>
         {:else if viewMode === 'grid' && hasMedia}
-            <div class="grid-content">
-                {#each media as item, index (item._key)}
-                    <button class="grid-item" onclick={() => goToSlide(index)}>
-                        <div class="grid-thumb">
-                            {#if item._type === 'imageMedia' && item.image}
-                                <ImageSlide image={item.image} />
-                            {:else}
-                                <div class="media-placeholder">
-                                    {item._type === 'audioMedia' ? '♪' : '▶'}
-                                </div>
-                            {/if}
-                        </div>
-                        <div class="grid-index">{index + 1}</div>
-                    </button>
-                {/each}
+            <div class="grid-wrapper">
+                <div class="grid-content">
+                    {#each media as item, index (item._key)}
+                        <button class="grid-item" onclick={() => goToSlide(index)}>
+                            <div class="grid-thumb">
+                                {#if item._type === 'imageMedia' && item.image}
+                                    <ImageSlide image={item.image} />
+                                {:else if item._type === 'audioMedia' && item.file}
+                                    <AudioSlide file={item.file} />
+                                {:else if item._type === 'videoMedia' && item.file}
+                                    <VideoSlide file={item.file} />
+                                {:else}
+                                    <div class="media-placeholder">
+                                        {item._type === 'audioMedia' ? '♪' : '▶'}
+                                    </div>
+                                {/if}
+                            </div>
+                            <div class="grid-index">{index + 1}</div>
+                        </button>
+                    {/each}
+                </div>
             </div>
         {:else}
             <div class="no-media">
@@ -134,7 +133,7 @@
     <footer class="bottom-bar">
         {#if hasMedia && viewMode === 'slideshow'}
             <div class="slide-nav">
-                <button class="nav-button" onclick={goToPrev}>Previous</button>
+                <button class="nav-caret" onclick={goToPrev}>&lt;</button>
                 <div class="nav-numbers">
                     {#each media as _, index}
                         <button
@@ -146,7 +145,7 @@
                         </button>
                     {/each}
                 </div>
-                <button class="nav-button" onclick={goToNext}>Next</button>
+                <button class="nav-caret" onclick={goToNext}>&gt;</button>
             </div>
         {/if}
     </footer>
@@ -154,20 +153,17 @@
 
 <style lang="scss">
     .work-detail {
-        --color-fg: #000;
-        --color-muted: #666;
-        --color-border: #ddd;
         --spacing: 1em;
 
         height: 100vh;
         height: 100dvh;
         display: flex;
         flex-direction: column;
-        background: #fff;
-        font-family: 'Times New Roman', Times, serif;
+        background: var(--background);
+        font-family: var(--font-stack-serif);
         font-size: var(--font-size-small);
         line-height: 1.5;
-        color: var(--color-fg);
+        color: var(--foreground);
         overflow: hidden;
     }
 
@@ -177,17 +173,9 @@
         align-items: center;
         padding: var(--spacing);
         flex-shrink: 0;
-        user-select: none;
-        padding-top: 0;
 
-        .back-link {
-            color: var(--color-fg);
-            text-decoration: none;
-            min-width: 80px;
-
-            &:hover {
-                text-decoration: underline;
-            }
+        .top-left {
+            width: 200px;
         }
 
         .title-section {
@@ -195,61 +183,49 @@
             align-items: baseline;
             justify-content: center;
             gap: 0.5em;
-            flex: 1;
-            text-align: center;
+            font-size: var(--font-size-small);
 
             .title {
                 font-weight: normal;
-            }
-
-            .year {
-                color: var(--color-muted);
+                font-style: italic;
             }
         }
 
-        .view-links {
+        .view-buttons {
             display: flex;
-            gap: var(--spacing);
-            min-width: 80px;
+            gap: 0.5em;
+            width: 200px;
             justify-content: flex-end;
 
-            .view-link {
-                background: none;
-                border: none;
-                padding: 0;
-                font: inherit;
-                color: var(--color-muted);
-                cursor: pointer;
-                text-underline-offset: 0.25em;
-
-                &:hover {
-                    text-decoration: underline;
-                }
+            button {
+                font-size: var(--font-size-small);
+                padding: 0.5em 1em;
+                margin: 0;
 
                 &.active {
-                    color: var(--color-fg);
-                    text-decoration: underline;
+                    background-color: var(--foreground);
+                    color: var(--background);
                 }
             }
         }
 
         @media (max-width: 800px) {
             flex-wrap: wrap;
+            gap: 0.5em;
 
-            .back-link {
+            .top-left {
+                width: auto;
                 order: 1;
-                min-width: auto;
             }
 
             .title-section {
                 order: 3;
                 flex-basis: 100%;
-                margin-top: 0.5em;
             }
 
-            .view-links {
+            .view-buttons {
+                width: auto;
                 order: 2;
-                min-width: auto;
             }
         }
     }
@@ -274,6 +250,7 @@
         gap: calc(var(--spacing) * 1.5);
         padding: var(--spacing);
         max-width: 600px;
+        width: 100%;
         overflow-y: auto;
         height: 100%;
         align-self: center;
@@ -284,23 +261,28 @@
 
         .tags {
             font-style: italic;
-            color: var(--color-muted);
         }
 
         .credits {
             white-space: pre-wrap;
-            color: var(--color-muted);
         }
+    }
+
+    .grid-wrapper {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        justify-content: center;
+        padding: var(--spacing);
     }
 
     .grid-content {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: calc(var(--spacing) * 0.5) var(--spacing);
-        padding: var(--spacing);
-        overflow-y: auto;
-        height: 100%;
-        user-select: none;
+        gap: var(--spacing);
+        max-width: 600px;
+        width: 100%;
+        align-content: start;
 
         @media (max-width: 800px) {
             grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
@@ -310,6 +292,7 @@
             background: none;
             border: none;
             padding: 0;
+            margin: 0;
             cursor: pointer;
             text-align: center;
 
@@ -320,12 +303,12 @@
             .grid-thumb {
                 aspect-ratio: 1;
                 overflow: hidden;
-                background: var(--color-border);
 
                 :global(figure) {
                     margin: 0;
                     width: 100%;
                     height: 100%;
+                    padding: 0;
                 }
 
                 :global(img) {
@@ -337,6 +320,13 @@
                 :global(figcaption) {
                     display: none;
                 }
+
+                :global(video),
+                :global(audio) {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
             }
 
             .media-placeholder {
@@ -346,13 +336,11 @@
                 align-items: center;
                 justify-content: center;
                 font-size: 24px;
-                color: var(--color-muted);
+                background: var(--table-row-even-bg);
             }
 
             .grid-index {
                 margin-top: 0.25em;
-                font-size: var(--font-size-small);
-                color: var(--color-muted);
             }
         }
     }
@@ -362,7 +350,6 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        color: var(--color-muted);
     }
 
     .bottom-bar {
@@ -371,21 +358,20 @@
         justify-content: center;
         padding: var(--spacing);
         flex-shrink: 0;
-        user-select: none;
-        text-underline-offset: 0.25em;
 
         .slide-nav {
             display: flex;
             align-items: center;
             gap: var(--spacing);
 
-            .nav-button {
+            .nav-caret {
                 background: none;
                 border: none;
-                padding: 0;
+                padding: 0.25em 0.5em;
+                margin: 0;
                 font: inherit;
                 cursor: pointer;
-                color: var(--color-fg);
+                color: var(--foreground);
 
                 &:hover {
                     text-decoration: underline;
@@ -398,18 +384,19 @@
 
             .nav-numbers {
                 display: flex;
-                gap: var(--spacing);
+                gap: calc(var(--spacing) * 0.5);
 
                 .nav-number {
                     background: none;
                     border: none;
-                    padding: 0;
+                    padding: 0.25em 0.5em;
+                    margin: 0;
                     font: inherit;
                     cursor: pointer;
-                    color: var(--color-fg);
+                    color: var(--foreground);
 
                     &.active {
-                        text-decoration: underline;
+                        font-weight: bold;
                     }
 
                     &:hover:not(.active) {

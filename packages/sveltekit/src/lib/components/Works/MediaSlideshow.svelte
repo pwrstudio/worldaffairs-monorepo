@@ -12,7 +12,6 @@
     import { onMount } from 'svelte';
     import Swiper from 'swiper';
     import { Keyboard } from 'swiper/modules';
-    import 'swiper/css';
 
     import ImageSlide from './slides/ImageSlide.svelte';
     import AudioSlide from './slides/AudioSlide.svelte';
@@ -37,6 +36,8 @@
             keyboard: {
                 enabled: true,
             },
+            threshold: 5,
+            touchRatio: 1.5,
             on: {
                 slideChange: () => {
                     if (swiperInstance && onSlideChange) {
