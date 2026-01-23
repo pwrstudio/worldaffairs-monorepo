@@ -100,6 +100,7 @@ export type TourDate = {
     _rev: string;
     artist: string;
     date: string;
+    dateEnd?: string;
     location: string;
     venue: string;
     links?: Array<{
@@ -319,6 +320,5 @@ export type AllSanitySchemaTypes =
     | SanityFileAsset
     | SanityAssetSourceData
     | SanityImageAsset
-    | Geopoint
-    | Slug;
+    | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;

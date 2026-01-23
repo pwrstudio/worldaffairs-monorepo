@@ -5,6 +5,18 @@ export default {
     name: 'tourDate',
     type: 'document',
     icon: MdEvent,
+    orderings: [
+        {
+            title: 'Date (newest first)',
+            name: 'dateDesc',
+            by: [{ field: 'date', direction: 'desc' }],
+        },
+        {
+            title: 'Date (oldest first)',
+            name: 'dateAsc',
+            by: [{ field: 'date', direction: 'asc' }],
+        },
+    ],
     fields: [
         {
             title: 'Artist',
@@ -17,6 +29,12 @@ export default {
             name: 'date',
             type: 'date',
             validation: (Rule: any) => Rule.required(),
+        },
+        {
+            title: 'End Date',
+            description: 'Optional end date for multi-day events (e.g. festivals)',
+            name: 'dateEnd',
+            type: 'date',
         },
         {
             title: 'Location',
@@ -62,13 +80,15 @@ export default {
         select: {
             title: 'artist',
             date: 'date',
+            dateEnd: 'dateEnd',
             location: 'location',
         },
         prepare(value: Record<string, any>) {
-            const { title, date, location } = value;
+            const { title, date, dateEnd, location } = value;
+            const dateDisplay = dateEnd ? `${date} – ${dateEnd}` : date;
             return {
                 title,
-                subtitle: `${date} – ${location}`,
+                subtitle: `${dateDisplay} – ${location}`,
             };
         },
     },

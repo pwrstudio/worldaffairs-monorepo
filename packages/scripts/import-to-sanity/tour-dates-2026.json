@@ -1,0 +1,51 @@
+[
+    {
+        "artist": "Yung Lean",
+        "date": "2026-02-05",
+        "location": "Auckland, NZ",
+        "venue": "Laneway Festival"
+    },
+    {
+        "artist": "Yung Lean",
+        "date": "2026-02-07",
+        "location": "Southport, AU",
+        "venue": "Laneway Festival"
+    },
+    {
+        "artist": "Yung Lean",
+        "date": "2026-02-08",
+        "location": "Sydney, AU",
+        "venue": "Laneway Festival"
+    },
+    {
+        "artist": "Yung Lean",
+        "date": "2026-02-13",
+        "location": "Melbourne, AU",
+        "venue": "Laneway Festival"
+    },
+    {
+        "artist": "Yung Lean",
+        "date": "2026-02-14",
+        "location": "Adelaide, AU",
+        "venue": "Laneway Festival"
+    },
+    {
+        "artist": "Yung Lean",
+        "date": "2026-02-15",
+        "location": "Perth, AU",
+        "venue": "Laneway Festival"
+    },
+    {
+        "artist": "Yung Lean",
+        "date": "2026-06-27",
+        "dateEnd": "2026-07-04",
+        "location": "Roskilde, DK",
+        "venue": "Roskilde Festival"
+    },
+    {
+        "artist": "Yung Lean",
+        "date": "2026-08-08",
+        "location": "Katowice, PL",
+        "venue": "OFF Festival"
+    }
+]
