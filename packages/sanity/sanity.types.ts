@@ -194,7 +194,7 @@ export type NewPosts = {
     _updatedAt: string;
     _rev: string;
     title: string;
-    posts?: ArrayOf<
+    posts?: Array<
         TourReference | TourDateReference | ReleaseReference | VideoReference | ProductReference
     >;
 };
@@ -207,6 +207,7 @@ export type TourDate = {
     _rev: string;
     artist: string;
     date: string;
+    dateEnd?: string;
     location: string;
     venue: string;
     links?: Array<{
@@ -412,11 +413,4 @@ export type AllSanitySchemaTypes =
     | SanityAssetSourceData
     | SanityImageAsset
     | Geopoint;
-
 export declare const internalGroqTypeReferenceTo: unique symbol;
-
-type ArrayOf<T> = Array<
-    T & {
-        _key: string;
-    }
->;

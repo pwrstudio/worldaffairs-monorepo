@@ -1031,6 +1031,13 @@
                 },
                 "optional": false
             },
+            "dateEnd": {
+                "type": "objectAttribute",
+                "value": {
+                    "type": "string"
+                },
+                "optional": true
+            },
             "location": {
                 "type": "objectAttribute",
                 "value": {

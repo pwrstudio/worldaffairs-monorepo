@@ -60,7 +60,9 @@ export const load = (async () => {
         const conservativeDate = new Date(utcNow.getTime() - 24 * 60 * 60 * 1000); // Subtract 24 hours
         const currentDateString = conservativeDate.toISOString().split('T')[0]; // YYYY-MM-DD format
 
-        return tourDate.date >= currentDateString;
+        // Use dateEnd if available, otherwise use date
+        const relevantDate = tourDate.dateEnd ?? tourDate.date;
+        return relevantDate >= currentDateString;
     });
 
     // Find the last updated document from all fetched data

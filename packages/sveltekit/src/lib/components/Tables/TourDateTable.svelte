@@ -8,8 +8,18 @@
         tourDates: TourDate[];
     }>();
 
+    // Transform tour dates to display date ranges
+    const transformedTourDates = $derived(
+        tourDates.map((tourDate: TourDate) => ({
+            ...tourDate,
+            dateDisplay: tourDate.dateEnd
+                ? `${tourDate.date} – ${tourDate.dateEnd}`
+                : tourDate.date,
+        }))
+    );
+
     const columns: Column[] = [
-        { type: 'text', label: 'Date', key: 'date', hide: false },
+        { type: 'text', label: 'Date', key: 'dateDisplay', hide: false },
         { type: 'text', label: 'Artist', key: 'artist', hide: false },
         { type: 'text', label: 'Location', key: 'location', hide: false },
         { type: 'text', label: 'Venue', key: 'venue', hide: true },
@@ -22,5 +32,5 @@
     title="Tour Dates"
     anchor="tour-dates"
     {columns}
-    data={tourDates}
+    data={transformedTourDates}
 />
