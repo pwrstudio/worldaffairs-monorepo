@@ -19,9 +19,9 @@
         "packages/*"
     ],
     "devDependencies": {
-        "mprocs": "^0.8.2",
-        "prettier": "^3.8.0",
-        "prettier-plugin-svelte": "^3.4.1",
+        "mprocs": "^0.8.3",
+        "prettier": "^3.8.1",
+        "prettier-plugin-svelte": "^3.5.0",
         "typescript": "^5.9.3"
     },
     "packageManager": "pnpm@10.18.1"

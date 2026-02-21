@@ -71,24 +71,6 @@ export default (S: any) =>
                 ),
             S.divider(),
             S.listItem()
-                .title('Works list')
-                .icon(MdWork)
-                .child(
-                    S.editor().id('works-list').schemaType('worksList').documentId('works-list')
-                ),
-            S.listItem()
-                .title('Works')
-                .icon(MdWork)
-                .child(
-                    S.documentList()
-                        .title('Works')
-                        .showIcons(true)
-                        .filter('_type == $type')
-                        .params({ type: 'work' })
-                        .defaultOrdering([{ field: 'yearStart', direction: 'desc' }])
-                ),
-            S.divider(),
-            S.listItem()
                 .title('Store list')
                 .icon(MdShop)
                 .child(
