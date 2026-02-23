@@ -16,9 +16,9 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Schema Fields
 
-- [ ] **FIELD-01**: Each media item in collection document has a `credits` text field
-- [ ] **FIELD-02**: Each media item in collection document has a `year` field
-- [ ] **FIELD-03**: Collection document has a `defaultView` radio field with options: image, text, grid (default: image)
+- [x] **FIELD-01**: Each media item in collection document has a `credits` text field
+- [x] **FIELD-02**: Each media item in collection document has a `year` field
+- [x] **FIELD-03**: Collection document has a `defaultView` radio field with options: image, text, grid (default: image)
 
 ### Client Integration
 
@@ -47,9 +47,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RENAME-02 | Phase 1 | Complete |
 | RENAME-03 | Phase 3 | Pending |
 | RENAME-04 | Phase 3 | Pending |
-| FIELD-01 | Phase 2 | Pending |
-| FIELD-02 | Phase 2 | Pending |
-| FIELD-03 | Phase 2 | Pending |
+| FIELD-01 | Phase 2 | Complete |
+| FIELD-02 | Phase 2 | Complete |
+| FIELD-03 | Phase 2 | Complete |
 | CLIENT-01 | Phase 3 | Pending |
 
 **Coverage:**
