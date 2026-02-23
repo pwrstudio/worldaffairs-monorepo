@@ -64,7 +64,7 @@ Each task was committed atomically:
 1. **Task 1: Rename document type display title from Work to Collection** - `12b752e` (feat)
 2. **Task 2: Add Archive navigation item to Sanity desk structure** - `398a4bb` (feat)
 
-**Plan metadata:** TBD (docs: complete plan)
+**Plan metadata:** `2f3b98f` (docs: complete plan)
 
 ## Files Created/Modified
 - `packages/sanity/schemaTypes/Work.ts` - Changed title from 'Work' to 'Collection'; name: 'work' unchanged
@@ -89,6 +89,14 @@ None - no external service configuration required.
 - Sanity Studio UI labels are aligned with Archive/Collection naming convention
 - No blockers — both changes are isolated to Sanity package, SvelteKit frontend unaffected
 - Ready for subsequent phases that build the frontend Archive section
+
+## Self-Check: PASSED
+
+- packages/sanity/schemaTypes/Work.ts — FOUND
+- packages/sanity/deskStructure.ts — FOUND
+- .planning/phases/01-sanity-renames/01-01-SUMMARY.md — FOUND
+- Commit 12b752e — FOUND
+- Commit 398a4bb — FOUND
 
 ---
 *Phase: 01-sanity-renames*
