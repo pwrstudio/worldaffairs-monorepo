@@ -39,7 +39,9 @@ Plans:
   2. Each media item in Sanity Studio shows a year input
   3. The collection document shows a defaultView radio with options image, text, grid (defaulting to image)
   4. Sanity types are regenerated and TypeScript compilation passes
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 02-01-PLAN.md — Add credits+year to media items and defaultView radio to document root, regenerate types
 
 ### Phase 3: Client Updates
 **Goal**: The SvelteKit frontend reflects Archive/Collection naming and the WorkDetail component uses the defaultView field to set its initial view mode
@@ -59,5 +61,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Sanity Renames | 0/1 | Not started | - |
-| 2. Schema Fields | 0/TBD | Not started | - |
+| 2. Schema Fields | 0/1 | Not started | - |
 | 3. Client Updates | 0/TBD | Not started | - |
