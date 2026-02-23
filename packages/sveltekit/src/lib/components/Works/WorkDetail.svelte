@@ -10,7 +10,15 @@
     }>();
 
     type ViewMode = 'slideshow' | 'text' | 'grid';
-    let viewMode = $state<ViewMode>('slideshow');
+
+    function defaultViewToMode(dv: Work['defaultView']): ViewMode {
+        if (dv === 'text') return 'text';
+        if (dv === 'grid') return 'grid';
+        return 'slideshow'; // 'image' and undefined both map to slideshow
+    }
+
+    // svelte-ignore state_referenced_locally
+    let viewMode = $state<ViewMode>(defaultViewToMode(work.defaultView));
     let currentIndex = $state(0);
 
     let slideshowRef: MediaSlideshow | null = $state(null);
