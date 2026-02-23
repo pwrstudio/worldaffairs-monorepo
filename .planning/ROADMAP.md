@@ -51,7 +51,9 @@ Plans:
   1. The home page section heading and table heading read "Archive" (not "Works")
   2. WorkDetail opens in the view mode set on the collection document in Sanity (image, text, or grid)
   3. All three default view options (image, text, grid) correctly control the initial view when visiting a collection page
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 03-01-PLAN.md — Rename "Works" labels to "Archive" and wire defaultView to WorkDetail initial view mode
 
 ## Progress
 
@@ -62,4 +64,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Sanity Renames | 0/1 | Not started | - |
 | 2. Schema Fields | 1/1 | Complete   | 2026-02-23 |
-| 3. Client Updates | 0/TBD | Not started | - |
+| 3. Client Updates | 0/1 | Not started | - |
