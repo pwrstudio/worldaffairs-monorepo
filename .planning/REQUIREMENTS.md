@@ -30,33 +30,35 @@ None — this is a focused refactor milestone.
 
 ## Out of Scope
 
-| Feature | Reason |
-|---------|--------|
-| URL path changes (`/works/[slug]`) | Avoid breaking existing links and bookmarks |
-| Renaming internal code variables exhaustively | Only rename where user-facing; internal plumbing can stay |
-| Changes to other sections (music, video, etc.) | Not part of this milestone |
-| New views or display modes | Only wiring existing views to the new defaultView field |
+| Feature                                        | Reason                                                    |
+| ---------------------------------------------- | --------------------------------------------------------- |
+| URL path changes (`/works/[slug]`)             | Avoid breaking existing links and bookmarks               |
+| Renaming internal code variables exhaustively  | Only rename where user-facing; internal plumbing can stay |
+| Changes to other sections (music, video, etc.) | Not part of this milestone                                |
+| New views or display modes                     | Only wiring existing views to the new defaultView field   |
 
 ## Traceability
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| RENAME-01 | Phase 1 | Complete |
-| RENAME-02 | Phase 1 | Complete |
-| RENAME-03 | Phase 3 | Complete |
-| RENAME-04 | Phase 3 | Complete |
-| FIELD-01 | Phase 2 | Complete |
-| FIELD-02 | Phase 2 | Complete |
-| FIELD-03 | Phase 2 | Complete |
-| CLIENT-01 | Phase 3 | Complete |
+| Requirement | Phase   | Status   |
+| ----------- | ------- | -------- |
+| RENAME-01   | Phase 1 | Complete |
+| RENAME-02   | Phase 1 | Complete |
+| RENAME-03   | Phase 3 | Complete |
+| RENAME-04   | Phase 3 | Complete |
+| FIELD-01    | Phase 2 | Complete |
+| FIELD-02    | Phase 2 | Complete |
+| FIELD-03    | Phase 2 | Complete |
+| CLIENT-01   | Phase 3 | Complete |
 
 **Coverage:**
+
 - v1 requirements: 8 total
 - Mapped to phases: 8
 - Unmapped: 0
 
 ---
-*Requirements defined: 2026-02-23*
-*Last updated: 2026-02-23 after roadmap creation*
+
+_Requirements defined: 2026-02-23_
+_Last updated: 2026-02-23 after roadmap creation_

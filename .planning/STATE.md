@@ -19,23 +19,25 @@ Progress: [██████████] 100%
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 3
 - Average duration: 1 min
 - Total execution time: 4 min
 
 **By Phase:**
 
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 01-sanity-renames | 1 | 1 min | 1 min |
-| 02-schema-fields | 1 | 2 min | 2 min |
-| 03-client-updates | 1 | 1 min | 1 min |
+| Phase             | Plans | Total | Avg/Plan |
+| ----------------- | ----- | ----- | -------- |
+| 01-sanity-renames | 1     | 1 min | 1 min    |
+| 02-schema-fields  | 1     | 2 min | 2 min    |
+| 03-client-updates | 1     | 1 min | 1 min    |
 
 **Recent Trend:**
+
 - Last 5 plans: 1 min, 2 min
 - Trend: —
 
-*Updated after each plan completion*
+_Updated after each plan completion_
 
 ## Accumulated Context
 

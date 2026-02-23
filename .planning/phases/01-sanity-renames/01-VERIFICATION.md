@@ -4,15 +4,15 @@ verified: 2026-02-23T17:00:00Z
 status: human_needed
 score: 2/3 must-haves verified
 human_verification:
-  - test: "Open Sanity Studio in a browser and open the 'New document' dropdown"
-    expected: "The list shows 'Collection' (not 'Work') as a document type option"
-    why_human: "UI label rendering in Studio cannot be verified by static file analysis"
-  - test: "Click the 'Archive' item in the Studio left sidebar"
-    expected: "A document list opens showing all collection/work documents filtered by _type == 'work'"
-    why_human: "Desk structure navigation rendering requires a running Studio instance"
-  - test: "Open an existing work document and attempt to edit and save it"
-    expected: "Document saves successfully with no errors — internal name: 'work' is intact"
-    why_human: "CRUD round-trip requires a live Sanity dataset connection"
+    - test: "Open Sanity Studio in a browser and open the 'New document' dropdown"
+      expected: "The list shows 'Collection' (not 'Work') as a document type option"
+      why_human: 'UI label rendering in Studio cannot be verified by static file analysis'
+    - test: "Click the 'Archive' item in the Studio left sidebar"
+      expected: "A document list opens showing all collection/work documents filtered by _type == 'work'"
+      why_human: 'Desk structure navigation rendering requires a running Studio instance'
+    - test: 'Open an existing work document and attempt to edit and save it'
+      expected: "Document saves successfully with no errors — internal name: 'work' is intact"
+      why_human: 'CRUD round-trip requires a live Sanity dataset connection'
 ---
 
 # Phase 1: Sanity Renames Verification Report
@@ -26,11 +26,11 @@ human_verification:
 
 ### Observable Truths
 
-| # | Truth | Status | Evidence |
-|---|-------|--------|----------|
-| 1 | Sanity Studio displays 'Collection' as the document type title (not 'Work') | ? HUMAN NEEDED | `packages/sanity/schemaTypes/Work.ts` line 4: `title: 'Collection'` — correct value confirmed in source; Studio rendering requires human check |
-| 2 | Sanity Studio desk structure shows 'Archive' as a navigation list item | ? HUMAN NEEDED | `packages/sanity/deskStructure.ts` lines 90–99: `S.listItem().title('Archive')` with `.params({ type: 'work' })` confirmed in source; navigation rendering requires human check |
-| 3 | Creating and editing collection documents works normally after rename | ? HUMAN NEEDED | `name: 'work'` unchanged at line 5 of Work.ts — internal identifier preserved; requires live Studio test to confirm CRUD integrity |
+| #   | Truth                                                                       | Status         | Evidence                                                                                                                                                                        |
+| --- | --------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Sanity Studio displays 'Collection' as the document type title (not 'Work') | ? HUMAN NEEDED | `packages/sanity/schemaTypes/Work.ts` line 4: `title: 'Collection'` — correct value confirmed in source; Studio rendering requires human check                                  |
+| 2   | Sanity Studio desk structure shows 'Archive' as a navigation list item      | ? HUMAN NEEDED | `packages/sanity/deskStructure.ts` lines 90–99: `S.listItem().title('Archive')` with `.params({ type: 'work' })` confirmed in source; navigation rendering requires human check |
+| 3   | Creating and editing collection documents works normally after rename       | ? HUMAN NEEDED | `name: 'work'` unchanged at line 5 of Work.ts — internal identifier preserved; requires live Studio test to confirm CRUD integrity                                              |
 
 **Score:** 0/3 truths machine-verified — all pass static code checks; all require human confirmation for Studio rendering behavior
 
@@ -46,23 +46,23 @@ human_verification:
 
 ### Required Artifacts
 
-| Artifact | Expected | Status | Details |
-|----------|----------|--------|---------|
+| Artifact                              | Expected                                    | Status   | Details                                                                       |
+| ------------------------------------- | ------------------------------------------- | -------- | ----------------------------------------------------------------------------- |
 | `packages/sanity/schemaTypes/Work.ts` | Collection document type with renamed title | VERIFIED | Exists, substantive (183 lines, full schema), `title: 'Collection'` at line 4 |
-| `packages/sanity/deskStructure.ts` | Archive navigation item in desk structure | VERIFIED | Exists, substantive (100 lines), Archive list item at lines 90–99 |
+| `packages/sanity/deskStructure.ts`    | Archive navigation item in desk structure   | VERIFIED | Exists, substantive (100 lines), Archive list item at lines 90–99             |
 
 ### Key Link Verification
 
-| From | To | Via | Status | Details |
-|------|----|-----|--------|---------|
-| `packages/sanity/deskStructure.ts` | `packages/sanity/schemaTypes/Work.ts` | Archive list item filters on `_type == $type` with `params({ type: 'work' })` | WIRED | Line 97–98 in deskStructure.ts: `.filter('_type == $type').params({ type: 'work' })` — matches `name: 'work'` in Work.ts line 5 |
+| From                               | To                                    | Via                                                                           | Status | Details                                                                                                                         |
+| ---------------------------------- | ------------------------------------- | ----------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/sanity/deskStructure.ts` | `packages/sanity/schemaTypes/Work.ts` | Archive list item filters on `_type == $type` with `params({ type: 'work' })` | WIRED  | Line 97–98 in deskStructure.ts: `.filter('_type == $type').params({ type: 'work' })` — matches `name: 'work'` in Work.ts line 5 |
 
 ### Requirements Coverage
 
-| Requirement | Source Plan | Description | Status | Evidence |
-|-------------|-------------|-------------|--------|----------|
-| RENAME-01 | 01-01-PLAN.md | Sanity document type title renamed from "Work" to "Collection" in schema | SATISFIED | `title: 'Collection'` confirmed at Work.ts line 4; `name: 'work'` unchanged |
-| RENAME-02 | 01-01-PLAN.md | Sanity desk structure list item renamed from "Works" to "Archive" | SATISFIED | `S.listItem().title('Archive')` confirmed at deskStructure.ts lines 90–91; filters on `_type == 'work'` |
+| Requirement | Source Plan   | Description                                                              | Status    | Evidence                                                                                                |
+| ----------- | ------------- | ------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------- |
+| RENAME-01   | 01-01-PLAN.md | Sanity document type title renamed from "Work" to "Collection" in schema | SATISFIED | `title: 'Collection'` confirmed at Work.ts line 4; `name: 'work'` unchanged                             |
+| RENAME-02   | 01-01-PLAN.md | Sanity desk structure list item renamed from "Works" to "Archive"        | SATISFIED | `S.listItem().title('Archive')` confirmed at deskStructure.ts lines 90–91; filters on `_type == 'work'` |
 
 No orphaned requirements: REQUIREMENTS.md maps exactly RENAME-01 and RENAME-02 to Phase 1. Both are covered by 01-01-PLAN.md. No additional Phase 1 requirements exist in REQUIREMENTS.md.
 

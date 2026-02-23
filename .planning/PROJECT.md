@@ -53,11 +53,12 @@ The Archive section clearly presents collections of media (images, audio, video)
 
 ## Key Decisions
 
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| Keep `/works/[slug]` URL path | Avoid breaking existing links and bookmarks | — Pending |
+| Decision                              | Rationale                                              | Outcome   |
+| ------------------------------------- | ------------------------------------------------------ | --------- |
+| Keep `/works/[slug]` URL path         | Avoid breaking existing links and bookmarks            | — Pending |
 | Three view options: image, text, grid | User specified; maps to existing WorkDetail view modes | — Pending |
-| Default view: image | User specified | — Pending |
+| Default view: image                   | User specified                                         | — Pending |
 
 ---
-*Last updated: 2026-02-23 after initialization*
+
+_Last updated: 2026-02-23 after initialization_

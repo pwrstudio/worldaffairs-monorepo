@@ -15,33 +15,38 @@ The media array items are defined as inline anonymous objects (`type: 'object'`)
 **Primary recommendation:** Edit `Work.ts` directly — add two fields to each media object's `fields` array, add one field to the document root `fields` array, then run `pnpm typegen:sanity` and `pnpm check`.
 
 <phase_requirements>
+
 ## Phase Requirements
 
-| ID | Description | Research Support |
-|----|-------------|-----------------|
-| FIELD-01 | Each media item in collection document has a `credits` text field | Add `{title: 'Credits', name: 'credits', type: 'text'}` to each media object's `fields` array in `Work.ts` |
-| FIELD-02 | Each media item in collection document has a `year` field | Add `{title: 'Year', name: 'year', type: 'number'}` with integer validation to each media object's `fields` array in `Work.ts` |
+| ID       | Description                                                                                         | Research Support                                                                                                                                                          |
+| -------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FIELD-01 | Each media item in collection document has a `credits` text field                                   | Add `{title: 'Credits', name: 'credits', type: 'text'}` to each media object's `fields` array in `Work.ts`                                                                |
+| FIELD-02 | Each media item in collection document has a `year` field                                           | Add `{title: 'Year', name: 'year', type: 'number'}` with integer validation to each media object's `fields` array in `Work.ts`                                            |
 | FIELD-03 | Collection document has a `defaultView` radio field with options image, text, grid (default: image) | Add `{title: 'Default View', name: 'defaultView', type: 'string', options: {list: [...], layout: 'radio'}, initialValue: 'image'}` to root document `fields` in `Work.ts` |
+
 </phase_requirements>
 
 ## Standard Stack
 
 ### Core
-| Library | Version | Purpose | Why Standard |
-|---------|---------|---------|--------------|
-| sanity | ^5.11.0 | Schema authoring, Studio, TypeGen | Already installed; built-in schema system |
+
+| Library | Version | Purpose                           | Why Standard                              |
+| ------- | ------- | --------------------------------- | ----------------------------------------- |
+| sanity  | ^5.11.0 | Schema authoring, Studio, TypeGen | Already installed; built-in schema system |
 
 ### Supporting
-| Library | Version | Purpose | When to Use |
-|---------|---------|---------|-------------|
-| sanity typegen | bundled with sanity CLI | Generates TypeScript types from schema | After any schema change |
-| svelte-check | ^4.4.3 | TypeScript compilation check for SvelteKit | After typegen to confirm no type errors in client |
+
+| Library        | Version                 | Purpose                                    | When to Use                                       |
+| -------------- | ----------------------- | ------------------------------------------ | ------------------------------------------------- |
+| sanity typegen | bundled with sanity CLI | Generates TypeScript types from schema     | After any schema change                           |
+| svelte-check   | ^4.4.3                  | TypeScript compilation check for SvelteKit | After typegen to confirm no type errors in client |
 
 ### Alternatives Considered
-| Instead of | Could Use | Tradeoff |
-|------------|-----------|----------|
+
+| Instead of            | Could Use              | Tradeoff                                                                                           |
+| --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------- |
 | string + radio layout | custom input component | Custom input is unnecessary for simple radio; `options.layout: 'radio'` is built-in and documented |
-| number type for year | string type for year | `number` is correct and consistent with existing `yearStart`/`yearEnd` fields at document level |
+| number type for year  | string type for year   | `number` is correct and consistent with existing `yearStart`/`yearEnd` fields at document level    |
 
 **Installation:** No new packages required — all tools already present.
 
@@ -50,6 +55,7 @@ The media array items are defined as inline anonymous objects (`type: 'object'`)
 ### Recommended Project Structure
 
 No new files needed. All changes are within:
+
 ```
 packages/sanity/
 ├── schemaTypes/
@@ -64,6 +70,7 @@ packages/sanity/
 **When to use:** Always — this is the only way to add fields to inline object array items in Sanity v5.
 
 **Example:**
+
 ```typescript
 // packages/sanity/schemaTypes/Work.ts
 // Source: existing Work.ts pattern + Sanity v5 docs
@@ -111,6 +118,7 @@ Same two fields are added to `audioMedia` and `videoMedia` objects.
 **When to use:** Whenever the user must pick exactly one value from a short list — radio is visually clear for 2–5 options.
 
 **Example:**
+
 ```typescript
 // Source: https://www.sanity.io/docs/studio/string-type (verified 2026-02-23)
 {
@@ -139,6 +147,7 @@ Same two fields are added to `audioMedia` and `videoMedia` objects.
 **When to use:** After any schema change before running `pnpm check`.
 
 **Commands (from `package.json` scripts — verified):**
+
 ```bash
 # From repo root (preferred):
 pnpm typegen:sanity
@@ -150,6 +159,7 @@ pnpm typegen
 ```
 
 After typegen, run:
+
 ```bash
 pnpm check
 # Runs svelte-kit sync && svelte-check --tsconfig ./tsconfig.json inside packages/sveltekit
@@ -165,34 +175,38 @@ pnpm check
 
 ## Don't Hand-Roll
 
-| Problem | Don't Build | Use Instead | Why |
-|---------|-------------|-------------|-----|
+| Problem                          | Don't Build                  | Use Instead                                   | Why                                                        |
+| -------------------------------- | ---------------------------- | --------------------------------------------- | ---------------------------------------------------------- |
 | Radio button UI for string field | Custom React input component | `options.layout: 'radio'` on `type: 'string'` | Built into Sanity Studio v5; requires zero additional code |
-| TypeScript types for schema | Manually written types | `pnpm typegen:sanity` | Schema and generated types stay in sync automatically |
+| TypeScript types for schema      | Manually written types       | `pnpm typegen:sanity`                         | Schema and generated types stay in sync automatically      |
 
 **Key insight:** Sanity Studio v5 has first-class support for radio, dropdown, checkbox, and tag layouts directly on primitive field types. Custom input components are only needed for non-standard UI.
 
 ## Common Pitfalls
 
 ### Pitfall 1: `initialValue` Does Not Backfill Existing Documents
+
 **What goes wrong:** After adding `defaultView` with `initialValue: 'image'`, existing collection documents will show `undefined` for `defaultView` until an editor opens and saves them. The SvelteKit CLIENT-01 implementation (Phase 3) must handle `undefined` gracefully.
 **Why it happens:** `initialValue` is a Studio-side default applied only at document creation time, not a database default.
 **How to avoid:** Phase 3 must treat `undefined`/missing `defaultView` as `'image'` (the intended default). This is Phase 3 concern but must be known now.
 **Warning signs:** Phase 3 tests fail because existing documents have no `defaultView` value.
 
 ### Pitfall 2: TypeGen Not Run After Schema Edit
+
 **What goes wrong:** The `Work` TypeScript type in `sanity.types.ts` does not include the new fields, causing type errors or missing fields when accessed in SvelteKit.
 **Why it happens:** `sanity.types.ts` is a generated file and not edited manually.
 **How to avoid:** Run `pnpm typegen:sanity` immediately after editing `Work.ts`. Success criterion 4 ("Sanity types are regenerated") makes this explicit.
 **Warning signs:** `pnpm check` passes but `sanity.types.ts` does not contain `credits`, `year`, or `defaultView` on the `Work` type.
 
 ### Pitfall 3: `credits` Field Name Collision
+
 **What goes wrong:** There is already a top-level `credits` field on the `Work` document (type `text`, optional). Adding `credits` to media items creates a second field with the same name in a different scope — this is valid and expected, but could be confusing.
 **Why it happens:** The requirement intentionally adds per-media credits in addition to the existing document-level credits.
 **How to avoid:** When adding `credits` to media objects, confirm the field is placed inside each media object's `fields` array, not at the document root. The document root already has credits; do not add it there again.
 **Warning signs:** Accidentally editing the existing root `credits` field instead of adding to media objects.
 
 ### Pitfall 4: `direction` Is Layout-Only
+
 **What goes wrong:** Setting `direction: 'horizontal'` on `defaultView` without also setting `layout: 'radio'` has no effect — `direction` is ignored for dropdown layout.
 **Why it happens:** `direction` is a supplementary option that only applies when `layout: 'radio'` is set.
 **How to avoid:** Always set both `layout: 'radio'` and `direction` together.
@@ -202,6 +216,7 @@ pnpm check
 Verified patterns from official sources:
 
 ### Complete `defaultView` Field Definition
+
 ```typescript
 // Source: https://www.sanity.io/docs/studio/string-type (verified 2026-02-23)
 {
@@ -222,6 +237,7 @@ Verified patterns from official sources:
 ```
 
 ### Media Item `credits` and `year` Fields
+
 ```typescript
 // Pattern consistent with existing yearStart/yearEnd at document level
 {
@@ -239,6 +255,7 @@ Verified patterns from official sources:
 ```
 
 ### Typegen Commands (from package.json — verified)
+
 ```bash
 # Root-level (preferred):
 pnpm typegen:sanity
@@ -249,7 +266,9 @@ pnpm check
 ```
 
 ### Expected Generated Type After Phase 2
+
 After running typegen, `packages/sanity/sanity.types.ts` `Work` type will include:
+
 ```typescript
 export type Work = {
     // ... existing fields ...
@@ -285,44 +304,49 @@ export type Work = {
 
 ## State of the Art
 
-| Old Approach | Current Approach | When Changed | Impact |
-|--------------|------------------|--------------|--------|
+| Old Approach                                 | Current Approach                                     | When Changed               | Impact                                                            |
+| -------------------------------------------- | ---------------------------------------------------- | -------------------------- | ----------------------------------------------------------------- |
 | Manual TypeScript type files for Sanity data | `sanity typegen generate` produces `sanity.types.ts` | Sanity v3.14+ (TypeGen GA) | No hand-maintaining types — edit schema, run command, types match |
-| Custom input React components for radio | `options.layout: 'radio'` on string field | Sanity v2+ (stable in v5) | Zero custom code needed for standard radio layouts |
+| Custom input React components for radio      | `options.layout: 'radio'` on string field            | Sanity v2+ (stable in v5)  | Zero custom code needed for standard radio layouts                |
 
 **Deprecated/outdated:**
+
 - Custom input components for radio buttons: Not needed in Sanity v5 for standard use cases; built-in via `options.layout`.
 
 ## Open Questions
 
 1. **Should `year` on media items be required?**
-   - What we know: The requirements say "has a year field" without specifying required vs. optional. The existing document-level `yearStart` is required, `yearEnd` is optional.
-   - What's unclear: Whether every media item must have a year or it is supplementary metadata.
-   - Recommendation: Make it optional (no `validation: Rule.required()`). This is safer — existing media items in Sanity would otherwise fail validation immediately.
+    - What we know: The requirements say "has a year field" without specifying required vs. optional. The existing document-level `yearStart` is required, `yearEnd` is optional.
+    - What's unclear: Whether every media item must have a year or it is supplementary metadata.
+    - Recommendation: Make it optional (no `validation: Rule.required()`). This is safer — existing media items in Sanity would otherwise fail validation immediately.
 
 2. **Should `credits` on media items be `text` or `string`?**
-   - What we know: The requirement says "credits text field". The existing document-level credits field is `type: 'text'` with `rows: 6`. Individual media credits are likely shorter.
-   - What's unclear: Expected length of per-media credits.
-   - Recommendation: Use `type: 'text'` with `rows: 3` for consistency with the existing credits field convention.
+    - What we know: The requirement says "credits text field". The existing document-level credits field is `type: 'text'` with `rows: 6`. Individual media credits are likely shorter.
+    - What's unclear: Expected length of per-media credits.
+    - Recommendation: Use `type: 'text'` with `rows: 3` for consistency with the existing credits field convention.
 
 ## Sources
 
 ### Primary (HIGH confidence)
+
 - [Sanity String Type Docs](https://www.sanity.io/docs/studio/string-type) — radio layout, list options, initialValue, direction — fetched 2026-02-23
 - `/packages/sanity/schemaTypes/Work.ts` — actual media object structure confirmed by direct read
 - `/packages/sanity/package.json` — typegen script: `sanity schema extract && sanity typegen generate`
 - `/package.json` (root) — `typegen:sanity` script: `sanity schema extract --enforce-required-fields && sanity typegen generate`
 
 ### Secondary (MEDIUM confidence)
+
 - [Sanity radio button answer](https://www.sanity.io/answers/how-to-show-a-list-as-radio-button) — confirmed radio layout syntax (cross-verified with official string type docs)
 - [Sanity TypeGen docs](https://www.sanity.io/docs/apis-and-sdks/sanity-typegen) — typegen workflow confirmed
 
 ### Tertiary (LOW confidence)
+
 - None
 
 ## Metadata
 
 **Confidence breakdown:**
+
 - Standard stack: HIGH — Sanity v5 is already installed; string radio is documented official API
 - Architecture: HIGH — existing Work.ts structure read directly from codebase; all changes are additive edits to one file
 - Pitfalls: HIGH — credits name collision confirmed by reading actual schema; initialValue behavior is documented

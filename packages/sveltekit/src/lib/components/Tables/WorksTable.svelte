@@ -24,4 +24,10 @@
     }));
 </script>
 
-<DataTable tableType={TableType.Works} title="Archive" anchor="archive" {columns} data={worksData} />
+<DataTable
+    tableType={TableType.Works}
+    title="Archive"
+    anchor="archive"
+    {columns}
+    data={worksData}
+/>

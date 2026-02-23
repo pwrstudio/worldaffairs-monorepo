@@ -15,33 +15,35 @@ The only files that need editing are `packages/sanity/schemaTypes/Work.ts` (chan
 **Primary recommendation:** Edit `Work.ts` title and add a desk structure entry for Archive in `deskStructure.ts`. Do not touch `name: 'work'`, GROQ queries, or generated types — those are out of scope for this phase.
 
 <phase_requirements>
+
 ## Phase Requirements
 
-| ID | Description | Research Support |
-|----|-------------|-----------------|
-| RENAME-01 | Sanity document type title renamed from "Work" to "Collection" in schema | Change `title: 'Work'` → `title: 'Collection'` in `Work.ts` line 4. The `name: 'work'` key stays unchanged. |
-| RENAME-02 | Sanity desk structure list item renamed from "Works" to "Archive" | No existing Works entry exists in `deskStructure.ts` — add a new `S.listItem().title('Archive')` item following the established document list pattern. |
+| ID        | Description                                                              | Research Support                                                                                                                                       |
+| --------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| RENAME-01 | Sanity document type title renamed from "Work" to "Collection" in schema | Change `title: 'Work'` → `title: 'Collection'` in `Work.ts` line 4. The `name: 'work'` key stays unchanged.                                            |
+| RENAME-02 | Sanity desk structure list item renamed from "Works" to "Archive"        | No existing Works entry exists in `deskStructure.ts` — add a new `S.listItem().title('Archive')` item following the established document list pattern. |
+
 </phase_requirements>
 
 ## Standard Stack
 
 ### Core
 
-| Library | Version | Purpose | Why Standard |
-|---------|---------|---------|--------------|
-| sanity | 5.11.0 | Schema definition + Studio hosting | Already in project; provides `defineConfig`, `structureTool` |
-| react-icons/md | (via react-icons 5.5.0) | Icons for document types and desk items | Already used in `Work.ts` and `deskStructure.ts` |
+| Library        | Version                 | Purpose                                 | Why Standard                                                 |
+| -------------- | ----------------------- | --------------------------------------- | ------------------------------------------------------------ |
+| sanity         | 5.11.0                  | Schema definition + Studio hosting      | Already in project; provides `defineConfig`, `structureTool` |
+| react-icons/md | (via react-icons 5.5.0) | Icons for document types and desk items | Already used in `Work.ts` and `deskStructure.ts`             |
 
 ### Supporting
 
-| Library | Version | Purpose | When to Use |
-|---------|---------|---------|-------------|
+| Library          | Version            | Purpose                                                                     | When to Use                            |
+| ---------------- | ------------------ | --------------------------------------------------------------------------- | -------------------------------------- |
 | sanity/structure | (part of sanity 5) | Desk structure builder API (`S.list()`, `S.listItem()`, `S.documentList()`) | Building custom desk structure layouts |
 
 ### Alternatives Considered
 
-| Instead of | Could Use | Tradeoff |
-|------------|-----------|----------|
+| Instead of           | Could Use               | Tradeoff                                                                                              |
+| -------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------- |
 | Editing `title` only | Renaming `name: 'work'` | Renaming `name` would break all existing documents, GROQ queries, and generated types — never do this |
 
 **Installation:** No new packages required for this phase.
@@ -68,8 +70,8 @@ packages/sanity/
 ```typescript
 // Source: packages/sanity/schemaTypes/Work.ts (current)
 export default {
-    title: 'Work',    // ← UI label: change this to 'Collection'
-    name: 'work',     // ← internal ID: DO NOT change
+    title: 'Work', // ← UI label: change this to 'Collection'
+    name: 'work', // ← internal ID: DO NOT change
     type: 'document',
     // ...
 };
@@ -79,8 +81,8 @@ After change:
 
 ```typescript
 export default {
-    title: 'Collection',  // ← new display label in Studio
-    name: 'work',         // ← unchanged internal identifier
+    title: 'Collection', // ← new display label in Studio
+    name: 'work', // ← unchanged internal identifier
     type: 'document',
     // ...
 };
@@ -132,8 +134,8 @@ S.listItem()
 
 ## Don't Hand-Roll
 
-| Problem | Don't Build | Use Instead | Why |
-|---------|-------------|-------------|-----|
+| Problem                   | Don't Build                           | Use Instead                                     | Why                                                                                        |
+| ------------------------- | ------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | Desk structure navigation | Custom React component for Studio nav | `S.listItem()` + `S.documentList()` builder API | Sanity's structure builder handles routing, document creation, and filtering automatically |
 
 **Key insight:** The structure builder API (`S.*`) is already used for every other section in `deskStructure.ts`. Adding Archive is a copy-paste-and-adapt operation, not new infrastructure.
@@ -185,7 +187,7 @@ export default {
 // After:
 export default {
     title: 'Collection',
-    name: 'work',        // unchanged — critical
+    name: 'work', // unchanged — critical
     type: 'document',
     // ...
 };
@@ -216,24 +218,25 @@ S.listItem()
 
 ## State of the Art
 
-| Old Approach | Current Approach | When Changed | Impact |
-|--------------|------------------|--------------|--------|
+| Old Approach                                   | Current Approach                                     | When Changed     | Impact                                                             |
+| ---------------------------------------------- | ---------------------------------------------------- | ---------------- | ------------------------------------------------------------------ |
 | Sanity v2 schema (string-based, no TypeScript) | Sanity v3/v5 schema with TypeScript and defineConfig | Sanity v3 (2022) | Schema is plain TS objects; `defineConfig` provides type inference |
 
 **Deprecated/outdated:**
+
 - `part:@sanity/base/schema`: Old v2 schema registration system. This project uses v5's `schema: { types: schemaTypes }` in `defineConfig` — already correct.
 
 ## Open Questions
 
 1. **Where in the desk structure should Archive appear?**
-   - What we know: Currently the structure ends with Store list → Products. There is no existing works section.
-   - What's unclear: User preference for placement (before Store? after Products? in a separate group?).
-   - Recommendation: Place it after a divider following the Products item, or before Tours as it's content rather than commerce. Since this is a UI-only preference with no functional impact, the planner can decide based on logical grouping. A reasonable default: add a divider and Archive entry between Products and the end of the list, keeping commerce items (Store, Products) together.
+    - What we know: Currently the structure ends with Store list → Products. There is no existing works section.
+    - What's unclear: User preference for placement (before Store? after Products? in a separate group?).
+    - Recommendation: Place it after a divider following the Products item, or before Tours as it's content rather than commerce. Since this is a UI-only preference with no functional impact, the planner can decide based on logical grouping. A reasonable default: add a divider and Archive entry between Products and the end of the list, keeping commerce items (Store, Products) together.
 
 2. **Should the `MdWork` icon be changed to something else?**
-   - What we know: `MdWork` is already imported and used in `Work.ts` for the document icon. It renders a briefcase/work icon.
-   - What's unclear: Whether a different icon (e.g., `MdArchive`, `MdCollections`) would better represent "Archive".
-   - Recommendation: Keep `MdWork` for now since it's already imported and the icon change is cosmetic. Out of scope unless explicitly requested.
+    - What we know: `MdWork` is already imported and used in `Work.ts` for the document icon. It renders a briefcase/work icon.
+    - What's unclear: Whether a different icon (e.g., `MdArchive`, `MdCollections`) would better represent "Archive".
+    - Recommendation: Keep `MdWork` for now since it's already imported and the icon change is cosmetic. Out of scope unless explicitly requested.
 
 ## Sources
 
@@ -251,6 +254,7 @@ S.listItem()
 ## Metadata
 
 **Confidence breakdown:**
+
 - Standard stack: HIGH — confirmed by direct inspection of project files
 - Architecture patterns: HIGH — patterns derived from existing code in the same file being edited
 - Pitfalls: HIGH (title/name confusion, missing desk entry) — derived from codebase evidence; MEDIUM (HMR restart) — common dev experience

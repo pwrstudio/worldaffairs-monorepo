@@ -15,31 +15,33 @@ No new libraries are needed. No new files should be created. All changes touch e
 **Primary recommendation:** Make all changes in a single wave — GROQ query update, WorkDetail initial state wiring, enum value change, and label text changes — then run `pnpm check` to verify TypeScript compilation.
 
 <phase_requirements>
+
 ## Phase Requirements
 
-| ID | Description | Research Support |
-|----|-------------|-----------------|
-| RENAME-03 | "Works" table heading and section references renamed to "Archive" in SvelteKit client | Two user-facing label sites identified: `Header.svelte` TOC link text and `WorksTable.svelte` `title` prop. The `anchor` attribute on the table stays `"works"` to preserve the `#works` fragment used by `WorkDetail`'s back link. |
+| ID        | Description                                                                                         | Research Support                                                                                                                                                                                                                                                                            |
+| --------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RENAME-03 | "Works" table heading and section references renamed to "Archive" in SvelteKit client               | Two user-facing label sites identified: `Header.svelte` TOC link text and `WorksTable.svelte` `title` prop. The `anchor` attribute on the table stays `"works"` to preserve the `#works` fragment used by `WorkDetail`'s back link.                                                         |
 | RENAME-04 | Component references and variable names renamed from "work(s)" to "collection(s)" where user-facing | Only `TableType.Works = 'works'` is a user-facing enum value (it becomes a CSS class name on `<table>`). No global CSS targets this class, so it can be changed to `'archive'` safely. Internal code variables (`works`, `work`, file paths, import paths) stay unchanged per requirements. |
-| CLIENT-01 | WorkDetail component uses `defaultView` field value to set initial view mode | The GROQ `workBySlug` query must include `defaultView`. The `Work` type from `@sanity-types` already defines `defaultView?: 'image' \| 'text' \| 'grid'`. WorkDetail must map that to its internal `ViewMode` type (`'slideshow' \| 'text' \| 'grid'`) when initialising `$state`. |
+| CLIENT-01 | WorkDetail component uses `defaultView` field value to set initial view mode                        | The GROQ `workBySlug` query must include `defaultView`. The `Work` type from `@sanity-types` already defines `defaultView?: 'image' \| 'text' \| 'grid'`. WorkDetail must map that to its internal `ViewMode` type (`'slideshow' \| 'text' \| 'grid'`) when initialising `$state`.          |
+
 </phase_requirements>
 
 ## Standard Stack
 
 ### Core
 
-| Library | Version | Purpose | Why Standard |
-|---------|---------|---------|--------------|
-| Svelte 5 | 5.53.3 | Reactive component state via `$state` rune | Project's UI framework; already in use |
-| SvelteKit | 2.53.0 | Routing and server-side data loading | Project's application framework |
-| TypeScript | 5.9.3 | Type safety across all changes | Project enforces strict mode |
-| @sanity-types | (generated) | Type definitions for Sanity documents | Already generated; includes `defaultView` field |
+| Library       | Version     | Purpose                                    | Why Standard                                    |
+| ------------- | ----------- | ------------------------------------------ | ----------------------------------------------- |
+| Svelte 5      | 5.53.3      | Reactive component state via `$state` rune | Project's UI framework; already in use          |
+| SvelteKit     | 2.53.0      | Routing and server-side data loading       | Project's application framework                 |
+| TypeScript    | 5.9.3       | Type safety across all changes             | Project enforces strict mode                    |
+| @sanity-types | (generated) | Type definitions for Sanity documents      | Already generated; includes `defaultView` field |
 
 ### Supporting
 
-| Library | Version | Purpose | When to Use |
-|---------|---------|---------|-------------|
-| `@sveltejs/kit` `error` helper | — | 404 throwing in loaders | Already used in works page loader |
+| Library                        | Version | Purpose                 | When to Use                       |
+| ------------------------------ | ------- | ----------------------- | --------------------------------- |
+| `@sveltejs/kit` `error` helper | —       | 404 throwing in loaders | Already used in works page loader |
 
 ### Alternatives Considered
 
@@ -122,17 +124,17 @@ The `...` at document root projects all scalar fields including `defaultView`. N
 
 ### Anti-Patterns to Avoid
 
-- **Renaming `anchor="works"` in WorksTable or the `href="#works"` back-link in WorkDetail:** The anchor `#works` is the fragment ID used by the back-link in `WorkDetail.svelte` (`href="/#works"`). Renaming it would break the back-link navigation. RENAME-03 only requires the heading *text* to change, not the anchor ID.
+- **Renaming `anchor="works"` in WorksTable or the `href="#works"` back-link in WorkDetail:** The anchor `#works` is the fragment ID used by the back-link in `WorkDetail.svelte` (`href="/#works"`). Renaming it would break the back-link navigation. RENAME-03 only requires the heading _text_ to change, not the anchor ID.
 - **Renaming internal code variables (`works`, `work`, `worksData`, file paths):** Out of scope per REQUIREMENTS.md and the project's out-of-scope table.
 - **Changing the `/works/[slug]` URL route:** Explicitly out of scope.
 - **Using `$derived` instead of `$state` for initial view mode:** The view mode must be mutable (user clicks change it), so it must be `$state`, not `$derived`.
 
 ## Don't Hand-Roll
 
-| Problem | Don't Build | Use Instead | Why |
-|---------|-------------|-------------|-----|
-| ViewMode mapping | Custom string union transformer | A simple helper function (3 lines) | No library needed; the mapping is trivial |
-| Type narrowing for `defaultView` | Manual `as` casts | Let TypeScript infer from the conditional | Safer and cleaner |
+| Problem                          | Don't Build                     | Use Instead                               | Why                                       |
+| -------------------------------- | ------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| ViewMode mapping                 | Custom string union transformer | A simple helper function (3 lines)        | No library needed; the mapping is trivial |
+| Type narrowing for `defaultView` | Manual `as` casts               | Let TypeScript infer from the conditional | Safer and cleaner                         |
 
 **Key insight:** This phase requires no new abstractions. All changes are one-line or small edits to existing files.
 
@@ -261,8 +263,8 @@ No GROQ query change is required — the `...` spread at document root already p
 
 ## State of the Art
 
-| Old Approach | Current Approach | When Changed | Impact |
-|--------------|------------------|--------------|--------|
+| Old Approach                     | Current Approach       | When Changed              | Impact                                                                  |
+| -------------------------------- | ---------------------- | ------------------------- | ----------------------------------------------------------------------- |
 | Svelte 4 `let` + reactive stores | Svelte 5 `$state` rune | Svelte 5 (already in use) | Prop-derived initial state is set at declaration time, not in `onMount` |
 
 **Deprecated/outdated:**
@@ -272,9 +274,9 @@ No GROQ query change is required — the `...` spread at document root already p
 ## Open Questions
 
 1. **GROQ query explicit projection**
-   - What we know: The `...` spread in `workBySlug` already fetches `defaultView` as a scalar field.
-   - What's unclear: Whether the project prefers explicit projection (listing each field) over spread for clarity.
-   - Recommendation: Leave the query unchanged. The spread is correct and already tested. Adding an explicit `defaultView` field to the projection is optional cosmetic work and out of scope for this phase.
+    - What we know: The `...` spread in `workBySlug` already fetches `defaultView` as a scalar field.
+    - What's unclear: Whether the project prefers explicit projection (listing each field) over spread for clarity.
+    - Recommendation: Leave the query unchanged. The spread is correct and already tested. Adding an explicit `defaultView` field to the projection is optional cosmetic work and out of scope for this phase.
 
 ## Sources
 
