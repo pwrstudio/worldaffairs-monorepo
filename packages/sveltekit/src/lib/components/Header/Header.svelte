@@ -29,7 +29,7 @@
         </h2>
         {#if hasWorks}
             <h2 class="toc-link">
-                <a href="#works">Works</a>
+                <a href="#works">Archive</a>
             </h2>
         {/if}
         {#if hasTourDates}

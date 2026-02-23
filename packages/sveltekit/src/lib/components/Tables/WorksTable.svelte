@@ -24,4 +24,4 @@
     }));
 </script>
 
-<DataTable tableType={TableType.Works} title="Works" anchor="works" {columns} data={worksData} />
+<DataTable tableType={TableType.Works} title="Archive" anchor="works" {columns} data={worksData} />
