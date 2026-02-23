@@ -23,6 +23,21 @@ export default {
             validation: (Rule: any) => Rule.required(),
         },
         {
+            title: 'Default View',
+            name: 'defaultView',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Image', value: 'image' },
+                    { title: 'Text', value: 'text' },
+                    { title: 'Grid', value: 'grid' },
+                ],
+                layout: 'radio',
+                direction: 'horizontal',
+            },
+            initialValue: 'image',
+        },
+        {
             title: 'Artist',
             name: 'artist',
             type: 'string',
@@ -59,21 +74,6 @@ export default {
             name: 'credits',
             type: 'text',
             rows: 6,
-        },
-        {
-            title: 'Default View',
-            name: 'defaultView',
-            type: 'string',
-            options: {
-                list: [
-                    { title: 'Image', value: 'image' },
-                    { title: 'Text', value: 'text' },
-                    { title: 'Grid', value: 'grid' },
-                ],
-                layout: 'radio',
-                direction: 'horizontal',
-            },
-            initialValue: 'image',
         },
         {
             title: 'Media',

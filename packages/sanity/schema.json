@@ -205,6 +205,27 @@
                 },
                 "optional": false
             },
+            "defaultView": {
+                "type": "objectAttribute",
+                "value": {
+                    "type": "union",
+                    "of": [
+                        {
+                            "type": "string",
+                            "value": "image"
+                        },
+                        {
+                            "type": "string",
+                            "value": "text"
+                        },
+                        {
+                            "type": "string",
+                            "value": "grid"
+                        }
+                    ]
+                },
+                "optional": true
+            },
             "artist": {
                 "type": "objectAttribute",
                 "value": {
@@ -247,27 +268,6 @@
                 "type": "objectAttribute",
                 "value": {
                     "type": "string"
-                },
-                "optional": true
-            },
-            "defaultView": {
-                "type": "objectAttribute",
-                "value": {
-                    "type": "union",
-                    "of": [
-                        {
-                            "type": "string",
-                            "value": "image"
-                        },
-                        {
-                            "type": "string",
-                            "value": "text"
-                        },
-                        {
-                            "type": "string",
-                            "value": "grid"
-                        }
-                    ]
                 },
                 "optional": true
             },

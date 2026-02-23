@@ -56,13 +56,13 @@ export type Work = {
     _rev: string;
     title: string;
     slug: Slug;
+    defaultView?: 'image' | 'text' | 'grid';
     artist?: string;
     intro?: string;
     yearStart: number;
     yearEnd?: number;
     tags?: Array<string>;
     credits?: string;
-    defaultView?: 'image' | 'text' | 'grid';
     media?: Array<
         | {
               image: {
