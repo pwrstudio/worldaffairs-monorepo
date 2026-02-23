@@ -86,4 +86,15 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'product' })
                 ),
+            S.divider(),
+            S.listItem()
+                .title('Archive')
+                .icon(MdWork)
+                .child(
+                    S.documentList()
+                        .title('Archive')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'work' })
+                ),
         ]);
