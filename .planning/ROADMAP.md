@@ -26,7 +26,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. Sanity Studio displays "Collection" as the document type title (not "Work")
   2. Sanity Studio desk structure shows "Archive" as the list item label (not "Works")
   3. Creating and editing collection documents works normally after rename
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 01-01-PLAN.md — Rename document type title to "Collection" and add "Archive" desk structure entry
 
 ### Phase 2: Schema Fields
 **Goal**: Each media item in a collection document exposes credits and year fields, and the collection document has a defaultView radio field
@@ -56,6 +58,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Sanity Renames | 0/TBD | Not started | - |
+| 1. Sanity Renames | 0/1 | Not started | - |
 | 2. Schema Fields | 0/TBD | Not started | - |
 | 3. Client Updates | 0/TBD | Not started | - |
