@@ -9,8 +9,8 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Renaming
 
-- [ ] **RENAME-01**: Sanity document type title renamed from "Work" to "Collection" in schema
-- [ ] **RENAME-02**: Sanity desk structure list item renamed from "Works" to "Archive"
+- [x] **RENAME-01**: Sanity document type title renamed from "Work" to "Collection" in schema
+- [x] **RENAME-02**: Sanity desk structure list item renamed from "Works" to "Archive"
 - [ ] **RENAME-03**: "Works" table heading and section references renamed to "Archive" in SvelteKit client
 - [ ] **RENAME-04**: Component references and variable names renamed from "work(s)" to "collection(s)" where user-facing
 
@@ -43,8 +43,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| RENAME-01 | Phase 1 | Pending |
-| RENAME-02 | Phase 1 | Pending |
+| RENAME-01 | Phase 1 | Complete |
+| RENAME-02 | Phase 1 | Complete |
 | RENAME-03 | Phase 3 | Pending |
 | RENAME-04 | Phase 3 | Pending |
 | FIELD-01 | Phase 2 | Pending |

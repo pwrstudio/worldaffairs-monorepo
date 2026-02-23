@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-02-23)
 ## Current Position
 
 Phase: 1 of 3 (Sanity Renames)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-02-23 — Roadmap created
+Plan: 1 of 1 in current phase
+Status: Phase 1 complete
+Last activity: 2026-02-23 — Completed plan 01-01 (Sanity Renames)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 33%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: —
+- Total plans completed: 1
+- Average duration: 1 min
+- Total execution time: 1 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-sanity-renames | 1 | 1 min | 1 min |
 
 **Recent Trend:**
-- Last 5 plans: —
+- Last 5 plans: 1 min
 - Trend: —
 
 *Updated after each plan completion*
@@ -45,6 +45,9 @@ Recent decisions affecting current work:
 - Keep `/works/[slug]` URL path unchanged to avoid breaking existing links
 - Three view options: image, text, grid — maps to existing WorkDetail view modes
 - Default view is image
+- Keep `name: 'work'` unchanged in Work.ts — internal identifier used in GROQ queries and existing documents
+- No ordering on Archive desk structure list — work documents lack a sortable date field
+- MdWork icon reused for Archive navigation item (already imported, semantically appropriate)
 
 ### Pending Todos
 
@@ -57,5 +60,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Roadmap created, ready to plan Phase 1
+Stopped at: Completed 01-01-PLAN.md (Phase 1 plan 1 — Sanity Renames)
 Resume file: None
