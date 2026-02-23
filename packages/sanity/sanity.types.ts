@@ -62,6 +62,7 @@ export type Work = {
     yearEnd?: number;
     tags?: Array<string>;
     credits?: string;
+    defaultView?: 'image' | 'text' | 'grid';
     media?: Array<
         | {
               image: {
@@ -72,6 +73,8 @@ export type Work = {
                   _type: 'image';
               };
               caption?: string;
+              credits?: string;
+              year?: number;
               _type: 'imageMedia';
               _key: string;
           }
@@ -82,6 +85,8 @@ export type Work = {
                   _type: 'file';
               };
               caption?: string;
+              credits?: string;
+              year?: number;
               _type: 'audioMedia';
               _key: string;
           }
@@ -92,6 +97,8 @@ export type Work = {
                   _type: 'file';
               };
               caption?: string;
+              credits?: string;
+              year?: number;
               _type: 'videoMedia';
               _key: string;
           }
@@ -194,7 +201,7 @@ export type NewPosts = {
     _updatedAt: string;
     _rev: string;
     title: string;
-    posts?: Array<
+    posts?: ArrayOf<
         TourReference | TourDateReference | ReleaseReference | VideoReference | ProductReference
     >;
 };
@@ -413,4 +420,11 @@ export type AllSanitySchemaTypes =
     | SanityAssetSourceData
     | SanityImageAsset
     | Geopoint;
+
 export declare const internalGroqTypeReferenceTo: unique symbol;
+
+type ArrayOf<T> = Array<
+    T & {
+        _key: string;
+    }
+>;
