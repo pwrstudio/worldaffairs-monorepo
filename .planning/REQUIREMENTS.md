@@ -11,8 +11,8 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 - [x] **RENAME-01**: Sanity document type title renamed from "Work" to "Collection" in schema
 - [x] **RENAME-02**: Sanity desk structure list item renamed from "Works" to "Archive"
-- [ ] **RENAME-03**: "Works" table heading and section references renamed to "Archive" in SvelteKit client
-- [ ] **RENAME-04**: Component references and variable names renamed from "work(s)" to "collection(s)" where user-facing
+- [x] **RENAME-03**: "Works" table heading and section references renamed to "Archive" in SvelteKit client
+- [x] **RENAME-04**: Component references and variable names renamed from "work(s)" to "collection(s)" where user-facing
 
 ### Schema Fields
 
@@ -22,7 +22,7 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Client Integration
 
-- [ ] **CLIENT-01**: WorkDetail component uses `defaultView` field value to set initial view mode
+- [x] **CLIENT-01**: WorkDetail component uses `defaultView` field value to set initial view mode
 
 ## v2 Requirements
 
@@ -45,12 +45,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | RENAME-01 | Phase 1 | Complete |
 | RENAME-02 | Phase 1 | Complete |
-| RENAME-03 | Phase 3 | Pending |
-| RENAME-04 | Phase 3 | Pending |
+| RENAME-03 | Phase 3 | Complete |
+| RENAME-04 | Phase 3 | Complete |
 | FIELD-01 | Phase 2 | Complete |
 | FIELD-02 | Phase 2 | Complete |
 | FIELD-03 | Phase 2 | Complete |
-| CLIENT-01 | Phase 3 | Pending |
+| CLIENT-01 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 8 total
