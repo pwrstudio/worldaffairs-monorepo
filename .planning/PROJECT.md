@@ -1,64 +1,60 @@
-# World Affairs — Archive Refactor
+# World Affairs
 
 ## What This Is
 
-A personal website for World Affairs built with SvelteKit and Sanity CMS. The site displays music releases, videos, tour dates, news, a store, and a portfolio of works (being renamed to "Archive" / "Collections"). This milestone renames the Works section to Archive/Collection and adds new fields to the collection document type.
+A personal website for World Affairs built with SvelteKit and Sanity CMS. The site displays music releases, videos, tour dates, news, a store, and an Archive of collections — each collection containing media items (images, audio, video) with credits, year metadata, and configurable default views.
 
 ## Core Value
 
-The Archive section clearly presents collections of media (images, audio, video) with flexible default views and proper credits/year metadata per media item.
+The Archive section clearly presents collections of media with flexible default views and proper credits/year metadata per media item.
 
 ## Requirements
 
 ### Validated
 
-<!-- Existing capabilities inferred from codebase -->
-
-- ✓ Home page with sections: about, releases, videos, tour dates, news, store, works — existing
-- ✓ Works list displayed as table on home page — existing
-- ✓ Work detail page with multi-view display (slideshow, text, grid) — existing
+- ✓ Home page with sections: about, releases, videos, tour dates, news, store, archive — existing
+- ✓ Archive list displayed as table on home page — existing
+- ✓ Collection detail page with multi-view display (slideshow, text, grid) — existing
 - ✓ Media slideshow with Swiper carousel, keyboard navigation, touch gestures — existing
 - ✓ Server-side rendering with SvelteKit and Sanity CMS data loading — existing
-- ✓ Sanity studio for content management — existing
+- ✓ Sanity studio for content management with Archive desk structure — existing
 - ✓ Tour date import scripts — existing
+- ✓ Renamed Works → Archive / Collection across Sanity and client — v1.0
+- ✓ Credits and year fields on each media item in collections — v1.0
+- ✓ Default view radio (image/text/grid) on collection documents — v1.0
+- ✓ WorkDetail initializes view mode from Sanity defaultView field — v1.0
 
 ### Active
 
-- [ ] Rename "Works" to "Archive" (section/plural) and "Work" to "Collection" (document/singular) across Sanity schema, desk structure, and SvelteKit client
-- [ ] Add `credits` field (text) to each media item in collection document
-- [ ] Add `year` field to each media item in collection document
-- [ ] Add radio-style input for default view on collection document: image, text, or grid (default: image)
+(None — milestone complete)
 
 ### Out of Scope
 
 - URL path changes (`/works/[slug]` stays as-is) — avoid breaking existing links
-- Any changes to other sections (music, video, tour dates, store, etc.) — not part of this work
-- New functionality beyond renaming and field additions — keep scope tight
+- Exhaustive internal variable renaming — only user-facing labels changed
 
 ## Context
 
 - Monorepo with `packages/sveltekit/` (frontend) and `packages/sanity/` (CMS)
-- Sanity schema types in `packages/sanity/schemaTypes/`
-- Desk structure configured in Sanity studio
-- GROQ queries in `packages/sveltekit/src/lib/groq/`
-- Work components in `packages/sveltekit/src/lib/components/Works/`
-- WorkDetail already supports three view modes (slideshow, text, grid) — the new radio field sets which is shown by default
-- Types generated from Sanity schema via `@sanity-types` alias
+- Sanity schema internal name remains `work` (preserves existing documents and GROQ queries)
+- Sanity types regenerated and TypeScript compilation verified clean
+- `defaultView` maps to WorkDetail view modes: image→slideshow, text→text, grid→grid
 
 ## Constraints
 
 - **Tech stack**: SvelteKit + Sanity CMS monorepo — no changes to stack
-- **URLs**: Keep `/works/[slug]` route path unchanged to avoid breaking links
-- **Compatibility**: Must regenerate Sanity types after schema changes (`typegen:sanity`)
+- **URLs**: `/works/[slug]` route path unchanged
+- **Compatibility**: Sanity types must be regenerated after schema changes
 
 ## Key Decisions
 
-| Decision                              | Rationale                                              | Outcome   |
-| ------------------------------------- | ------------------------------------------------------ | --------- |
-| Keep `/works/[slug]` URL path         | Avoid breaking existing links and bookmarks            | — Pending |
-| Three view options: image, text, grid | User specified; maps to existing WorkDetail view modes | — Pending |
-| Default view: image                   | User specified                                         | — Pending |
+| Decision | Rationale | Outcome |
+|----------|-----------|---------|
+| Keep `/works/[slug]` URL path | Avoid breaking existing links and bookmarks | ✓ Good |
+| Three view options: image, text, grid | Maps to existing WorkDetail view modes | ✓ Good |
+| Default view: image | User specified, maps to slideshow mode | ✓ Good |
+| Keep internal `name: 'work'` in schema | Preserves existing Sanity documents and GROQ queries | ✓ Good |
+| Map 'image' → 'slideshow' in client | Sanity uses 'image' but WorkDetail uses 'slideshow' internally | ✓ Good |
 
 ---
-
-_Last updated: 2026-02-23 after initialization_
+*Last updated: 2026-02-23 after v1.0 milestone*
