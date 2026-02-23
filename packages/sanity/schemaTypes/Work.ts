@@ -61,6 +61,21 @@ export default {
             rows: 6,
         },
         {
+            title: 'Default View',
+            name: 'defaultView',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Image', value: 'image' },
+                    { title: 'Text', value: 'text' },
+                    { title: 'Grid', value: 'grid' },
+                ],
+                layout: 'radio',
+                direction: 'horizontal',
+            },
+            initialValue: 'image',
+        },
+        {
             title: 'Media',
             name: 'media',
             type: 'array',
@@ -83,6 +98,18 @@ export default {
                             title: 'Caption',
                             name: 'caption',
                             type: 'string',
+                        },
+                        {
+                            title: 'Credits',
+                            name: 'credits',
+                            type: 'text',
+                            rows: 3,
+                        },
+                        {
+                            title: 'Year',
+                            name: 'year',
+                            type: 'number',
+                            validation: (Rule: any) => Rule.integer().min(1900).max(2100),
                         },
                     ],
                     preview: {
@@ -117,6 +144,18 @@ export default {
                             name: 'caption',
                             type: 'string',
                         },
+                        {
+                            title: 'Credits',
+                            name: 'credits',
+                            type: 'text',
+                            rows: 3,
+                        },
+                        {
+                            title: 'Year',
+                            name: 'year',
+                            type: 'number',
+                            validation: (Rule: any) => Rule.integer().min(1900).max(2100),
+                        },
                     ],
                     preview: {
                         select: {
@@ -147,6 +186,18 @@ export default {
                             title: 'Caption',
                             name: 'caption',
                             type: 'string',
+                        },
+                        {
+                            title: 'Credits',
+                            name: 'credits',
+                            type: 'text',
+                            rows: 3,
+                        },
+                        {
+                            title: 'Year',
+                            name: 'year',
+                            type: 'number',
+                            validation: (Rule: any) => Rule.integer().min(1900).max(2100),
                         },
                     ],
                     preview: {
