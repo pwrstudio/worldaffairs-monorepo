@@ -51,12 +51,12 @@
         <hr />
         <VideoTable {videos} />
         <hr />
-        {#if hasWorks}
-            <WorksTable {works} />
-            <hr />
-        {/if}
         {#if hasTourDates}
             <TourDateTable {tourDates} />
+            <hr />
+        {/if}
+        {#if hasWorks}
+            <WorksTable {works} />
             <hr />
         {/if}
         <Newsletter />

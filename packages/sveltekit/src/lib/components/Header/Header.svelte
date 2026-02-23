@@ -27,14 +27,14 @@
         <h2 class="toc-link">
             <a href="#video">Video</a>
         </h2>
-        {#if hasWorks}
-            <h2 class="toc-link">
-                <a href="#works">Archive</a>
-            </h2>
-        {/if}
         {#if hasTourDates}
             <h2 class="toc-link">
                 <a href="#tour-dates">Tour Dates</a>
+            </h2>
+        {/if}
+        {#if hasWorks}
+            <h2 class="toc-link">
+                <a href="#archive">Archive</a>
             </h2>
         {/if}
         <h2 class="toc-link">

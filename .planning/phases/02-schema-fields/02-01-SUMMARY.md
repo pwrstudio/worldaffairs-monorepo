@@ -96,3 +96,12 @@ None - no external service configuration required.
 ---
 *Phase: 02-schema-fields*
 *Completed: 2026-02-23*
+
+## Self-Check: PASSED
+
+- FOUND: packages/sanity/schemaTypes/Work.ts
+- FOUND: packages/sanity/sanity.types.ts
+- FOUND: .planning/phases/02-schema-fields/02-01-SUMMARY.md
+- FOUND commit: 5792b4e (Task 1)
+- FOUND commit: 81c9315 (Task 2)
+- FOUND commit: 0cddc55 (docs/metadata)

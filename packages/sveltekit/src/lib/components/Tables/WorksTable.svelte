@@ -20,8 +20,8 @@
     const worksData = works.map((work: Work) => ({
         ...work,
         yearDisplay: work.yearEnd ? `${work.yearStart}–${work.yearEnd}` : `${work.yearStart}`,
-        links: [{ label: 'View', url: `/works/${work.slug.current}` }],
+        links: [{ label: 'View', url: `/archive/${work.slug.current}` }],
     }));
 </script>
 
-<DataTable tableType={TableType.Works} title="Archive" anchor="works" {columns} data={worksData} />
+<DataTable tableType={TableType.Works} title="Archive" anchor="archive" {columns} data={worksData} />
