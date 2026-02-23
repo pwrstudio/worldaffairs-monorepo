@@ -43,20 +43,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| RENAME-01 | — | Pending |
-| RENAME-02 | — | Pending |
-| RENAME-03 | — | Pending |
-| RENAME-04 | — | Pending |
-| FIELD-01 | — | Pending |
-| FIELD-02 | — | Pending |
-| FIELD-03 | — | Pending |
-| CLIENT-01 | — | Pending |
+| RENAME-01 | Phase 1 | Pending |
+| RENAME-02 | Phase 1 | Pending |
+| RENAME-03 | Phase 3 | Pending |
+| RENAME-04 | Phase 3 | Pending |
+| FIELD-01 | Phase 2 | Pending |
+| FIELD-02 | Phase 2 | Pending |
+| FIELD-03 | Phase 2 | Pending |
+| CLIENT-01 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 8 total
-- Mapped to phases: 0
-- Unmapped: 8 ⚠️
+- Mapped to phases: 8
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-23*
-*Last updated: 2026-02-23 after initial definition*
+*Last updated: 2026-02-23 after roadmap creation*
