@@ -88,7 +88,13 @@ export default (S: any) =>
                 ),
             S.divider(),
             S.listItem()
-                .title('Archive')
+                .title('Archive list')
+                .icon(MdWork)
+                .child(
+                    S.editor().id('works-list').schemaType('worksList').documentId('works-list')
+                ),
+            S.listItem()
+                .title('Archive collections')
                 .icon(MdWork)
                 .child(
                     S.documentList()

@@ -1,7 +1,7 @@
 import { MdWork } from 'react-icons/md';
 
 export default {
-    title: 'Works list',
+    title: 'Archive list',
     name: 'worksList',
     type: 'document',
     icon: MdWork,
