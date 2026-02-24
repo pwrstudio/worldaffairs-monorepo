@@ -23,6 +23,10 @@
         font-size: var(--font-size-small);
         min-height: 0;
 
+        @media (max-width: 800px) {
+            margin-bottom: 30px;
+        }
+
         .side {
             display: flex;
             align-items: center;
@@ -47,8 +51,14 @@
                 border-left: 1px solid var(--archive-border-color);
             }
 
-            &:hover {
-                background-color: var(--table-row-hover-bg);
+            @media (hover: hover) {
+                &:hover {
+                    background-color: var(--table-row-hover-bg);
+                }
+            }
+
+            &:active {
+                background-color: var(--table-row-even-bg);
             }
 
             @media (max-width: 800px) {

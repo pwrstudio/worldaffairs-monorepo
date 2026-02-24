@@ -11,25 +11,26 @@
     }>();
 </script>
 
-<header
-    class="top-bar"
-    role="button"
-    tabindex="-1"
-    onclick={onToggleViewMode}
-    onkeydown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onToggleViewMode();
-    }}
->
+<header class="top-bar">
     <div class="back">
         <a href="/#archive">Archive</a>
     </div>
-    <div class="title-section">
+    <div
+        class="title-section"
+        role="button"
+        tabindex="-1"
+        onclick={onToggleViewMode}
+        onkeydown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') onToggleViewMode();
+        }}
+    >
         <span class="title">{title}</span>
         {#if yearDisplay}
             <span class="year">({yearDisplay})</span>
         {/if}
+        <span class="mobile-indicator" aria-hidden="true">...</span>
     </div>
-    <div class="view-selection-outer" role="presentation" onclick={(e) => e.stopPropagation()}>
+    <div class="view-selection-outer">
         <fieldset class="view-selection">
             {#if hasMedia}
                 <label class:active={viewMode === 'slideshow'}>
@@ -86,10 +87,22 @@
             align-items: baseline;
             justify-content: center;
             gap: 0.5em;
+            pointer-events: none;
+            position: relative;
 
             .title {
                 font-weight: normal;
             }
+        }
+
+        .mobile-indicator {
+            display: none;
+            position: absolute;
+            right: 0.5em;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-foreground);
+            pointer-events: none;
         }
 
         .view-selection-outer {
@@ -126,7 +139,9 @@
         }
 
         @media (max-width: 800px) {
-            cursor: pointer;
+            &:active {
+                background-color: var(--table-row-even-bg);
+            }
 
             .back {
                 width: auto;
@@ -137,15 +152,16 @@
             .title-section {
                 width: 100%;
                 user-select: none;
-            }
-
-            .view-selection {
-                width: auto;
-                width: 50%;
+                pointer-events: auto;
+                cursor: pointer;
             }
 
             .view-selection-outer {
                 display: none;
+            }
+
+            .mobile-indicator {
+                display: flex;
             }
         }
     }
