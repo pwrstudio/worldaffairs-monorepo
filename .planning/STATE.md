@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-24)
 
 ## Current Position
 
-Phase: 4 of 5 (Page Metadata and Footer) — COMPLETE
-Plan: 2 of 2 in current phase — COMPLETE
-Status: Phase 4 complete, ready for phase 5
-Last activity: 2026-02-24 — Completed 04-02 (page last-updated footer strip)
+Phase: 5 of 5 (Mobile Top Bar) — IN PROGRESS
+Plan: 1 of 1 in current phase — COMPLETE
+Status: Phase 5 plan 1 complete
+Last activity: 2026-02-24 — Completed 05-01 (mobile top bar tap-to-toggle)
 
-Progress: [████████░░] 80% (v1.0 complete, v1.1 phase 4 complete)
+Progress: [█████████░] 90% (v1.0 complete, v1.1 phases 1-5 plan 1 complete)
 
 ## Performance Metrics
 
@@ -31,6 +31,7 @@ Progress: [████████░░] 80% (v1.0 complete, v1.1 phase 4 comp
 | 2. Schema Fields | 1/1 | - | - |
 | 3. Client Updates | 1/1 | - | - |
 | 4. Page Metadata and Footer | 2/2 | ~2min | ~1min |
+| 5. Mobile Top Bar | 1/1 | ~1min | ~1min |
 
 *Updated after each plan completion*
 
@@ -49,6 +50,8 @@ Recent decisions affecting current work:
 - lastUpdated prop passed to WorkLayout now, silently ignored until 04-02 consumes it
 - Footer placed as direct child of .work-layout flex column so it appears at page bottom in both view modes
 - flex-shrink: 0 prevents footer collapsing under height pressure from .content (flex: 1)
+- onclick on header + stopPropagation on .view-selection-outer: clean mobile tap-toggle without interfering with desktop radio buttons
+- toggleViewMode() cycles slideshow -> table -> slideshow; cursor:pointer only in mobile media query
 
 ### Pending Todos
 
@@ -61,5 +64,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-24
-Stopped at: Completed 04-02-PLAN.md (page last-updated footer strip on archive detail pages)
+Stopped at: Completed 05-01-PLAN.md (mobile top bar tap-to-toggle, hidden view selector on mobile)
 Resume file: None

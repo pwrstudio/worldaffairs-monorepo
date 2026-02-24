@@ -21,8 +21,8 @@ Requirements for milestone v1.1 Archive Polish. Each maps to roadmap phases.
 
 ### Mobile UX
 
-- [ ] **MOBI-01**: View selector is hidden on mobile in the archive top bar
-- [ ] **MOBI-02**: Tapping the top bar on mobile toggles between slideshow and information views
+- [x] **MOBI-01**: View selector is hidden on mobile in the archive top bar
+- [x] **MOBI-02**: Tapping the top bar on mobile toggles between slideshow and information views
 
 ## Future Requirements
 
@@ -49,8 +49,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | META-04 | Phase 4 | Complete |
 | META-05 | Phase 4 | Complete |
 | FOOT-01 | Phase 4 | Complete |
-| MOBI-01 | Phase 5 | Pending |
-| MOBI-02 | Phase 5 | Pending |
+| MOBI-01 | Phase 5 | Complete |
+| MOBI-02 | Phase 5 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 8 total
