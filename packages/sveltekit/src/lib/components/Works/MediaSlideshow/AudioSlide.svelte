@@ -1,7 +1,6 @@
 <script lang="ts">
-    const { file, caption } = $props<{
+    const { file } = $props<{
         file: { asset: { url: string } };
-        caption?: string;
     }>();
 </script>
 
@@ -10,9 +9,6 @@
         <source src={file.asset.url} />
         Your browser does not support the audio element.
     </audio>
-    {#if caption}
-        <figcaption>{caption}</figcaption>
-    {/if}
 </figure>
 
 <style lang="scss">
@@ -25,13 +21,6 @@
         audio {
             width: 100%;
             max-width: 500px;
-        }
-
-        figcaption {
-            margin-top: 10px;
-            font-size: var(--font-size-small);
-            color: var(--foreground-muted);
-            font-family: var(--font-stack-serif);
         }
     }
 </style>

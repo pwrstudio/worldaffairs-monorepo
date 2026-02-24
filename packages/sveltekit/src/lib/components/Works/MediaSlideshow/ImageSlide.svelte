@@ -9,9 +9,6 @@
 
 <figure class="image-slide">
     <img src={urlFor(image).width(1200).url()} alt={caption ?? 'Work image'} />
-    {#if caption}
-        <figcaption>{caption}</figcaption>
-    {/if}
 </figure>
 
 <style lang="scss">
@@ -23,7 +20,7 @@
         align-items: center;
         justify-content: center;
         margin: 0;
-        padding: 1em;
+        padding-inline: 1em;
         box-sizing: border-box;
 
         img {
@@ -31,13 +28,6 @@
             width: auto;
             max-width: 100%;
             object-fit: contain;
-        }
-
-        figcaption {
-            margin-top: 10px;
-            font-size: var(--font-size-small);
-            color: var(--foreground-muted);
-            font-family: var(--font-stack-serif);
         }
     }
 </style>

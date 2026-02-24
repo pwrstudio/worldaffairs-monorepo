@@ -8,8 +8,13 @@
     import AudioSlide from './AudioSlide.svelte';
     import VideoSlide from './VideoSlide.svelte';
 
-    const { media, onSlideChange } = $props<{
+    const {
+        media,
+        initialIndex = 0,
+        onSlideChange,
+    } = $props<{
         media: MediaItem[];
+        initialIndex?: number;
         onSlideChange?: (index: number) => void;
     }>();
 
@@ -23,6 +28,7 @@
         swiperInstance = new Swiper(swiperContainer, {
             modules: [Keyboard],
             loop: loopEnabled,
+            initialSlide: initialIndex,
             grabCursor: true,
             keyboard: {
                 enabled: true,
@@ -69,9 +75,9 @@
                 {#if item._type === 'imageMedia' && item.image}
                     <ImageSlide image={item.image} caption={item.caption} />
                 {:else if item._type === 'audioMedia' && item.file}
-                    <AudioSlide file={item.file} caption={item.caption} />
+                    <AudioSlide file={item.file} />
                 {:else if item._type === 'videoMedia' && item.file}
-                    <VideoSlide file={item.file} caption={item.caption} />
+                    <VideoSlide file={item.file} />
                 {/if}
             </div>
         {/each}

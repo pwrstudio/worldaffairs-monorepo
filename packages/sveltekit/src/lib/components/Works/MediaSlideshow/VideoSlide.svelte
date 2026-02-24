@@ -1,7 +1,6 @@
 <script lang="ts">
-    const { file, caption } = $props<{
+    const { file } = $props<{
         file: { asset: { url: string } };
-        caption?: string;
     }>();
 </script>
 
@@ -10,9 +9,6 @@
         <source src={file.asset.url} />
         Your browser does not support the video element.
     </video>
-    {#if caption}
-        <figcaption>{caption}</figcaption>
-    {/if}
 </figure>
 
 <style lang="scss">
@@ -31,13 +27,6 @@
             max-height: calc(100% - 2em);
             max-width: 100%;
             object-fit: contain;
-        }
-
-        figcaption {
-            margin-top: 10px;
-            font-size: var(--font-size-small);
-            color: var(--foreground-muted);
-            font-family: var(--font-stack-serif);
         }
     }
 </style>

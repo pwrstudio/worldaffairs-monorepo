@@ -75,12 +75,6 @@
 </table>
 
 <style lang="scss">
-    .table-title {
-        font-size: 1.2em;
-        margin: 1em 0 0.5em 0;
-        color: var(--table-border-color);
-    }
-
     table {
         width: 100%;
         border-collapse: collapse;

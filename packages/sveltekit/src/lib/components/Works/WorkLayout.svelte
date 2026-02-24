@@ -3,16 +3,16 @@
     import type { ViewMode, MediaItem } from './types';
     import WorkTopBar from './WorkTopBar.svelte';
     import ImageView from './ImageView.svelte';
-    import TextView from './TextView.svelte';
-    import GridView from './GridView.svelte';
+    import TableView from './TableView.svelte';
 
     const { work } = $props<{
         work: Work;
     }>();
 
     function defaultViewToMode(dv: Work['defaultView']): ViewMode {
-        if (dv === 'text') return 'text';
-        if (dv === 'grid') return 'grid';
+        if (dv === 'text' || dv === 'grid') {
+            return 'table';
+        }
         return 'slideshow';
     }
 
@@ -49,10 +49,16 @@
     <div class="content">
         {#if viewMode === 'slideshow' && hasMedia}
             <ImageView {media} initialIndex={selectedIndex} />
-        {:else if viewMode === 'text'}
-            <TextView intro={work.intro} tags={work.tags} credits={work.credits} />
-        {:else if viewMode === 'grid' && hasMedia}
-            <GridView {media} onSelectSlide={handleSelectSlide} />
+        {:else if viewMode === 'table' && hasMedia}
+            <TableView
+                title={work.title ?? ''}
+                {yearDisplay}
+                {media}
+                intro={work.intro}
+                tags={work.tags}
+                credits={work.credits}
+                onSelectSlide={handleSelectSlide}
+            />
         {:else}
             <div class="no-media">
                 <p>No media available.</p>
@@ -65,7 +71,6 @@
     .work-layout {
         --spacing: 1em;
 
-        height: 100vh;
         height: 100dvh;
         display: flex;
         flex-direction: column;
@@ -75,6 +80,9 @@
         line-height: 1.5;
         color: var(--foreground);
         overflow: hidden;
+        max-width: 1600px;
+        margin: 0 auto;
+        width: 100%;
     }
 
     .content {

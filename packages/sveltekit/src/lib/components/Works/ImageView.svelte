@@ -28,21 +28,20 @@
         currentIndex = index;
         slideshowRef?.goToSlide(index);
     }
+
+    const currentCaption = $derived(media[currentIndex]?.caption ?? '');
 </script>
 
 <div class="slideshow-content">
-    <MediaSlideshow bind:this={slideshowRef} {media} onSlideChange={handleSlideChange} />
+    <MediaSlideshow
+        bind:this={slideshowRef}
+        {media}
+        {initialIndex}
+        onSlideChange={handleSlideChange}
+    />
 </div>
 
-<WorkBottomBar
-    hasMedia={true}
-    viewMode="slideshow"
-    {currentIndex}
-    mediaCount={media.length}
-    onGoToPrev={goToPrev}
-    onGoToNext={goToNext}
-    onGoToSlide={goToSlide}
-/>
+<WorkBottomBar caption={currentCaption} onGoToPrev={goToPrev} onGoToNext={goToNext} />
 
 <style lang="scss">
     .slideshow-content {

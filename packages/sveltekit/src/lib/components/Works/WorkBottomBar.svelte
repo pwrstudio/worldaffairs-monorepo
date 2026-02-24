@@ -1,91 +1,69 @@
 <script lang="ts">
-    import type { ViewMode } from './types';
-
-    const { hasMedia, viewMode, currentIndex, mediaCount, onGoToPrev, onGoToNext, onGoToSlide } =
-        $props<{
-            hasMedia: boolean;
-            viewMode: ViewMode;
-            currentIndex: number;
-            mediaCount: number;
-            onGoToPrev: () => void;
-            onGoToNext: () => void;
-            onGoToSlide: (index: number) => void;
-        }>();
+    const { caption, onGoToPrev, onGoToNext } = $props<{
+        caption: string;
+        onGoToPrev: () => void;
+        onGoToNext: () => void;
+    }>();
 </script>
 
 <footer class="bottom-bar">
-    {#if hasMedia && viewMode === 'slideshow'}
-        <div class="slide-nav">
-            <button class="nav-caret" onclick={onGoToPrev}>&lt;</button>
-            <div class="nav-numbers">
-                {#each { length: mediaCount } as _, index}
-                    <button
-                        class="nav-number"
-                        class:active={currentIndex === index}
-                        onclick={() => onGoToSlide(index)}
-                    >
-                        {index + 1}
-                    </button>
-                {/each}
-            </div>
-            <button class="nav-caret" onclick={onGoToNext}>&gt;</button>
-        </div>
-    {/if}
+    <button class="side" onclick={onGoToPrev}>&lt;</button>
+    <div class="center">{caption}</div>
+    <button class="side" onclick={onGoToNext}>&gt;</button>
 </footer>
 
 <style lang="scss">
     .bottom-bar {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: var(--spacing);
+        align-items: stretch;
+        margin-inline: 20px;
+        margin-bottom: 10px;
+        border: 1px solid var(--archive-border-color);
         flex-shrink: 0;
+        font-size: var(--font-size-small);
+        min-height: 0;
 
-        .slide-nav {
+        .side {
             display: flex;
             align-items: center;
-            gap: var(--spacing);
+            justify-content: center;
+            width: 240px;
+            flex-shrink: 0;
+            background: none;
+            border: none;
+            border-radius: 0;
+            margin: 0;
+            padding: 0.2em;
+            font: inherit;
+            font-size: var(--font-size-small);
+            cursor: pointer;
+            color: var(--foreground);
 
-            .nav-caret {
-                background: none;
-                border: none;
-                padding: 0.25em 0.5em;
-                margin: 0;
-                font: inherit;
-                cursor: pointer;
-                color: var(--foreground);
-
-                &:hover {
-                    text-decoration: underline;
-                }
-
-                @media (max-width: 800px) {
-                    display: none;
-                }
+            &:first-child {
+                border-right: 1px solid var(--archive-border-color);
             }
 
-            .nav-numbers {
-                display: flex;
-                gap: calc(var(--spacing) * 0.5);
-
-                .nav-number {
-                    background: none;
-                    border: none;
-                    padding: 0.25em 0.5em;
-                    margin: 0;
-                    font: inherit;
-                    cursor: pointer;
-                    color: var(--foreground);
-
-                    &.active {
-                        font-weight: bold;
-                    }
-
-                    &:hover:not(.active) {
-                        text-decoration: underline;
-                    }
-                }
+            &:last-child {
+                border-left: 1px solid var(--archive-border-color);
             }
+
+            &:hover {
+                background-color: var(--table-row-hover-bg);
+            }
+
+            @media (max-width: 800px) {
+                width: auto;
+                padding: 0.2em 1em;
+            }
+        }
+
+        .center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.2em;
+            text-align: center;
         }
     }
 </style>

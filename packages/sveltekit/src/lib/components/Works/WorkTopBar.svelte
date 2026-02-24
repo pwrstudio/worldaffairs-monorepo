@@ -11,8 +11,8 @@
 </script>
 
 <header class="top-bar">
-    <div class="top-left">
-        <a href="/#works">Back</a>
+    <div class="back">
+        <a href="/#archive">Archive</a>
     </div>
     <div class="title-section">
         <span class="title">{title}</span>
@@ -20,24 +20,34 @@
             <span class="year">({yearDisplay})</span>
         {/if}
     </div>
-    <nav class="view-buttons">
-        {#if hasMedia}
-            <button
-                class:active={viewMode === 'slideshow'}
-                onclick={() => onSetViewMode('slideshow')}
-            >
-                image
-            </button>
-        {/if}
-        <button class:active={viewMode === 'text'} onclick={() => onSetViewMode('text')}>
-            text
-        </button>
-        {#if hasMedia}
-            <button class:active={viewMode === 'grid'} onclick={() => onSetViewMode('grid')}>
-                grid
-            </button>
-        {/if}
-    </nav>
+    <div class="view-selection-outer">
+        <fieldset class="view-selection">
+            {#if hasMedia}
+                <label class:active={viewMode === 'slideshow'}>
+                    <input
+                        type="radio"
+                        name="view"
+                        value="slideshow"
+                        checked={viewMode === 'slideshow'}
+                        onchange={() => onSetViewMode('slideshow')}
+                    />
+                    Slideshow
+                </label>
+            {/if}
+            {#if hasMedia}
+                <label class:active={viewMode === 'table'}>
+                    <input
+                        type="radio"
+                        name="view"
+                        value="table"
+                        checked={viewMode === 'table'}
+                        onchange={() => onSetViewMode('table')}
+                    />
+                    Information
+                </label>
+            {/if}
+        </fieldset>
+    </div>
 </header>
 
 <style lang="scss">
@@ -45,61 +55,81 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: var(--spacing);
+        margin-inline: 20px;
+        margin-top: 10px;
+        border: 1px solid var(--archive-border-color);
         flex-shrink: 0;
+        font-size: var(--font-size-small);
 
-        .top-left {
-            width: 200px;
+        .back {
+            padding: 0.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 240px;
+            border-right: 1px solid var(--archive-border-color);
         }
 
         .title-section {
+            padding: 0.2em;
             display: flex;
             align-items: baseline;
             justify-content: center;
             gap: 0.5em;
-            font-size: var(--font-size-small);
 
             .title {
                 font-weight: normal;
-                font-style: italic;
             }
         }
 
-        .view-buttons {
+        .view-selection-outer {
             display: flex;
-            gap: 0.5em;
-            width: 200px;
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            border-left: 1px solid var(--archive-border-color);
+            padding-inline: 20px;
+            width: 240px;
+        }
 
-            button {
-                font-size: var(--font-size-small);
-                padding: 0.5em 1em;
-                margin: 0;
+        .view-selection {
+            display: flex;
+            gap: 10px;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            width: auto;
+            padding-inline: 20px;
 
-                &.active {
-                    background-color: var(--foreground);
-                    color: var(--background);
-                }
+            input {
+                position: relative;
+                top: -1px;
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                gap: 0.25em;
+                cursor: pointer;
             }
         }
 
         @media (max-width: 800px) {
-            flex-wrap: wrap;
-            gap: 0.5em;
-
-            .top-left {
+            .back {
                 width: auto;
                 order: 1;
+                display: none;
             }
 
             .title-section {
-                order: 3;
-                flex-basis: 100%;
+                width: 50%;
             }
 
-            .view-buttons {
+            .view-selection {
                 width: auto;
-                order: 2;
+                width: 50%;
             }
         }
     }
