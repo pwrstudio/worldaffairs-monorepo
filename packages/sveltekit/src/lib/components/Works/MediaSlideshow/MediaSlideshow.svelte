@@ -1,21 +1,12 @@
-<script lang="ts" module>
-    export type MediaItem = {
-        _type: string;
-        _key: string;
-        caption?: string;
-        image?: any;
-        file?: { asset: { url: string } };
-    };
-</script>
-
 <script lang="ts">
     import { onMount } from 'svelte';
     import Swiper from 'swiper';
     import { Keyboard } from 'swiper/modules';
+    import type { MediaItem } from '../types';
 
-    import ImageSlide from './slides/ImageSlide.svelte';
-    import AudioSlide from './slides/AudioSlide.svelte';
-    import VideoSlide from './slides/VideoSlide.svelte';
+    import ImageSlide from './ImageSlide.svelte';
+    import AudioSlide from './AudioSlide.svelte';
+    import VideoSlide from './VideoSlide.svelte';
 
     const { media, onSlideChange } = $props<{
         media: MediaItem[];
