@@ -47,11 +47,11 @@ Plans:
   3. Navigating from an archive page back to the home page resets the browser tab title to "World Affairs AB"
   4. The archive page footer displays the work document's last-updated date
   5. The canonical URL in page head points to the archive page URL
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: Implement OG tags, canonical URL, and page title for archive detail pages
-- [ ] 04-02: Add last-updated timestamp to archive page footer
+- [ ] 04-01-PLAN.md — OG tags, canonical URL, page title, and home title reset
+- [ ] 04-02-PLAN.md — Last-updated footer strip in archive page layout
 
 #### Phase 5: Mobile Top Bar
 **Goal**: Mobile users can switch archive views by tapping the top bar without a visible view selector cluttering the UI
