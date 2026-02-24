@@ -4,7 +4,7 @@
 
     import Footer from '$lib/components/Footer/Footer.svelte';
 
-    const { title, yearDisplay, media, intro, tags, credits, onSelectSlide } = $props<{
+    const { title, yearDisplay, media, intro, tags, credits, onSelectSlide, pageLastUpdated } = $props<{
         title: string;
         yearDisplay: string;
         media: MediaItem[];
@@ -12,6 +12,7 @@
         tags?: string[] | null;
         credits?: string | null;
         onSelectSlide: (index: number) => void;
+        pageLastUpdated?: string | null;
     }>();
 </script>
 
@@ -68,7 +69,7 @@
 
     <div class="footer-container">
         <hr />
-        <Footer />
+        <Footer {pageLastUpdated} />
     </div>
 </div>
 

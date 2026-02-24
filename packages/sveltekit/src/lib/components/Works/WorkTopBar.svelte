@@ -127,7 +127,8 @@
             }
 
             .title-section {
-                width: 50%;
+                width: 100%;
+                user-select: none;
             }
 
             .view-selection {

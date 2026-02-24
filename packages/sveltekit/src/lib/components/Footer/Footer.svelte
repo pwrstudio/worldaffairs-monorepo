@@ -1,13 +1,18 @@
 <script lang="ts">
     import { getCurrentYear, getRandomNumberInRange } from '$lib/modules/utils';
-    const { siteLastUpdated }: { siteLastUpdated?: string } = $props();
+    const { siteLastUpdated, pageLastUpdated }: { siteLastUpdated?: string; pageLastUpdated?: string } = $props();
 </script>
 
 <div class="footer">
     <div class="imprint">© {getCurrentYear()} World Affairs AB</div>
-    {#if siteLastUpdated}
+    {#if siteLastUpdated || pageLastUpdated}
         <div class="updated">
-            <div class="updated-text">Site last updated: {siteLastUpdated}</div>
+            {#if siteLastUpdated}
+                <div class="updated-text">Site last updated: {siteLastUpdated}</div>
+            {/if}
+            {#if pageLastUpdated}
+                <div class="updated-text">Page last updated: {pageLastUpdated}</div>
+            {/if}
             <div class="updated-text">
                 You are visitor number: {getRandomNumberInRange(10000, 99999)}
             </div>
