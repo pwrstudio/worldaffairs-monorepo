@@ -1,6 +1,9 @@
 <script lang="ts">
     import { getCurrentYear, getRandomNumberInRange } from '$lib/modules/utils';
-    const { siteLastUpdated, pageLastUpdated }: { siteLastUpdated?: string; pageLastUpdated?: string } = $props();
+    const {
+        siteLastUpdated,
+        pageLastUpdated,
+    }: { siteLastUpdated?: string; pageLastUpdated?: string } = $props();
 </script>
 
 <div class="footer">

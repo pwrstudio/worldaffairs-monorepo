@@ -72,7 +72,6 @@
             </div>
         {/if}
     </div>
-
 </div>
 
 <style lang="scss">
@@ -107,5 +106,4 @@
         justify-content: center;
         height: 100%;
     }
-
 </style>

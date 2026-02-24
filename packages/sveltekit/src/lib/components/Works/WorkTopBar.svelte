@@ -11,7 +11,15 @@
     }>();
 </script>
 
-<header class="top-bar" onclick={onToggleViewMode}>
+<header
+    class="top-bar"
+    role="button"
+    tabindex="-1"
+    onclick={onToggleViewMode}
+    onkeydown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onToggleViewMode();
+    }}
+>
     <div class="back">
         <a href="/#archive">Archive</a>
     </div>
@@ -21,7 +29,7 @@
             <span class="year">({yearDisplay})</span>
         {/if}
     </div>
-    <div class="view-selection-outer" onclick={(e) => e.stopPropagation()}>
+    <div class="view-selection-outer" role="presentation" onclick={(e) => e.stopPropagation()}>
         <fieldset class="view-selection">
             {#if hasMedia}
                 <label class:active={viewMode === 'slideshow'}>

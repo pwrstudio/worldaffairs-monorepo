@@ -31,6 +31,7 @@ The Archive section clearly presents collections of media with flexible default 
 **Goal:** Improve archive detail pages with proper metadata, last-updated timestamps, and mobile-friendly view toggling.
 
 **Target features:**
+
 - Archive page metadata (OG tags with first image, title, truncated intro)
 - Page last updated in footer for archive pages
 - Mobile top bar view toggle (hide selector, tap to switch)

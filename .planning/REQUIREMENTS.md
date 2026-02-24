@@ -17,7 +17,7 @@ Requirements for milestone v1.1 Archive Polish. Each maps to roadmap phases.
 
 ### Footer
 
-- [x] **FOOT-01**: Archive page footer shows "Page last updated" with the work document's _updatedAt timestamp
+- [x] **FOOT-01**: Archive page footer shows "Page last updated" with the work document's \_updatedAt timestamp
 
 ### Mobile UX
 
@@ -30,33 +30,35 @@ None — all features scoped to v1.1.
 
 ## Out of Scope
 
-| Feature | Reason |
-|---------|--------|
-| Custom excerpt field in Sanity | Truncated intro is sufficient for v1.1 |
+| Feature                               | Reason                                          |
+| ------------------------------------- | ----------------------------------------------- |
+| Custom excerpt field in Sanity        | Truncated intro is sufficient for v1.1          |
 | Twitter/X specific card customization | Standard OG tags cover Twitter cards adequately |
-| Mobile view indicator (dot/label) | Content change is sufficient visual feedback |
-| Desktop top bar changes | Only mobile behavior changes in this milestone |
+| Mobile view indicator (dot/label)     | Content change is sufficient visual feedback    |
+| Desktop top bar changes               | Only mobile behavior changes in this milestone  |
 
 ## Traceability
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| META-01 | Phase 4 | Complete |
-| META-02 | Phase 4 | Complete |
-| META-03 | Phase 4 | Complete |
-| META-04 | Phase 4 | Complete |
-| META-05 | Phase 4 | Complete |
-| FOOT-01 | Phase 4 | Complete |
-| MOBI-01 | Phase 5 | Complete |
-| MOBI-02 | Phase 5 | Complete |
+| Requirement | Phase   | Status   |
+| ----------- | ------- | -------- |
+| META-01     | Phase 4 | Complete |
+| META-02     | Phase 4 | Complete |
+| META-03     | Phase 4 | Complete |
+| META-04     | Phase 4 | Complete |
+| META-05     | Phase 4 | Complete |
+| FOOT-01     | Phase 4 | Complete |
+| MOBI-01     | Phase 5 | Complete |
+| MOBI-02     | Phase 5 | Complete |
 
 **Coverage:**
+
 - v1.1 requirements: 8 total
 - Mapped to phases: 8
 - Unmapped: 0
 
 ---
-*Requirements defined: 2026-02-24*
-*Last updated: 2026-02-24 after roadmap creation*
+
+_Requirements defined: 2026-02-24_
+_Last updated: 2026-02-24 after roadmap creation_

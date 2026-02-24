@@ -19,21 +19,22 @@ Progress: [█████████░] 90% (v1.0 complete, v1.1 phases 1-5 p
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 4
 - Average duration: unknown
 - Total execution time: unknown
 
 **By Phase:**
 
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 1. Sanity Renames | 1/1 | - | - |
-| 2. Schema Fields | 1/1 | - | - |
-| 3. Client Updates | 1/1 | - | - |
-| 4. Page Metadata and Footer | 2/2 | ~2min | ~1min |
-| 5. Mobile Top Bar | 1/1 | ~1min | ~1min |
+| Phase                       | Plans | Total | Avg/Plan |
+| --------------------------- | ----- | ----- | -------- |
+| 1. Sanity Renames           | 1/1   | -     | -        |
+| 2. Schema Fields            | 1/1   | -     | -        |
+| 3. Client Updates           | 1/1   | -     | -        |
+| 4. Page Metadata and Footer | 2/2   | ~2min | ~1min    |
+| 5. Mobile Top Bar           | 1/1   | ~1min | ~1min    |
 
-*Updated after each plan completion*
+_Updated after each plan completion_
 
 ## Accumulated Context
 

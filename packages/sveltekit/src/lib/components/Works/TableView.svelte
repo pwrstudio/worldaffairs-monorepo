@@ -4,16 +4,17 @@
 
     import Footer from '$lib/components/Footer/Footer.svelte';
 
-    const { title, yearDisplay, media, intro, tags, credits, onSelectSlide, pageLastUpdated } = $props<{
-        title: string;
-        yearDisplay: string;
-        media: MediaItem[];
-        intro?: string | null;
-        tags?: string[] | null;
-        credits?: string | null;
-        onSelectSlide: (index: number) => void;
-        pageLastUpdated?: string | null;
-    }>();
+    const { title, yearDisplay, media, intro, tags, credits, onSelectSlide, pageLastUpdated } =
+        $props<{
+            title: string;
+            yearDisplay: string;
+            media: MediaItem[];
+            intro?: string | null;
+            tags?: string[] | null;
+            credits?: string | null;
+            onSelectSlide: (index: number) => void;
+            pageLastUpdated?: string | null;
+        }>();
 </script>
 
 <div class="table-wrapper">

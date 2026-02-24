@@ -1,39 +1,39 @@
 ---
 phase: 05-mobile-top-bar
-plan: "01"
+plan: '01'
 subsystem: ui
 tags: [svelte, mobile, responsive, css, touch]
 
 # Dependency graph
 requires:
-  - phase: 04-page-metadata-footer
-    provides: WorkLayout.svelte with lastUpdated prop and WorkTopBar as child component
+    - phase: 04-page-metadata-footer
+      provides: WorkLayout.svelte with lastUpdated prop and WorkTopBar as child component
 provides:
-  - Mobile-friendly archive top bar with hidden radio buttons and tap-to-toggle view switching
-  - toggleViewMode() function wired from WorkLayout to WorkTopBar via onToggleViewMode prop
+    - Mobile-friendly archive top bar with hidden radio buttons and tap-to-toggle view switching
+    - toggleViewMode() function wired from WorkLayout to WorkTopBar via onToggleViewMode prop
 affects: [future-mobile-work]
 
 # Tech tracking
 tech-stack:
-  added: []
-  patterns:
-    - stopPropagation on inner interactive element prevents double-firing when parent has onclick
-    - CSS display:none inside existing media query to progressively hide desktop-only elements on mobile
-    - onToggleViewMode callback prop pattern for passing toggle functions from layout to child bar components
+    added: []
+    patterns:
+        - stopPropagation on inner interactive element prevents double-firing when parent has onclick
+        - CSS display:none inside existing media query to progressively hide desktop-only elements on mobile
+        - onToggleViewMode callback prop pattern for passing toggle functions from layout to child bar components
 
 key-files:
-  created: []
-  modified:
-    - packages/sveltekit/src/lib/components/Works/WorkTopBar.svelte
-    - packages/sveltekit/src/lib/components/Works/WorkLayout.svelte
+    created: []
+    modified:
+        - packages/sveltekit/src/lib/components/Works/WorkTopBar.svelte
+        - packages/sveltekit/src/lib/components/Works/WorkLayout.svelte
 
 key-decisions:
-  - "Use onclick on <header> for mobile tap-to-toggle; stopPropagation on .view-selection-outer prevents double-firing desktop radio clicks"
-  - "cursor:pointer added to .top-bar at <=800px to signal tappability"
-  - "toggleViewMode cycles slideshow -> table -> slideshow (binary toggle)"
+    - 'Use onclick on <header> for mobile tap-to-toggle; stopPropagation on .view-selection-outer prevents double-firing desktop radio clicks'
+    - 'cursor:pointer added to .top-bar at <=800px to signal tappability'
+    - 'toggleViewMode cycles slideshow -> table -> slideshow (binary toggle)'
 
 patterns-established:
-  - "Parent onclick + inner stopPropagation: clean separation of mobile tap vs desktop radio interaction"
+    - 'Parent onclick + inner stopPropagation: clean separation of mobile tap vs desktop radio interaction'
 
 requirements-completed: [MOBI-01, MOBI-02]
 
@@ -100,5 +100,6 @@ None - no external service configuration required.
 - No blockers for any subsequent work
 
 ---
-*Phase: 05-mobile-top-bar*
-*Completed: 2026-02-24*
+
+_Phase: 05-mobile-top-bar_
+_Completed: 2026-02-24_
