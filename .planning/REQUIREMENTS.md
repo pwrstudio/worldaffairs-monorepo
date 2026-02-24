@@ -14,9 +14,9 @@ Requirements for milestone v1.2 UI Refinements. Each maps to roadmap phases.
 
 ### Navigation
 
-- [ ] **NAV-01**: Mobile archive top bar shows "X" back element on the left side linking to /#archive
-- [ ] **NAV-02**: Back element has same width as arrow sections in bottom bar, with a right border
-- [ ] **NAV-03**: Archive title text remains perfectly horizontally centered with back element present
+- [x] **NAV-01**: Mobile archive top bar shows "X" back element on the left side linking to /#archive
+- [x] **NAV-02**: Back element has same width as arrow sections in bottom bar, with a right border
+- [x] **NAV-03**: Archive title text remains perfectly horizontally centered with back element present
 
 ### Meta Tags
 
@@ -43,9 +43,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ----------- | ----- | ------- |
 | RADIO-01    | 6     | Done    |
 | RADIO-02    | 6     | Done    |
-| NAV-01      | 7     | Pending |
-| NAV-02      | 7     | Pending |
-| NAV-03      | 7     | Pending |
+| NAV-01      | 7     | Done    |
+| NAV-02      | 7     | Done    |
+| NAV-03      | 7     | Done    |
 | META-06     | 8     | Pending |
 
 **Coverage:**

@@ -56,7 +56,7 @@ Plans:
   4. The archive collection title remains perfectly horizontally centered with the back element present
 **Plans:** 1 plan
 Plans:
-- [ ] 07-01-PLAN.md — Add mobile X back element with centered title layout
+- [x] 07-01-PLAN.md — Add mobile X back element with centered title layout
 
 ### Phase 8: Meta Tag Fix
 **Goal**: Archive collection pages render correct OG/meta tags that crawlers pick up, with no main page metadata leaking through
@@ -77,5 +77,5 @@ Plans:
 | 4. Page Metadata and Footer | v1.1      | 2/2            | Complete    | 2026-02-24 |
 | 5. Mobile Top Bar           | v1.1      | 1/1            | Complete    | 2026-02-24 |
 | 6. Custom Radio Component   | v1.2      | 1/1            | Complete    | 2026-02-24 |
-| 7. Mobile Back Button       | v1.2      | 0/1            | Not started | -          |
+| 7. Mobile Back Button       | v1.2      | 1/1            | Complete    | 2026-02-24 |
 | 8. Meta Tag Fix             | v1.2      | 0/1            | Not started | -          |
