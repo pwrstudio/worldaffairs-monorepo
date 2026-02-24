@@ -9,8 +9,8 @@ Requirements for milestone v1.2 UI Refinements. Each maps to roadmap phases.
 
 ### Radio Component
 
-- [ ] **RADIO-01**: Archive top bar view selector uses custom-styled radio buttons instead of browser defaults
-- [ ] **RADIO-02**: Custom radio component accepts styling props for visual customization (colors, sizes, shapes)
+- [x] **RADIO-01**: Archive top bar view selector uses custom-styled radio buttons instead of browser defaults
+- [x] **RADIO-02**: Custom radio component accepts styling props for visual customization (colors, sizes, shapes)
 
 ### Navigation
 
@@ -41,8 +41,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status  |
 | ----------- | ----- | ------- |
-| RADIO-01    | 6     | Pending |
-| RADIO-02    | 6     | Pending |
+| RADIO-01    | 6     | Done    |
+| RADIO-02    | 6     | Done    |
 | NAV-01      | 7     | Pending |
 | NAV-02      | 7     | Pending |
 | NAV-03      | 7     | Pending |

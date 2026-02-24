@@ -27,7 +27,7 @@
 
 **v1.2 UI Refinements**
 
-- [ ] **Phase 6: Custom Radio Component** - Build and integrate a styled radio component replacing browser defaults in the archive top bar
+- [x] **Phase 6: Custom Radio Component** - Build and integrate a styled radio component replacing browser defaults in the archive top bar
 - [ ] **Phase 7: Mobile Back Button** - Add "X" back element to mobile archive top bar with centered title layout
 - [ ] **Phase 8: Meta Tag Fix** - Investigate and fix archive page OG/meta tags leaking main page metadata to crawlers
 
@@ -43,7 +43,7 @@
   3. Selecting a view (image/text/grid) still changes the archive display correctly
 **Plans:** 1 plan
 Plans:
-- [ ] 06-01-PLAN.md — Create RadioGroup component with styling props and integrate into WorkTopBar
+- [x] 06-01-PLAN.md — Create RadioGroup component with styling props and integrate into WorkTopBar
 
 ### Phase 7: Mobile Back Button
 **Goal**: Mobile users can navigate back to the archive list from a collection page using a clearly visible "X" element in the top bar, without the title shifting off-center
@@ -74,6 +74,6 @@ Plans:
 | 3. Client Updates           | v1.0      | 1/1            | Complete    | 2026-02-23 |
 | 4. Page Metadata and Footer | v1.1      | 2/2            | Complete    | 2026-02-24 |
 | 5. Mobile Top Bar           | v1.1      | 1/1            | Complete    | 2026-02-24 |
-| 6. Custom Radio Component   | v1.2      | 0/1            | Not started | -          |
+| 6. Custom Radio Component   | v1.2      | 1/1            | Complete    | 2026-02-24 |
 | 7. Mobile Back Button       | v1.2      | 0/1            | Not started | -          |
 | 8. Meta Tag Fix             | v1.2      | 0/1            | Not started | -          |

@@ -5,24 +5,25 @@
 See: .planning/PROJECT.md (updated 2026-02-24)
 
 **Core value:** The Archive section clearly presents collections of media with flexible default views and proper credits/year metadata per media item.
-**Current focus:** v1.2 UI Refinements — Phase 6: Custom Radio Component
+**Current focus:** v1.2 UI Refinements — Phase 7: Mobile Back Button
 
 ## Current Position
 
-Phase: 6 - Custom Radio Component
+Phase: 7 - Mobile Back Button
 Plan: —
 Status: Not started
-Last activity: 2026-02-24 — Milestone v1.2 roadmap created
+Last activity: 2026-02-24 — Completed Phase 6 (Custom Radio Component)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███░░░░░░░] 33%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 6
+- Total plans completed: 7
 - v1.0: 3 plans (Phases 1-3)
 - v1.1: 3 plans (Phases 4-5)
+- v1.2: 1 plan (Phase 6)
 
 **By Phase:**
 
@@ -33,7 +34,7 @@ Progress: [░░░░░░░░░░] 0%
 | 3. Client Updates           | v1.0      | 1/1   | -     | -        |
 | 4. Page Metadata and Footer | v1.1      | 2/2   | ~2min | ~1min    |
 | 5. Mobile Top Bar           | v1.1      | 1/1   | ~1min | ~1min    |
-| 6. Custom Radio Component   | v1.2      | 0/1   | -     | -        |
+| 6. Custom Radio Component   | v1.2      | 1/1   | ~1min | ~1min    |
 | 7. Mobile Back Button       | v1.2      | 0/1   | -     | -        |
 | 8. Meta Tag Fix             | v1.2      | 0/1   | -     | -        |
 
@@ -41,7 +42,8 @@ Progress: [░░░░░░░░░░] 0%
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
+- Phase 6: Used visually hidden native inputs for accessibility instead of ARIA-only approach
+- Phase 6: Set default indicator size to 10px in WorkTopBar for visual proportion
 
 ### Pending Todos
 
@@ -54,5 +56,5 @@ META-06 is a bug investigation — root cause (main page metadata leaking into a
 ## Session Continuity
 
 Last session: 2026-02-24
-Stopped at: Roadmap created for v1.2
+Stopped at: Completed 06-01-PLAN.md
 Resume file: None
