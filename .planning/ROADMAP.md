@@ -65,7 +65,9 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. Sharing an archive collection URL on social media shows the collection's own title and description, not the main page metadata
   2. The og:title, og:description, and og:image tags on archive collection pages contain collection-specific values when inspected
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 08-01-PLAN.md — Move OG meta tags from app.html to per-page svelte:head blocks
 
 ## Progress
 
