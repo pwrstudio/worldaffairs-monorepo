@@ -54,7 +54,9 @@ Plans:
   2. Tapping the "X" navigates to /#archive
   3. The "X" element has the same width as the bottom bar arrow sections and a right border
   4. The archive collection title remains perfectly horizontally centered with the back element present
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 07-01-PLAN.md — Add mobile X back element with centered title layout
 
 ### Phase 8: Meta Tag Fix
 **Goal**: Archive collection pages render correct OG/meta tags that crawlers pick up, with no main page metadata leaking through
