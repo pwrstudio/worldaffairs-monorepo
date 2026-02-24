@@ -41,7 +41,9 @@
   1. Archive top bar view buttons no longer render as browser-default radio inputs
   2. The custom radio component accepts color, size, and shape props for visual customization
   3. Selecting a view (image/text/grid) still changes the archive display correctly
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 06-01-PLAN.md — Create RadioGroup component with styling props and integrate into WorkTopBar
 
 ### Phase 7: Mobile Back Button
 **Goal**: Mobile users can navigate back to the archive list from a collection page using a clearly visible "X" element in the top bar, without the title shifting off-center
