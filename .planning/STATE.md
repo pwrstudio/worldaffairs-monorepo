@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-02-24)
 
 **Core value:** The Archive section clearly presents collections of media with flexible default views and proper credits/year metadata per media item.
-**Current focus:** v1.2 UI Refinements — defining requirements
+**Current focus:** v1.2 UI Refinements — Phase 6: Custom Radio Component
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: 6 - Custom Radio Component
 Plan: —
-Status: Defining requirements
-Last activity: 2026-02-24 — Milestone v1.2 started
+Status: Not started
+Last activity: 2026-02-24 — Milestone v1.2 roadmap created
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -33,6 +33,9 @@ Progress: [░░░░░░░░░░] 0%
 | 3. Client Updates           | v1.0      | 1/1   | -     | -        |
 | 4. Page Metadata and Footer | v1.1      | 2/2   | ~2min | ~1min    |
 | 5. Mobile Top Bar           | v1.1      | 1/1   | ~1min | ~1min    |
+| 6. Custom Radio Component   | v1.2      | 0/1   | -     | -        |
+| 7. Mobile Back Button       | v1.2      | 0/1   | -     | -        |
+| 8. Meta Tag Fix             | v1.2      | 0/1   | -     | -        |
 
 ## Accumulated Context
 
@@ -46,10 +49,10 @@ None.
 
 ### Blockers/Concerns
 
-None.
+META-06 is a bug investigation — root cause (main page metadata leaking into archive pages) needs to be confirmed before fix can be implemented.
 
 ## Session Continuity
 
 Last session: 2026-02-24
-Stopped at: Completed milestone v1.1 Archive Polish
+Stopped at: Roadmap created for v1.2
 Resume file: None

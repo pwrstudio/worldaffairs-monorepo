@@ -41,20 +41,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status  |
 | ----------- | ----- | ------- |
-| RADIO-01    | -     | Pending |
-| RADIO-02    | -     | Pending |
-| NAV-01      | -     | Pending |
-| NAV-02      | -     | Pending |
-| NAV-03      | -     | Pending |
-| META-06     | -     | Pending |
+| RADIO-01    | 6     | Pending |
+| RADIO-02    | 6     | Pending |
+| NAV-01      | 7     | Pending |
+| NAV-02      | 7     | Pending |
+| NAV-03      | 7     | Pending |
+| META-06     | 8     | Pending |
 
 **Coverage:**
 
 - v1.2 requirements: 6 total
-- Mapped to phases: 0
-- Unmapped: 6
+- Mapped to phases: 6
+- Unmapped: 0
 
 ---
 
 _Requirements defined: 2026-02-24_
-_Last updated: 2026-02-24 after initial definition_
+_Last updated: 2026-02-24 after v1.2 roadmap creation_
