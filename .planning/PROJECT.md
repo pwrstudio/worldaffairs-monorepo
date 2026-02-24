@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A personal website for World Affairs built with SvelteKit and Sanity CMS. The site displays music releases, videos, tour dates, news, a store, and an Archive of collections — each collection containing media items (images, audio, video) with credits, year metadata, and configurable default views.
+A personal website for World Affairs built with SvelteKit and Sanity CMS. The site displays music releases, videos, tour dates, news, a store, and an Archive of collections — each collection containing media items (images, audio, video) with credits, year metadata, configurable default views, OG metadata for social sharing, and mobile-friendly view toggling.
 
 ## Core Value
 
@@ -23,30 +23,30 @@ The Archive section clearly presents collections of media with flexible default 
 - ✓ Credits and year fields on each media item in collections — v1.0
 - ✓ Default view radio (image/text/grid) on collection documents — v1.0
 - ✓ WorkDetail initializes view mode from Sanity defaultView field — v1.0
+- ✓ Archive page OG meta tags (title, description, image, canonical URL) — v1.1
+- ✓ Page title resets to default when navigating from archive to home — v1.1
+- ✓ "Page last updated" footer with locale-formatted date on archive pages — v1.1
+- ✓ Mobile view selector hidden; tap top bar to toggle views — v1.1
 
 ### Active
 
-## Current Milestone: v1.1 Archive Polish
-
-**Goal:** Improve archive detail pages with proper metadata, last-updated timestamps, and mobile-friendly view toggling.
-
-**Target features:**
-
-- Archive page metadata (OG tags with first image, title, truncated intro)
-- Page last updated in footer for archive pages
-- Mobile top bar view toggle (hide selector, tap to switch)
+(None — planning next milestone)
 
 ### Out of Scope
 
 - URL path changes (`/works/[slug]` stays as-is) — avoid breaking existing links
 - Exhaustive internal variable renaming — only user-facing labels changed
+- Custom excerpt field in Sanity — truncated intro is sufficient
+- Twitter/X specific card customization — standard OG tags cover Twitter cards
+- Mobile view indicator (dot/label) — content change is sufficient visual feedback
+- Desktop top bar changes — only mobile behavior changes
 
 ## Context
 
-- Monorepo with `packages/sveltekit/` (frontend) and `packages/sanity/` (CMS)
-- Sanity schema internal name remains `work` (preserves existing documents and GROQ queries)
-- Sanity types regenerated and TypeScript compilation verified clean
-- `defaultView` maps to WorkDetail view modes: image→slideshow, text→text, grid→grid
+Shipped v1.0 (Archive Refactor) and v1.1 (Archive Polish).
+Monorepo with `packages/sveltekit/` (frontend) and `packages/sanity/` (CMS).
+Sanity schema internal name remains `work` (preserves existing documents and GROQ queries).
+Archive detail pages have full OG metadata, last-updated footers, and mobile-friendly view toggling.
 
 ## Constraints
 
@@ -56,14 +56,19 @@ The Archive section clearly presents collections of media with flexible default 
 
 ## Key Decisions
 
-| Decision                               | Rationale                                                      | Outcome |
-| -------------------------------------- | -------------------------------------------------------------- | ------- |
-| Keep `/works/[slug]` URL path          | Avoid breaking existing links and bookmarks                    | ✓ Good  |
-| Three view options: image, text, grid  | Maps to existing WorkDetail view modes                         | ✓ Good  |
-| Default view: image                    | User specified, maps to slideshow mode                         | ✓ Good  |
-| Keep internal `name: 'work'` in schema | Preserves existing Sanity documents and GROQ queries           | ✓ Good  |
-| Map 'image' → 'slideshow' in client    | Sanity uses 'image' but WorkDetail uses 'slideshow' internally | ✓ Good  |
+| Decision                               | Rationale                                                      | Outcome   |
+| -------------------------------------- | -------------------------------------------------------------- | --------- |
+| Keep `/works/[slug]` URL path          | Avoid breaking existing links and bookmarks                    | ✓ Good    |
+| Three view options: image, text, grid  | Maps to existing WorkDetail view modes                         | ✓ Good    |
+| Default view: image                    | User specified, maps to slideshow mode                         | ✓ Good    |
+| Keep internal `name: 'work'` in schema | Preserves existing Sanity documents and GROQ queries           | ✓ Good    |
+| Map 'image' → 'slideshow' in client    | Sanity uses 'image' but WorkDetail uses 'slideshow' internally | ✓ Good    |
+| OG description from truncated intro    | intro is plain string, no PortableText conversion needed       | ✓ Good    |
+| Conditional OG image rendering         | Only emit og:image when an imageMedia item exists              | ✓ Good    |
+| Footer as flex column sibling          | Appears at page bottom in both slideshow and table view        | ✓ Good    |
+| onclick + stopPropagation pattern      | Clean mobile tap-toggle without interfering with desktop radio | ✓ Good    |
+| Binary slideshow/table toggle          | Simplest mobile UX; grid mode accessible via desktop           | ✓ Good    |
 
 ---
 
-_Last updated: 2026-02-24 after v1.1 milestone start_
+*Last updated: 2026-02-24 after v1.1 milestone*
