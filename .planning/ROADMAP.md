@@ -4,7 +4,7 @@
 
 - ✅ **v1.0 Archive Refactor** — Phases 1-3 (shipped 2026-02-23)
 - ✅ **v1.1 Archive Polish** — Phases 4-5 (shipped 2026-02-24)
-- 🔄 **v1.2 UI Refinements** — Phases 6-8 (in progress)
+- ✅ **v1.2 UI Refinements** — Phases 6-8 (shipped 2026-02-24)
 
 ## Phases
 
@@ -67,7 +67,7 @@ Plans:
   2. The og:title, og:description, and og:image tags on archive collection pages contain collection-specific values when inspected
 **Plans:** 1 plan
 Plans:
-- [ ] 08-01-PLAN.md — Move OG meta tags from app.html to per-page svelte:head blocks
+- [x] 08-01-PLAN.md — Move OG meta tags from app.html to per-page svelte:head blocks
 
 ## Progress
 
@@ -80,4 +80,4 @@ Plans:
 | 5. Mobile Top Bar           | v1.1      | 1/1            | Complete    | 2026-02-24 |
 | 6. Custom Radio Component   | v1.2      | 1/1            | Complete    | 2026-02-24 |
 | 7. Mobile Back Button       | v1.2      | 1/1            | Complete    | 2026-02-24 |
-| 8. Meta Tag Fix             | v1.2      | 0/1            | Not started | -          |
+| 8. Meta Tag Fix             | v1.2      | 1/1            | Complete    | 2026-02-24 |

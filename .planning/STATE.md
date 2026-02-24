@@ -5,25 +5,25 @@
 See: .planning/PROJECT.md (updated 2026-02-24)
 
 **Core value:** The Archive section clearly presents collections of media with flexible default views and proper credits/year metadata per media item.
-**Current focus:** v1.2 UI Refinements — Phase 7: Mobile Back Button
+**Current focus:** v1.2 UI Refinements — Phase 8: Meta Tag Fix
 
 ## Current Position
 
-Phase: 7 - Mobile Back Button
+Phase: 8 - Meta Tag Fix
 Plan: 1/1 complete
 Status: Complete
-Last activity: 2026-02-24 — Completed Phase 7 (Mobile Back Button)
+Last activity: 2026-02-24 — Completed Phase 8 (Meta Tag Fix)
 
-Progress: [██████░░░░] 67%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 8
+- Total plans completed: 9
 - v1.0: 3 plans (Phases 1-3)
 - v1.1: 3 plans (Phases 4-5)
-- v1.2: 2 plans (Phases 6-7)
+- v1.2: 3 plans (Phases 6-8)
 
 **By Phase:**
 
@@ -36,7 +36,7 @@ Progress: [██████░░░░] 67%
 | 5. Mobile Top Bar           | v1.1      | 1/1   | ~1min | ~1min    |
 | 6. Custom Radio Component   | v1.2      | 1/1   | ~1min | ~1min    |
 | 7. Mobile Back Button       | v1.2      | 1/1   | ~1min | ~1min    |
-| 8. Meta Tag Fix             | v1.2      | 0/1   | -     | -        |
+| 8. Meta Tag Fix             | v1.2      | 1/1   | ~1min | ~1min    |
 
 ## Accumulated Context
 
@@ -46,6 +46,7 @@ Progress: [██████░░░░] 67%
 - Phase 6: Set default indicator size to 10px in WorkTopBar for visual proportion
 - Phase 7: Used times symbol entity for back element instead of arrow or text
 - Phase 7: Used invisible spacer div for symmetric flex centering rather than absolute positioning
+- Phase 8: Move all OG/twitter/description meta from app.html to per-page svelte:head blocks
 
 ### Pending Todos
 
@@ -53,10 +54,10 @@ None.
 
 ### Blockers/Concerns
 
-META-06 is a bug investigation — root cause (main page metadata leaking into archive pages) needs to be confirmed before fix can be implemented.
+None.
 
 ## Session Continuity
 
 Last session: 2026-02-24
-Stopped at: Completed 07-01-PLAN.md
+Stopped at: Completed 08-01-PLAN.md
 Resume file: None

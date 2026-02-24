@@ -20,7 +20,7 @@ Requirements for milestone v1.2 UI Refinements. Each maps to roadmap phases.
 
 ### Meta Tags
 
-- [ ] **META-06**: Archive page meta/OG tags are correctly rendered for crawlers (no main page metadata leaking)
+- [x] **META-06**: Archive page meta/OG tags are correctly rendered for crawlers (no main page metadata leaking)
 
 ## Future Requirements
 
@@ -46,7 +46,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NAV-01      | 7     | Done    |
 | NAV-02      | 7     | Done    |
 | NAV-03      | 7     | Done    |
-| META-06     | 8     | Pending |
+| META-06     | 8     | Done    |
 
 **Coverage:**
 
@@ -57,4 +57,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 ---
 
 _Requirements defined: 2026-02-24_
-_Last updated: 2026-02-24 after v1.2 roadmap creation_
+_Last updated: 2026-02-24 after Phase 8 completion_
