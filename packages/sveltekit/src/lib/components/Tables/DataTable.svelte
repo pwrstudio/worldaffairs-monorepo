@@ -112,12 +112,12 @@
             &.linkList {
                 min-width: 80px;
 
-                @media (max-width: 768px) {
+                @media (max-width: 800px) {
                     padding-right: 10px;
                 }
 
                 a {
-                    @media (max-width: 768px) {
+                    @media (max-width: 800px) {
                         display: block;
                         line-height: 1.8;
                         white-space: nowrap;
@@ -142,7 +142,7 @@
         }
 
         .hide-on-mobile {
-            @media (max-width: 768px) {
+            @media (max-width: 800px) {
                 display: none;
             }
         }
@@ -150,7 +150,7 @@
         .separator {
             margin: 0 0.25em;
 
-            @media (max-width: 768px) {
+            @media (max-width: 800px) {
                 display: none;
             }
         }

@@ -31,7 +31,7 @@
         font-size: var(--font-size-small);
         color: var(--foreground);
 
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
             flex-direction: column;
             align-items: center;
             padding-bottom: 1em;
@@ -47,7 +47,7 @@
             float: right;
             text-align: right;
 
-            @media (max-width: 768px) {
+            @media (max-width: 800px) {
                 text-align: center;
             }
         }

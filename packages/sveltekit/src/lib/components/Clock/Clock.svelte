@@ -164,7 +164,7 @@
         max-height: 140px;
         aspect-ratio: 1;
 
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
             max-height: 200px;
         }
     }

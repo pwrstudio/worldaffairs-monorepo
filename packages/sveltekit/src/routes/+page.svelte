@@ -77,7 +77,7 @@
         margin-top: 10px;
         overflow-x: hidden;
 
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
             margin: 10px;
         }
 

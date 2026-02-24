@@ -256,7 +256,7 @@ describe('Utility Functions', () => {
 1. View work detail page and interact with media slideshow
 2. Navigate between different table sections (releases, videos, tour dates)
 3. Verify tour dates filtering shows correct upcoming dates
-4. Test responsive design across breakpoints (768px is key breakpoint)
+4. Test responsive design across breakpoints (800px is key breakpoint)
 
 ## Coverage Targets
 

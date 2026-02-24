@@ -79,7 +79,7 @@
         margin-bottom: 0.5em;
         height: 280px;
 
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
             height: auto;
         }
 
@@ -96,7 +96,7 @@
             .small-image {
                 display: none;
                 width: 200px;
-                @media (max-width: 768px) {
+                @media (max-width: 800px) {
                     display: block;
                 }
 
@@ -111,14 +111,14 @@
                 align-items: center;
                 justify-content: center;
 
-                @media (max-width: 768px) {
+                @media (max-width: 800px) {
                     display: none;
                 }
             }
 
             &.toc {
                 padding-left: 0;
-                @media (max-width: 768px) {
+                @media (max-width: 800px) {
                     width: 100%;
                 }
             }
