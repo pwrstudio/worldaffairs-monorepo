@@ -42,6 +42,10 @@
         viewMode = mode;
     }
 
+    function toggleViewMode() {
+        viewMode = viewMode === 'slideshow' ? 'table' : 'slideshow';
+    }
+
     function handleSelectSlide(index: number) {
         selectedIndex = index;
         viewMode = 'slideshow';
@@ -55,6 +59,7 @@
         {hasMedia}
         {viewMode}
         onSetViewMode={setViewMode}
+        onToggleViewMode={toggleViewMode}
     />
 
     <div class="content">
