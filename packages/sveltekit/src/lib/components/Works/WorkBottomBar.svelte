@@ -24,7 +24,7 @@
         min-height: 0;
 
         @media (max-width: 800px) {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .side {
