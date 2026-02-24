@@ -2,6 +2,8 @@
     import type { MediaItem } from './types';
     import { urlFor } from '$lib/modules/sanity';
 
+    import Footer from '$lib/components/Footer/Footer.svelte';
+
     const { title, yearDisplay, media, intro, tags, credits, onSelectSlide } = $props<{
         title: string;
         yearDisplay: string;
@@ -14,7 +16,7 @@
 </script>
 
 <div class="table-wrapper">
-    <h3 class="table-title">{title} ({yearDisplay})</h3>
+    <h3 class="information-title">{title} ({yearDisplay})</h3>
     {#if intro || (tags && tags.length > 0) || credits}
         <div class="text-content">
             {#if intro}
@@ -63,14 +65,29 @@
             {/each}
         </tbody>
     </table>
+
+    <div class="footer-container">
+        <hr />
+        <Footer />
+    </div>
 </div>
 
 <style lang="scss">
+    .footer-container {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
     .table-wrapper {
         flex: 1;
         overflow-y: auto;
         padding: 0 20px;
-        padding-bottom: 80px;
+    }
+
+    .information-title {
+        font-size: var(--font-size-large);
+        margin: 0.5em 0 0.5em 0;
+        color: var(--table-border-color);
     }
 
     .text-content {
@@ -141,8 +158,8 @@
 
             img {
                 display: block;
-                width: 160px;
-                height: 160px;
+                width: 140px;
+                height: 140px;
                 object-fit: cover;
             }
         }
@@ -151,8 +168,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
+            width: 140px;
+            height: 140px;
             background: var(--table-row-even-bg);
             font-size: 18px;
         }
