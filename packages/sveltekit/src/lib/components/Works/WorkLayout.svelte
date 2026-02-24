@@ -5,8 +5,9 @@
     import ImageView from './ImageView.svelte';
     import TableView from './TableView.svelte';
 
-    const { work } = $props<{
+    const { work, lastUpdated } = $props<{
         work: Work;
+        lastUpdated?: string;
     }>();
 
     function defaultViewToMode(dv: Work['defaultView']): ViewMode {
@@ -26,6 +27,16 @@
 
     // svelte-ignore state_referenced_locally
     const yearDisplay = work.yearEnd ? `${work.yearStart}–${work.yearEnd}` : `${work.yearStart}`;
+
+    const formattedLastUpdated = $derived(
+        lastUpdated
+            ? new Date(lastUpdated).toLocaleDateString('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+              })
+            : null
+    );
 
     function setViewMode(mode: ViewMode) {
         viewMode = mode;
@@ -65,6 +76,12 @@
             </div>
         {/if}
     </div>
+
+    {#if formattedLastUpdated}
+        <div class="page-footer">
+            Page last updated: {formattedLastUpdated}
+        </div>
+    {/if}
 </div>
 
 <style lang="scss">
@@ -98,5 +115,14 @@
         align-items: center;
         justify-content: center;
         height: 100%;
+    }
+
+    .page-footer {
+        flex-shrink: 0;
+        padding: 0.25em 20px;
+        font-size: var(--font-size-small);
+        color: var(--foreground);
+        border-top: 1px solid var(--archive-border-color);
+        text-align: right;
     }
 </style>
