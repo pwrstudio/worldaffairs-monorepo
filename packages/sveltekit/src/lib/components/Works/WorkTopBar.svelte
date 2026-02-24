@@ -21,7 +21,7 @@
 
 <header class="top-bar">
     <div class="back">
-        <a href="/#archive">Archive</a>
+        <a href="/#archive">&times;</a>
     </div>
     <div
         class="title-section"
@@ -47,6 +47,7 @@
             size={10}
         />
     </div>
+    <div class="spacer"></div>
 </header>
 
 <style lang="scss">
@@ -104,6 +105,10 @@
             width: 240px;
         }
 
+        .spacer {
+            display: none;
+        }
+
         @media (max-width: 800px) {
             &:active {
                 background-color: var(--table-row-even-bg);
@@ -111,13 +116,12 @@
 
             .back {
                 width: auto;
-                order: 1;
-                display: none;
+                padding: 0.2em 1em;
             }
 
             .title-section {
                 padding: 0.4em;
-                width: 100%;
+                flex: 1;
                 user-select: none;
                 pointer-events: auto;
                 cursor: pointer;
@@ -125,6 +129,12 @@
 
             .view-selection-outer {
                 display: none;
+            }
+
+            .spacer {
+                display: flex;
+                width: auto;
+                padding: 0.2em 1em;
             }
 
             .mobile-indicator {
