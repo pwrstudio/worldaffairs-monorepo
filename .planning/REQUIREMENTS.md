@@ -9,11 +9,11 @@ Requirements for milestone v1.1 Archive Polish. Each maps to roadmap phases.
 
 ### Metadata
 
-- [ ] **META-01**: Archive page renders OG title as "{work title} | World Affairs AB"
-- [ ] **META-02**: Archive page renders OG description from truncated intro text (~155 chars)
-- [ ] **META-03**: Archive page renders OG image from first image in work's media array
-- [ ] **META-04**: Archive page renders canonical URL for the work page
-- [ ] **META-05**: Page title resets to default "World Affairs AB" when navigating from archive page to landing
+- [x] **META-01**: Archive page renders OG title as "{work title} | World Affairs AB"
+- [x] **META-02**: Archive page renders OG description from truncated intro text (~155 chars)
+- [x] **META-03**: Archive page renders OG image from first image in work's media array
+- [x] **META-04**: Archive page renders canonical URL for the work page
+- [x] **META-05**: Page title resets to default "World Affairs AB" when navigating from archive page to landing
 
 ### Footer
 
@@ -43,11 +43,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| META-01 | Phase 4 | Pending |
-| META-02 | Phase 4 | Pending |
-| META-03 | Phase 4 | Pending |
-| META-04 | Phase 4 | Pending |
-| META-05 | Phase 4 | Pending |
+| META-01 | Phase 4 | Complete |
+| META-02 | Phase 4 | Complete |
+| META-03 | Phase 4 | Complete |
+| META-04 | Phase 4 | Complete |
+| META-05 | Phase 4 | Complete |
 | FOOT-01 | Phase 4 | Pending |
 | MOBI-01 | Phase 5 | Pending |
 | MOBI-02 | Phase 5 | Pending |

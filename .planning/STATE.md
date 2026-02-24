@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-02-24)
 ## Current Position
 
 Phase: 4 of 5 (Page Metadata and Footer)
-Plan: — of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-02-24 — Roadmap created for v1.1 Archive Polish
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-02-24 — Completed 04-01 (OG metadata and home page title)
 
-Progress: [██████░░░░] 60% (v1.0 complete, v1.1 not started)
+Progress: [███████░░░] 70% (v1.0 complete, v1.1 phase 4 plan 1 done)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
+- Total plans completed: 4
 - Average duration: unknown
 - Total execution time: unknown
 
@@ -30,6 +30,7 @@ Progress: [██████░░░░] 60% (v1.0 complete, v1.1 not started)
 | 1. Sanity Renames | 1/1 | - | - |
 | 2. Schema Fields | 1/1 | - | - |
 | 3. Client Updates | 1/1 | - | - |
+| 4. Page Metadata and Footer | 1/2 | ~1min | ~1min |
 
 *Updated after each plan completion*
 
@@ -43,6 +44,9 @@ Recent decisions affecting current work:
 - Keep `/works/[slug]` URL path unchanged to avoid breaking existing links
 - Sanity 'image' defaultView maps to component 'slideshow' mode — naming mismatch bridged via defaultViewToMode()
 - viewMode stays $state (not $derived) so user can interactively switch views after initial load from defaultView
+- OG description uses work.intro.slice(0, 155) — intro is plain string, not PortableText
+- OG image rendered conditionally; only emits og:image tag when an imageMedia item exists
+- lastUpdated prop passed to WorkLayout now, silently ignored until 04-02 consumes it
 
 ### Pending Todos
 
@@ -55,5 +59,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-24
-Stopped at: Roadmap for v1.1 created — ready to plan Phase 4
+Stopped at: Completed 04-01-PLAN.md (OG metadata and home page title)
 Resume file: None
