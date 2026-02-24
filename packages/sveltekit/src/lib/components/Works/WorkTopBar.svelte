@@ -11,6 +11,7 @@
         onToggleViewMode: () => void;
     }>();
 
+    // svelte-ignore state_referenced_locally
     const viewOptions = hasMedia
         ? [
               { value: 'slideshow', label: 'Slideshow' },

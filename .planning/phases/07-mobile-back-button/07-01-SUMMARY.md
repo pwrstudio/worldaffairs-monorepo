@@ -4,22 +4,22 @@ plan: 01
 subsystem: archive-ui
 tags: [mobile, navigation, layout]
 dependency-graph:
-  requires: []
-  provides: [mobile-back-navigation, centered-title-layout]
-  affects: [WorkTopBar]
+    requires: []
+    provides: [mobile-back-navigation, centered-title-layout]
+    affects: [WorkTopBar]
 tech-stack:
-  added: []
-  patterns: [flex-spacer-centering]
+    added: []
+    patterns: [flex-spacer-centering]
 key-files:
-  created: []
-  modified:
-    - packages/sveltekit/src/lib/components/Works/WorkTopBar.svelte
+    created: []
+    modified:
+        - packages/sveltekit/src/lib/components/Works/WorkTopBar.svelte
 decisions:
-  - Used times symbol entity for back element instead of arrow or text
-  - Used invisible spacer div for symmetric flex centering rather than absolute positioning
+    - Used times symbol entity for back element instead of arrow or text
+    - Used invisible spacer div for symmetric flex centering rather than absolute positioning
 metrics:
-  duration: ~1min
-  completed: 2026-02-24
+    duration: ~1min
+    completed: 2026-02-24
 ---
 
 # Phase 7 Plan 1: Mobile Back Button Summary

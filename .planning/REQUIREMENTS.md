@@ -28,25 +28,25 @@ None — all features scoped to v1.2.
 
 ## Out of Scope
 
-| Feature                            | Reason                                                    |
-| ---------------------------------- | --------------------------------------------------------- |
-| Radio component animations         | Visual styling only for v1.2, no transitions              |
-| Desktop top bar layout changes     | Only mobile gets the back button                          |
-| Twitter/X specific card tags       | Standard OG tags cover Twitter cards adequately           |
-| Full meta tag audit (non-archive)  | Only archive page meta tags are in scope                  |
+| Feature                           | Reason                                          |
+| --------------------------------- | ----------------------------------------------- |
+| Radio component animations        | Visual styling only for v1.2, no transitions    |
+| Desktop top bar layout changes    | Only mobile gets the back button                |
+| Twitter/X specific card tags      | Standard OG tags cover Twitter cards adequately |
+| Full meta tag audit (non-archive) | Only archive page meta tags are in scope        |
 
 ## Traceability
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status  |
-| ----------- | ----- | ------- |
-| RADIO-01    | 6     | Done    |
-| RADIO-02    | 6     | Done    |
-| NAV-01      | 7     | Done    |
-| NAV-02      | 7     | Done    |
-| NAV-03      | 7     | Done    |
-| META-06     | 8     | Done    |
+| Requirement | Phase | Status |
+| ----------- | ----- | ------ |
+| RADIO-01    | 6     | Done   |
+| RADIO-02    | 6     | Done   |
+| NAV-01      | 7     | Done   |
+| NAV-02      | 7     | Done   |
+| NAV-03      | 7     | Done   |
+| META-06     | 8     | Done   |
 
 **Coverage:**
 

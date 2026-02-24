@@ -32,7 +32,9 @@
             <span
                 class="radio-indicator"
                 class:radio-indicator--active={value === option.value}
-                style="width: {size}px; height: {size}px; border-radius: {shape === 'circle' ? '50%' : '2px'}; {value === option.value ? `background-color: ${color};` : ''}"
+                style="width: {size}px; height: {size}px; border-radius: {shape === 'circle'
+                    ? '50%'
+                    : '2px'}; {value === option.value ? `background-color: ${color};` : ''}"
             ></span>
             <span class="radio-label">{option.label}</span>
         </label>

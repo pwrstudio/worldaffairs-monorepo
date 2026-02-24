@@ -64,19 +64,19 @@ Archive detail pages have full OG metadata, last-updated footers, and mobile-fri
 
 ## Key Decisions
 
-| Decision                               | Rationale                                                      | Outcome   |
-| -------------------------------------- | -------------------------------------------------------------- | --------- |
-| Keep `/works/[slug]` URL path          | Avoid breaking existing links and bookmarks                    | ✓ Good    |
-| Three view options: image, text, grid  | Maps to existing WorkDetail view modes                         | ✓ Good    |
-| Default view: image                    | User specified, maps to slideshow mode                         | ✓ Good    |
-| Keep internal `name: 'work'` in schema | Preserves existing Sanity documents and GROQ queries           | ✓ Good    |
-| Map 'image' → 'slideshow' in client    | Sanity uses 'image' but WorkDetail uses 'slideshow' internally | ✓ Good    |
-| OG description from truncated intro    | intro is plain string, no PortableText conversion needed       | ✓ Good    |
-| Conditional OG image rendering         | Only emit og:image when an imageMedia item exists              | ✓ Good    |
-| Footer as flex column sibling          | Appears at page bottom in both slideshow and table view        | ✓ Good    |
-| onclick + stopPropagation pattern      | Clean mobile tap-toggle without interfering with desktop radio | ✓ Good    |
-| Binary slideshow/table toggle          | Simplest mobile UX; grid mode accessible via desktop           | ✓ Good    |
+| Decision                               | Rationale                                                      | Outcome |
+| -------------------------------------- | -------------------------------------------------------------- | ------- |
+| Keep `/works/[slug]` URL path          | Avoid breaking existing links and bookmarks                    | ✓ Good  |
+| Three view options: image, text, grid  | Maps to existing WorkDetail view modes                         | ✓ Good  |
+| Default view: image                    | User specified, maps to slideshow mode                         | ✓ Good  |
+| Keep internal `name: 'work'` in schema | Preserves existing Sanity documents and GROQ queries           | ✓ Good  |
+| Map 'image' → 'slideshow' in client    | Sanity uses 'image' but WorkDetail uses 'slideshow' internally | ✓ Good  |
+| OG description from truncated intro    | intro is plain string, no PortableText conversion needed       | ✓ Good  |
+| Conditional OG image rendering         | Only emit og:image when an imageMedia item exists              | ✓ Good  |
+| Footer as flex column sibling          | Appears at page bottom in both slideshow and table view        | ✓ Good  |
+| onclick + stopPropagation pattern      | Clean mobile tap-toggle without interfering with desktop radio | ✓ Good  |
+| Binary slideshow/table toggle          | Simplest mobile UX; grid mode accessible via desktop           | ✓ Good  |
 
 ---
 
-*Last updated: 2026-02-24 after v1.2 milestone start*
+_Last updated: 2026-02-24 after v1.2 milestone start_

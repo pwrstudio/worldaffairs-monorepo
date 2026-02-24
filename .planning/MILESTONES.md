@@ -18,6 +18,7 @@
 **Files changed:** 12 (+134/-37 lines)
 
 **Key accomplishments:**
+
 - OG meta tags (title, description, image, canonical URL) on archive detail pages for social sharing
 - Browser tab title resets to "World Affairs AB" when navigating back to home page
 - "Page last updated" footer strip with en-GB locale-formatted date on archive pages
@@ -25,4 +26,3 @@
 - Archive redirect (/archive → /#archive) and mobile padding improvements
 
 ---
-
