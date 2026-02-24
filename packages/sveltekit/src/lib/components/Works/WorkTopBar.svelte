@@ -1,16 +1,17 @@
 <script lang="ts">
     import type { ViewMode } from './types';
 
-    const { title, yearDisplay, hasMedia, viewMode, onSetViewMode } = $props<{
+    const { title, yearDisplay, hasMedia, viewMode, onSetViewMode, onToggleViewMode } = $props<{
         title: string;
         yearDisplay: string;
         hasMedia: boolean;
         viewMode: ViewMode;
         onSetViewMode: (mode: ViewMode) => void;
+        onToggleViewMode: () => void;
     }>();
 </script>
 
-<header class="top-bar">
+<header class="top-bar" onclick={onToggleViewMode}>
     <div class="back">
         <a href="/#archive">Archive</a>
     </div>
@@ -20,7 +21,7 @@
             <span class="year">({yearDisplay})</span>
         {/if}
     </div>
-    <div class="view-selection-outer">
+    <div class="view-selection-outer" onclick={(e) => e.stopPropagation()}>
         <fieldset class="view-selection">
             {#if hasMedia}
                 <label class:active={viewMode === 'slideshow'}>
@@ -117,6 +118,8 @@
         }
 
         @media (max-width: 800px) {
+            cursor: pointer;
+
             .back {
                 width: auto;
                 order: 1;
@@ -130,6 +133,10 @@
             .view-selection {
                 width: auto;
                 width: 50%;
+            }
+
+            .view-selection-outer {
+                display: none;
             }
         }
     }
