@@ -61,10 +61,10 @@ Plans:
   1. On mobile, the view selector (radio/dropdown) is not visible in the archive top bar
   2. Tapping the archive top bar on mobile cycles between slideshow and information views
   3. On desktop, the view selector and top bar behavior are unchanged
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 05-01: Hide view selector on mobile and add tap-to-toggle to archive top bar
+- [ ] 05-01-PLAN.md — Hide view selector on mobile and add tap-to-toggle to archive top bar
 
 ## Progress
 
@@ -73,5 +73,5 @@ Plans:
 | 1. Sanity Renames | v1.0 | 1/1 | Complete | 2026-02-23 |
 | 2. Schema Fields | v1.0 | 1/1 | Complete | 2026-02-23 |
 | 3. Client Updates | v1.0 | 1/1 | Complete | 2026-02-23 |
-| 4. Page Metadata and Footer | 2/2 | Complete    | 2026-02-24 | - |
+| 4. Page Metadata and Footer | v1.1 | 2/2 | Complete | 2026-02-24 |
 | 5. Mobile Top Bar | v1.1 | 0/1 | Not started | - |
