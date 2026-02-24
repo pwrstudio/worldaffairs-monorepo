@@ -30,7 +30,15 @@ The Archive section clearly presents collections of media with flexible default 
 
 ### Active
 
-(None — planning next milestone)
+## Current Milestone: v1.2 UI Refinements
+
+**Goal:** Replace browser-default radios with a custom-styled component, add mobile back button to archive top bar, and fix archive page meta tags.
+
+**Target features:**
+
+- Custom radio component with visual styling control, replacing browser defaults in archive top bar
+- Mobile top bar back button ("X" → /#archive) with centered title
+- Fix archive page OG/meta tags not being picked up correctly by crawlers
 
 ### Out of Scope
 
@@ -71,4 +79,4 @@ Archive detail pages have full OG metadata, last-updated footers, and mobile-fri
 
 ---
 
-*Last updated: 2026-02-24 after v1.1 milestone*
+*Last updated: 2026-02-24 after v1.2 milestone start*

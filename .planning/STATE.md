@@ -5,15 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-24)
 
 **Core value:** The Archive section clearly presents collections of media with flexible default views and proper credits/year metadata per media item.
-**Current focus:** Planning next milestone
+**Current focus:** v1.2 UI Refinements — defining requirements
 
 ## Current Position
 
-Phase: All complete (5 phases across v1.0 and v1.1)
-Status: v1.1 Archive Polish shipped
-Last activity: 2026-02-24 — Completed milestone v1.1
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-02-24 — Milestone v1.2 started
 
-Progress: [██████████] 100% (v1.0 + v1.1 complete)
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
