@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-24)
 
 **Core value:** The Archive section clearly presents collections of media with flexible default views and proper credits/year metadata per media item.
-**Current focus:** v1.1 Archive Polish — Phase 4: Page Metadata and Footer
+**Current focus:** v1.1 Archive Polish — Phase 5 (next)
 
 ## Current Position
 
-Phase: 4 of 5 (Page Metadata and Footer)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-02-24 — Completed 04-01 (OG metadata and home page title)
+Phase: 4 of 5 (Page Metadata and Footer) — COMPLETE
+Plan: 2 of 2 in current phase — COMPLETE
+Status: Phase 4 complete, ready for phase 5
+Last activity: 2026-02-24 — Completed 04-02 (page last-updated footer strip)
 
-Progress: [███████░░░] 70% (v1.0 complete, v1.1 phase 4 plan 1 done)
+Progress: [████████░░] 80% (v1.0 complete, v1.1 phase 4 complete)
 
 ## Performance Metrics
 
@@ -30,7 +30,7 @@ Progress: [███████░░░] 70% (v1.0 complete, v1.1 phase 4 plan
 | 1. Sanity Renames | 1/1 | - | - |
 | 2. Schema Fields | 1/1 | - | - |
 | 3. Client Updates | 1/1 | - | - |
-| 4. Page Metadata and Footer | 1/2 | ~1min | ~1min |
+| 4. Page Metadata and Footer | 2/2 | ~2min | ~1min |
 
 *Updated after each plan completion*
 
@@ -47,6 +47,8 @@ Recent decisions affecting current work:
 - OG description uses work.intro.slice(0, 155) — intro is plain string, not PortableText
 - OG image rendered conditionally; only emits og:image tag when an imageMedia item exists
 - lastUpdated prop passed to WorkLayout now, silently ignored until 04-02 consumes it
+- Footer placed as direct child of .work-layout flex column so it appears at page bottom in both view modes
+- flex-shrink: 0 prevents footer collapsing under height pressure from .content (flex: 1)
 
 ### Pending Todos
 
@@ -59,5 +61,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-24
-Stopped at: Completed 04-01-PLAN.md (OG metadata and home page title)
+Stopped at: Completed 04-02-PLAN.md (page last-updated footer strip on archive detail pages)
 Resume file: None

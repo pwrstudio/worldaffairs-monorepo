@@ -17,7 +17,7 @@ Requirements for milestone v1.1 Archive Polish. Each maps to roadmap phases.
 
 ### Footer
 
-- [ ] **FOOT-01**: Archive page footer shows "Page last updated" with the work document's _updatedAt timestamp
+- [x] **FOOT-01**: Archive page footer shows "Page last updated" with the work document's _updatedAt timestamp
 
 ### Mobile UX
 
@@ -48,7 +48,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | META-03 | Phase 4 | Complete |
 | META-04 | Phase 4 | Complete |
 | META-05 | Phase 4 | Complete |
-| FOOT-01 | Phase 4 | Pending |
+| FOOT-01 | Phase 4 | Complete |
 | MOBI-01 | Phase 5 | Pending |
 | MOBI-02 | Phase 5 | Pending |
 
