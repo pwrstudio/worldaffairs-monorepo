@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { ViewMode } from './types';
+    import RadioGroup from '$lib/components/RadioGroup.svelte';
 
     const { title, yearDisplay, hasMedia, viewMode, onSetViewMode, onToggleViewMode } = $props<{
         title: string;
@@ -9,6 +10,13 @@
         onSetViewMode: (mode: ViewMode) => void;
         onToggleViewMode: () => void;
     }>();
+
+    const viewOptions = hasMedia
+        ? [
+              { value: 'slideshow', label: 'Slideshow' },
+              { value: 'table', label: 'Information' },
+          ]
+        : [];
 </script>
 
 <header class="top-bar">
@@ -31,32 +39,13 @@
         <span class="mobile-indicator" aria-hidden="true">...</span>
     </div>
     <div class="view-selection-outer">
-        <fieldset class="view-selection">
-            {#if hasMedia}
-                <label class:active={viewMode === 'slideshow'}>
-                    <input
-                        type="radio"
-                        name="view"
-                        value="slideshow"
-                        checked={viewMode === 'slideshow'}
-                        onchange={() => onSetViewMode('slideshow')}
-                    />
-                    Slideshow
-                </label>
-            {/if}
-            {#if hasMedia}
-                <label class:active={viewMode === 'table'}>
-                    <input
-                        type="radio"
-                        name="view"
-                        value="table"
-                        checked={viewMode === 'table'}
-                        onchange={() => onSetViewMode('table')}
-                    />
-                    Information
-                </label>
-            {/if}
-        </fieldset>
+        <RadioGroup
+            name="view"
+            options={viewOptions}
+            value={viewMode}
+            onchange={(v) => onSetViewMode(v as ViewMode)}
+            size={10}
+        />
     </div>
 </header>
 
@@ -113,29 +102,6 @@
             border-left: 1px solid var(--archive-border-color);
             padding-inline: 20px;
             width: 240px;
-        }
-
-        .view-selection {
-            display: flex;
-            gap: 10px;
-            height: 100%;
-            border: none;
-            margin: 0;
-            padding: 0;
-            width: auto;
-            padding-inline: 20px;
-
-            input {
-                position: relative;
-                top: -1px;
-            }
-
-            label {
-                display: flex;
-                align-items: center;
-                gap: 0.25em;
-                cursor: pointer;
-            }
         }
 
         @media (max-width: 800px) {
