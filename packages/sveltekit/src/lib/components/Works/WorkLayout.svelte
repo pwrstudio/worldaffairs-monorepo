@@ -11,7 +11,7 @@
     }>();
 
     function defaultViewToMode(dv: Work['defaultView']): ViewMode {
-        if (dv === 'text' || dv === 'grid') {
+        if (dv === 'information') {
             return 'table';
         }
         return 'slideshow';

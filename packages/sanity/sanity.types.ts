@@ -56,7 +56,7 @@ export type Work = {
     _rev: string;
     title: string;
     slug: Slug;
-    defaultView?: 'image' | 'text' | 'grid';
+    defaultView?: 'slideshow' | 'information';
     artist?: string;
     intro?: string;
     yearStart: number;
