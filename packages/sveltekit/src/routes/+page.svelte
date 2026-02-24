@@ -35,6 +35,16 @@
 
 <svelte:head>
     <title>World Affairs AB</title>
+    <meta name="description" content="World Affairs is a record label founded and owned by Yung Lean, based in Stockholm, Sweden. Featuring releases from Yung Lean, Bladee, and Jonatan Leandoer96." />
+    <meta property="og:title" content="World Affairs AB" />
+    <meta property="og:description" content="World Affairs is a record label founded in 2020 by Yung Lean, based in Stockholm, Sweden." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://worldaffairs.se/" />
+    <meta property="og:image" content="https://worldaffairs.se/images/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="World Affairs AB" />
+    <meta name="twitter:description" content="World Affairs is a record label founded in 2020 by Yung Lean, based in Stockholm, Sweden." />
+    <meta name="twitter:image:src" content="https://worldaffairs.se/images/og.jpg" />
 </svelte:head>
 
 <main>
