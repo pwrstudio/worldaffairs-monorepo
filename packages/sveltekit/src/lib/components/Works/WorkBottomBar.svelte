@@ -74,6 +74,10 @@
             justify-content: center;
             padding: 0.2em;
             text-align: center;
+
+            @media (max-width: 800px) {
+                padding: 0.4em;
+            }
         }
     }
 </style>

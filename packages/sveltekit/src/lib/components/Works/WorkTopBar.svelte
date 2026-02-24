@@ -150,6 +150,7 @@
             }
 
             .title-section {
+                padding: 0.4em;
                 width: 100%;
                 user-select: none;
                 pointer-events: auto;
