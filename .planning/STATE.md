@@ -2,42 +2,17 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-23)
+See: .planning/PROJECT.md (updated 2026-02-24)
 
 **Core value:** The Archive section clearly presents collections of media with flexible default views and proper credits/year metadata per media item.
-**Current focus:** Phase 3 — Client Updates (complete)
+**Current focus:** Milestone v1.1 Archive Polish
 
 ## Current Position
 
-Phase: 3 of 3 (Client Updates)
-Plan: 1 of 1 in current phase
-Status: Phase 3 complete — all phases done
-Last activity: 2026-02-23 — Completed plan 03-01 (Client Updates)
-
-Progress: [██████████] 100%
-
-## Performance Metrics
-
-**Velocity:**
-
-- Total plans completed: 3
-- Average duration: 1 min
-- Total execution time: 4 min
-
-**By Phase:**
-
-| Phase             | Plans | Total | Avg/Plan |
-| ----------------- | ----- | ----- | -------- |
-| 01-sanity-renames | 1     | 1 min | 1 min    |
-| 02-schema-fields  | 1     | 2 min | 2 min    |
-| 03-client-updates | 1     | 1 min | 1 min    |
-
-**Recent Trend:**
-
-- Last 5 plans: 1 min, 2 min
-- Trend: —
-
-_Updated after each plan completion_
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-02-24 — Milestone v1.1 started
 
 ## Accumulated Context
 
@@ -69,6 +44,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-23
-Stopped at: Completed 03-01-PLAN.md (Phase 3 plan 1 — Client Updates)
+Last session: 2026-02-24
+Stopped at: Starting milestone v1.1 Archive Polish
 Resume file: None

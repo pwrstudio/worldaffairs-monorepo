@@ -26,7 +26,14 @@ The Archive section clearly presents collections of media with flexible default 
 
 ### Active
 
-(None — milestone complete)
+## Current Milestone: v1.1 Archive Polish
+
+**Goal:** Improve archive detail pages with proper metadata, last-updated timestamps, and mobile-friendly view toggling.
+
+**Target features:**
+- Archive page metadata (OG tags with first image, title, truncated intro)
+- Page last updated in footer for archive pages
+- Mobile top bar view toggle (hide selector, tap to switch)
 
 ### Out of Scope
 
@@ -58,4 +65,4 @@ The Archive section clearly presents collections of media with flexible default 
 
 ---
 
-_Last updated: 2026-02-23 after v1.0 milestone_
+_Last updated: 2026-02-24 after v1.1 milestone start_
