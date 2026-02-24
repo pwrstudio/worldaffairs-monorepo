@@ -47,7 +47,6 @@
             size={10}
         />
     </div>
-    <div class="spacer"></div>
 </header>
 
 <style lang="scss">
@@ -62,13 +61,35 @@
         font-size: var(--font-size-small);
 
         .back {
-            padding: 0.2em;
+            padding: 0;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: center;
-            height: 100%;
+            align-self: stretch;
             width: 240px;
             border-right: 1px solid var(--archive-border-color);
+            cursor: pointer;
+
+            a {
+                color: var(--foreground);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                padding: 0.2em;
+            }
+
+            @media (hover: hover) {
+                &:hover {
+                    background-color: var(--table-row-hover-bg);
+                }
+            }
+
+            &:active {
+                background-color: var(--table-row-even-bg);
+            }
         }
 
         .title-section {
@@ -105,36 +126,39 @@
             width: 240px;
         }
 
-        .spacer {
-            display: none;
-        }
-
         @media (max-width: 800px) {
-            &:active {
-                background-color: var(--table-row-even-bg);
-            }
+            position: relative;
 
             .back {
                 width: auto;
-                padding: 0.2em 1em;
+                position: relative;
+                z-index: 1;
+                background-color: var(--background);
+
+                a {
+                    padding: 0.2em 1em;
+                }
             }
 
             .title-section {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
                 padding: 0.4em;
-                flex: 1;
+                align-items: center;
                 user-select: none;
                 pointer-events: auto;
                 cursor: pointer;
+
+                &:active {
+                    background-color: var(--table-row-even-bg);
+                }
             }
 
             .view-selection-outer {
                 display: none;
-            }
-
-            .spacer {
-                display: flex;
-                width: auto;
-                padding: 0.2em 1em;
             }
 
             .mobile-indicator {
