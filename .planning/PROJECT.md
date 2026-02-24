@@ -48,13 +48,14 @@ The Archive section clearly presents collections of media with flexible default 
 
 ## Key Decisions
 
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| Keep `/works/[slug]` URL path | Avoid breaking existing links and bookmarks | ✓ Good |
-| Three view options: image, text, grid | Maps to existing WorkDetail view modes | ✓ Good |
-| Default view: image | User specified, maps to slideshow mode | ✓ Good |
-| Keep internal `name: 'work'` in schema | Preserves existing Sanity documents and GROQ queries | ✓ Good |
-| Map 'image' → 'slideshow' in client | Sanity uses 'image' but WorkDetail uses 'slideshow' internally | ✓ Good |
+| Decision                               | Rationale                                                      | Outcome |
+| -------------------------------------- | -------------------------------------------------------------- | ------- |
+| Keep `/works/[slug]` URL path          | Avoid breaking existing links and bookmarks                    | ✓ Good  |
+| Three view options: image, text, grid  | Maps to existing WorkDetail view modes                         | ✓ Good  |
+| Default view: image                    | User specified, maps to slideshow mode                         | ✓ Good  |
+| Keep internal `name: 'work'` in schema | Preserves existing Sanity documents and GROQ queries           | ✓ Good  |
+| Map 'image' → 'slideshow' in client    | Sanity uses 'image' but WorkDetail uses 'slideshow' internally | ✓ Good  |
 
 ---
-*Last updated: 2026-02-23 after v1.0 milestone*
+
+_Last updated: 2026-02-23 after v1.0 milestone_
