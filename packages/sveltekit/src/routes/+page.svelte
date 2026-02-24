@@ -33,6 +33,10 @@
     const hasWorks = (works ?? []).length > 0;
 </script>
 
+<svelte:head>
+    <title>World Affairs AB</title>
+</svelte:head>
+
 <main>
     <div class="main-inner-container">
         <Ticker />
