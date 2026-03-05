@@ -99,7 +99,19 @@ export type Work = {
               caption?: string;
               credits?: string;
               year?: number;
+              autoplay?: boolean;
+              loop?: boolean;
               _type: 'videoMedia';
+              _key: string;
+          }
+        | {
+              url: string;
+              autoplay?: boolean;
+              loop?: boolean;
+              caption?: string;
+              credits?: string;
+              year?: number;
+              _type: 'embedMedia';
               _key: string;
           }
     >;

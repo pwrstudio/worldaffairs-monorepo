@@ -7,6 +7,7 @@
     import ImageSlide from './ImageSlide.svelte';
     import AudioSlide from './AudioSlide.svelte';
     import VideoSlide from './VideoSlide.svelte';
+    import EmbedSlide from './EmbedSlide.svelte';
 
     const {
         media,
@@ -77,7 +78,9 @@
                 {:else if item._type === 'audioMedia' && item.file}
                     <AudioSlide file={item.file} />
                 {:else if item._type === 'videoMedia' && item.file}
-                    <VideoSlide file={item.file} />
+                    <VideoSlide file={item.file} autoplay={item.autoplay} loop={item.loop} />
+                {:else if item._type === 'embedMedia' && item.url}
+                    <EmbedSlide url={item.url} autoplay={item.autoplay} loop={item.loop} />
                 {/if}
             </div>
         {/each}

@@ -54,6 +54,8 @@
                             <span class="media-icon">&#9834;</span>
                         {:else if item._type === 'videoMedia'}
                             <span class="media-icon">&#9654;</span>
+                        {:else if item._type === 'embedMedia'}
+                            <span class="media-icon">&#9654;</span>
                         {/if}
                     </td>
                     <td

@@ -1,11 +1,17 @@
 <script lang="ts">
-    const { file } = $props<{
+    const {
+        file,
+        autoplay = false,
+        loop = false,
+    } = $props<{
         file: { asset: { url: string } };
+        autoplay?: boolean;
+        loop?: boolean;
     }>();
 </script>
 
 <figure class="video-slide">
-    <video controls>
+    <video controls {loop} {autoplay} muted={autoplay}>
         <source src={file.asset.url} />
         Your browser does not support the video element.
     </video>

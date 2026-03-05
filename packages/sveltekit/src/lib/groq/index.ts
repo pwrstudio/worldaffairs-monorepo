@@ -18,9 +18,10 @@ export const queries = {
     workBySlug: `*[_type == "work" && slug.current == $slug][0] {
         ...,
         media[] {
-            _type, _key, caption,
+            _type, _key, caption, credits, year,
             image { ..., asset-> },
-            file { ..., asset-> }
+            file { ..., asset-> },
+            url, autoplay, loop
         }
     }`,
 };

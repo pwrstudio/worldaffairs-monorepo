@@ -198,6 +198,18 @@ export default {
                             type: 'number',
                             validation: (Rule: any) => Rule.integer().min(1900).max(2100),
                         },
+                        {
+                            title: 'Autoplay',
+                            name: 'autoplay',
+                            type: 'boolean',
+                            initialValue: false,
+                        },
+                        {
+                            title: 'Loop',
+                            name: 'loop',
+                            type: 'boolean',
+                            initialValue: false,
+                        },
                     ],
                     preview: {
                         select: {
@@ -206,6 +218,61 @@ export default {
                         prepare(value: Record<string, any>) {
                             return {
                                 title: value.caption || 'Video',
+                            };
+                        },
+                    },
+                },
+                {
+                    title: 'Embed Video',
+                    name: 'embedMedia',
+                    type: 'object',
+                    fields: [
+                        {
+                            title: 'URL',
+                            name: 'url',
+                            type: 'string',
+                            description:
+                                'YouTube or Vimeo URL (ie. https://www.youtube.com/watch?v=pK-pfiOx7OE&t=873s – not an embed code',
+                            validation: (Rule: any) => Rule.required(),
+                        },
+                        {
+                            title: 'Autoplay',
+                            name: 'autoplay',
+                            type: 'boolean',
+                            initialValue: false,
+                        },
+                        {
+                            title: 'Loop',
+                            name: 'loop',
+                            type: 'boolean',
+                            initialValue: false,
+                        },
+                        {
+                            title: 'Caption',
+                            name: 'caption',
+                            type: 'string',
+                        },
+                        {
+                            title: 'Credits',
+                            name: 'credits',
+                            type: 'text',
+                            rows: 3,
+                        },
+                        {
+                            title: 'Year',
+                            name: 'year',
+                            type: 'number',
+                            validation: (Rule: any) => Rule.integer().min(1900).max(2100),
+                        },
+                    ],
+                    preview: {
+                        select: {
+                            caption: 'caption',
+                            url: 'url',
+                        },
+                        prepare(value: Record<string, any>) {
+                            return {
+                                title: value.caption || value.url || 'Embed Video',
                             };
                         },
                     },

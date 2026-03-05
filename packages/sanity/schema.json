@@ -495,11 +495,90 @@
                                         },
                                         "optional": true
                                     },
+                                    "autoplay": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "boolean"
+                                        },
+                                        "optional": true
+                                    },
+                                    "loop": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "boolean"
+                                        },
+                                        "optional": true
+                                    },
                                     "_type": {
                                         "type": "objectAttribute",
                                         "value": {
                                             "type": "string",
                                             "value": "videoMedia"
+                                        }
+                                    }
+                                },
+                                "rest": {
+                                    "type": "object",
+                                    "attributes": {
+                                        "_key": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "attributes": {
+                                    "url": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "string"
+                                        },
+                                        "optional": false
+                                    },
+                                    "autoplay": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "boolean"
+                                        },
+                                        "optional": true
+                                    },
+                                    "loop": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "boolean"
+                                        },
+                                        "optional": true
+                                    },
+                                    "caption": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "string"
+                                        },
+                                        "optional": true
+                                    },
+                                    "credits": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "string"
+                                        },
+                                        "optional": true
+                                    },
+                                    "year": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "number"
+                                        },
+                                        "optional": true
+                                    },
+                                    "_type": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                            "type": "string",
+                                            "value": "embedMedia"
                                         }
                                     }
                                 },

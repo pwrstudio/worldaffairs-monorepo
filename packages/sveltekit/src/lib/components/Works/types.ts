@@ -8,4 +8,7 @@ export type MediaItem = {
     year?: number;
     image?: any;
     file?: { asset: { url: string } };
+    url?: string;
+    autoplay?: boolean;
+    loop?: boolean;
 };
