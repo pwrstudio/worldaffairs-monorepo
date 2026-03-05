@@ -21,7 +21,8 @@ export const queries = {
             _type, _key, caption, credits, year,
             image { ..., asset-> },
             file { ..., asset-> },
-            url, autoplay, loop
+            url, autoplay, loop,
+            poster { ..., asset-> }
         }
     }`,
 };

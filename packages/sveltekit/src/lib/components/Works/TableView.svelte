@@ -53,9 +53,23 @@
                         {:else if item._type === 'audioMedia'}
                             <span class="media-icon">&#9834;</span>
                         {:else if item._type === 'videoMedia'}
-                            <span class="media-icon">&#9654;</span>
+                            {#if item.poster}
+                                <img
+                                    src={urlFor(item.poster).width(200).url()}
+                                    alt={item.caption ?? ''}
+                                />
+                            {:else}
+                                <span class="media-icon">&#9654;</span>
+                            {/if}
                         {:else if item._type === 'embedMedia'}
-                            <span class="media-icon">&#9654;</span>
+                            {#if item.poster}
+                                <img
+                                    src={urlFor(item.poster).width(200).url()}
+                                    alt={item.caption ?? ''}
+                                />
+                            {:else}
+                                <span class="media-icon">&#9654;</span>
+                            {/if}
                         {/if}
                     </td>
                     <td

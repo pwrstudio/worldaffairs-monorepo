@@ -7,6 +7,7 @@ export type MediaItem = {
     credits?: string;
     year?: number;
     image?: any;
+    poster?: any;
     file?: { asset: { url: string } };
     url?: string;
     autoplay?: boolean;

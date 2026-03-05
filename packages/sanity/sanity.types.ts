@@ -96,6 +96,13 @@ export type Work = {
                   media?: unknown;
                   _type: 'file';
               };
+              poster?: {
+                  asset?: SanityImageAssetReference;
+                  media?: unknown;
+                  hotspot?: SanityImageHotspot;
+                  crop?: SanityImageCrop;
+                  _type: 'image';
+              };
               caption?: string;
               credits?: string;
               year?: number;
@@ -106,6 +113,13 @@ export type Work = {
           }
         | {
               url: string;
+              poster?: {
+                  asset?: SanityImageAssetReference;
+                  media?: unknown;
+                  hotspot?: SanityImageHotspot;
+                  crop?: SanityImageCrop;
+                  _type: 'image';
+              };
               autoplay?: boolean;
               loop?: boolean;
               caption?: string;

@@ -182,6 +182,14 @@ export default {
                             validation: (Rule: any) => Rule.required(),
                         },
                         {
+                            title: 'Poster Image',
+                            name: 'poster',
+                            type: 'image',
+                            options: {
+                                hotspot: true,
+                            },
+                        },
+                        {
                             title: 'Caption',
                             name: 'caption',
                             type: 'string',
@@ -234,6 +242,14 @@ export default {
                             description:
                                 'YouTube or Vimeo URL (ie. https://www.youtube.com/watch?v=pK-pfiOx7OE&t=873s – not an embed code',
                             validation: (Rule: any) => Rule.required(),
+                        },
+                        {
+                            title: 'Poster Image',
+                            name: 'poster',
+                            type: 'image',
+                            options: {
+                                hotspot: true,
+                            },
                         },
                         {
                             title: 'Autoplay',
