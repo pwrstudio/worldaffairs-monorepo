@@ -28,13 +28,13 @@ export default {
             type: 'string',
             options: {
                 list: [
-                    { title: 'Slideshow', value: 'slideshow' },
                     { title: 'Information', value: 'information' },
+                    { title: 'Slideshow', value: 'slideshow' },
                 ],
                 layout: 'radio',
                 direction: 'horizontal',
             },
-            initialValue: 'slideshow',
+            initialValue: 'information',
         },
         {
             title: 'Artist',
