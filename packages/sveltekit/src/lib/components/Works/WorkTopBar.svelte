@@ -24,21 +24,20 @@
     <div class="back">
         <a href="/#archive">&times;</a>
     </div>
-    <div
-        class="title-section"
-        role="button"
-        tabindex="-1"
-        onclick={onToggleViewMode}
-        onkeydown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') onToggleViewMode();
-        }}
-    >
+    <div class="title-section">
         <span class="title">{title}</span>
         {#if yearDisplay}
             <span class="year">({yearDisplay})</span>
         {/if}
-        <span class="mobile-indicator" aria-hidden="true">...</span>
     </div>
+    <button
+        class="mobile-toggle"
+        class:inactive={viewMode === 'table'}
+        onclick={viewMode === 'slideshow' ? onToggleViewMode : undefined}
+        aria-label="Toggle view"
+        disabled={viewMode === 'table'}
+        ><span class:invisible={viewMode === 'table'}>i</span></button
+    >
     <div class="view-selection-outer">
         <RadioGroup
             name="view"
@@ -107,14 +106,44 @@
             }
         }
 
-        .mobile-indicator {
+        .mobile-toggle {
             display: none;
-            position: absolute;
-            right: 0.5em;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--color-foreground);
-            pointer-events: none;
+            align-items: center;
+            justify-content: center;
+            align-self: stretch;
+            border: none;
+            border-left: 1px solid var(--archive-border-color);
+            background: none;
+            margin: 0;
+            padding: 0.2em 1em;
+            font: inherit;
+            font-size: var(--font-size-small);
+            cursor: pointer;
+            color: var(--foreground);
+
+            @media (hover: hover) {
+                &:hover {
+                    background-color: var(--table-row-hover-bg);
+                }
+            }
+
+            &:active {
+                background-color: var(--table-row-even-bg);
+            }
+
+            &.inactive {
+                cursor: default;
+                &:hover {
+                    background-color: transparent;
+                }
+                &:active {
+                    background-color: transparent;
+                }
+            }
+
+            .invisible {
+                visibility: hidden;
+            }
         }
 
         .view-selection-outer {
@@ -142,27 +171,18 @@
             }
 
             .title-section {
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
+                flex: 1;
                 padding: 0.4em;
                 align-items: center;
-                user-select: none;
-                pointer-events: auto;
-                cursor: pointer;
-
-                &:active {
-                    background-color: var(--table-row-even-bg);
-                }
+                overflow: hidden;
+                pointer-events: none;
             }
 
             .view-selection-outer {
                 display: none;
             }
 
-            .mobile-indicator {
+            .mobile-toggle {
                 display: flex;
             }
         }

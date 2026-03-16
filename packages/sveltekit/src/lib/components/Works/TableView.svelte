@@ -4,16 +4,15 @@
 
     import Footer from '$lib/components/Footer/Footer.svelte';
 
-    const { title, yearDisplay, media, intro, credits, onSelectSlide, pageLastUpdated } =
-        $props<{
-            title: string;
-            yearDisplay: string;
-            media: MediaItem[];
-            intro?: string | null;
-            credits?: string | null;
-            onSelectSlide: (index: number) => void;
-            pageLastUpdated?: string | null;
-        }>();
+    const { title, yearDisplay, media, intro, credits, onSelectSlide, pageLastUpdated } = $props<{
+        title: string;
+        yearDisplay: string;
+        media: MediaItem[];
+        intro?: string | null;
+        credits?: string | null;
+        onSelectSlide: (index: number) => void;
+        pageLastUpdated?: string | null;
+    }>();
 </script>
 
 <div class="table-wrapper">
@@ -34,6 +33,7 @@
                 <th class="col-index">#</th>
                 <th class="col-thumb">Preview</th>
                 <th>Information</th>
+                <th class="col-credits">Credits</th>
             </tr>
         </thead>
         <tbody>
@@ -70,11 +70,11 @@
                     </td>
                     <td
                         >{item.caption ?? ''}
-                        <br />
-                        {item.credits ?? ''}
-                        <br />
-                        {item.year ?? ''}
+                        {#if item.year}
+                            <span class="year">({item.year})</span>
+                        {/if}
                     </td>
+                    <td class="col-credits credits">{item.credits ?? ''}</td>
                 </tr>
             {/each}
         </tbody>
@@ -93,8 +93,6 @@
     }
 
     .table-wrapper {
-        flex: 1;
-        overflow-y: auto;
         padding: 0;
     }
 
@@ -117,7 +115,17 @@
         }
 
         .credits {
+            margin-top: 0.5em;
+            padding-top: 0.5em;
+            width: 45ch;
+            max-width: 100%;
+            border-top: 1px solid var(--archive-border-color);
             white-space: pre-wrap;
+            font-style: italic;
+
+            @media (max-width: 800px) {
+                width: 100%;
+            }
         }
     }
 
@@ -133,6 +141,11 @@
             padding: 0.4em;
             text-align: left;
             border: 1px solid var(--table-border-color);
+
+            &.credits {
+                white-space: pre-wrap;
+                font-style: italic;
+            }
         }
 
         th {
@@ -146,6 +159,10 @@
             background-color: var(--table-row-even-bg);
         }
 
+        td {
+            cursor: pointer;
+        }
+
         tbody tr {
             cursor: pointer;
 
@@ -155,7 +172,7 @@
         }
 
         .col-index {
-            width: 180px;
+            width: 120px;
             text-align: center;
 
             @media (max-width: 800px) {
@@ -163,8 +180,14 @@
             }
         }
 
+        .col-credits {
+            @media (max-width: 800px) {
+                display: none;
+            }
+        }
+
         .col-thumb {
-            width: 60px;
+            width: 140px;
 
             img {
                 display: block;

@@ -51,7 +51,7 @@
     const currentCaption = $derived(media[currentSlideIndex]?.caption ?? '');
 </script>
 
-<div class="work-layout">
+<div class="work-layout" class:slideshow-mode={viewMode === 'slideshow'}>
     <WorkTopBar
         title={work.title ?? ''}
         {yearDisplay}
@@ -75,7 +75,6 @@
                 {yearDisplay}
                 {media}
                 intro={work.intro}
-
                 credits={work.credits}
                 onSelectSlide={handleSelectSlide}
                 pageLastUpdated={lastUpdated}
@@ -101,27 +100,33 @@
         --spacing: 1em;
         --bar-height: 1.9em;
 
-        height: 100dvh;
         display: flex;
         flex-direction: column;
         background: var(--background);
         font-family: var(--font-stack-serif);
         font-size: var(--font-size-small);
-        line-height: 1.5;
+        line-height: 1.2em;
         color: var(--foreground);
-        overflow: hidden;
         max-width: 1600px;
         margin: 0 auto;
         width: 100%;
         padding-inline: 20px;
+
+        &.slideshow-mode {
+            height: 100dvh;
+            overflow: hidden;
+        }
     }
 
     .content {
         flex: 1;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
         min-height: 0;
+
+        .slideshow-mode & {
+            overflow: hidden;
+        }
     }
 
     .no-media {
