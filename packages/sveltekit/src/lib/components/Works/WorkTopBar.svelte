@@ -24,12 +24,17 @@
     <div class="back">
         <a href="/#archive">&times;</a>
     </div>
-    <div class="title-section">
+    <button
+        class="title-section"
+        class:clickable={viewMode === 'slideshow'}
+        onclick={viewMode === 'slideshow' ? onToggleViewMode : undefined}
+        disabled={viewMode !== 'slideshow'}
+    >
         <span class="title">{title}</span>
         {#if yearDisplay}
             <span class="year">({yearDisplay})</span>
         {/if}
-    </div>
+    </button>
     <button
         class="mobile-toggle"
         class:inactive={viewMode === 'table'}
@@ -100,6 +105,13 @@
             gap: 0.5em;
             pointer-events: none;
             position: relative;
+            border: none;
+            background: none;
+            font: inherit;
+            font-size: inherit;
+            color: inherit;
+            cursor: default;
+            margin: 0;
 
             .title {
                 font-weight: normal;
@@ -175,7 +187,21 @@
                 padding: 0.4em;
                 align-items: center;
                 overflow: hidden;
-                pointer-events: none;
+
+                &.clickable {
+                    pointer-events: auto;
+                    cursor: pointer;
+                }
+
+                @media (hover: hover) {
+                    &.clickable:hover {
+                        background-color: var(--table-row-hover-bg);
+                    }
+                }
+
+                &.clickable:active {
+                    background-color: var(--table-row-even-bg);
+                }
             }
 
             .view-selection-outer {
