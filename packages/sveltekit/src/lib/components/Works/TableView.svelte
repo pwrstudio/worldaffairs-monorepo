@@ -99,7 +99,7 @@
     .table-wrapper {
         flex: 1;
         overflow-y: auto;
-        padding: 0 20px;
+        padding: 0;
     }
 
     .information-title {

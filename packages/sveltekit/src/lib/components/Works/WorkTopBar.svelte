@@ -55,11 +55,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-inline: 20px;
         margin-top: 10px;
         border: 1px solid var(--archive-border-color);
         flex-shrink: 0;
         font-size: var(--font-size-small);
+        min-height: var(--bar-height);
 
         .back {
             padding: 0;

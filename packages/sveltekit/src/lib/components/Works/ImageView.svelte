@@ -1,35 +1,34 @@
 <script lang="ts">
     import MediaSlideshow from './MediaSlideshow/MediaSlideshow.svelte';
     import type { MediaItem } from './types';
-    import WorkBottomBar from './WorkBottomBar.svelte';
 
-    const { media, initialIndex = 0 } = $props<{
+    const {
+        media,
+        initialIndex = 0,
+        onSlideChange: onSlideChangeProp,
+    } = $props<{
         media: MediaItem[];
         initialIndex?: number;
+        onSlideChange?: (index: number) => void;
     }>();
 
-    // svelte-ignore state_referenced_locally
-    let currentIndex = $state(initialIndex);
     let slideshowRef: MediaSlideshow | null = $state(null);
 
     function handleSlideChange(index: number) {
-        currentIndex = index;
+        onSlideChangeProp?.(index);
     }
 
-    function goToPrev() {
+    export function goToPrev() {
         slideshowRef?.goToPrev();
     }
 
-    function goToNext() {
+    export function goToNext() {
         slideshowRef?.goToNext();
     }
 
-    function goToSlide(index: number) {
-        currentIndex = index;
+    export function goToSlide(index: number) {
         slideshowRef?.goToSlide(index);
     }
-
-    const currentCaption = $derived(media[currentIndex]?.caption ?? '');
 </script>
 
 <div class="slideshow-content">
@@ -40,8 +39,6 @@
         onSlideChange={handleSlideChange}
     />
 </div>
-
-<WorkBottomBar caption={currentCaption} onGoToPrev={goToPrev} onGoToNext={goToNext} />
 
 <style lang="scss">
     .slideshow-content {

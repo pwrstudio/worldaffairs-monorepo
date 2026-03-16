@@ -16,12 +16,11 @@
     .bottom-bar {
         display: flex;
         align-items: stretch;
-        margin-inline: 20px;
         margin-bottom: 10px;
         border: 1px solid var(--archive-border-color);
         flex-shrink: 0;
         font-size: var(--font-size-small);
-        min-height: 0;
+        height: var(--bar-height);
 
         @media (max-width: 800px) {
             margin-bottom: 20px;
@@ -74,6 +73,9 @@
             justify-content: center;
             padding: 0.2em;
             text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             @media (max-width: 800px) {
                 padding: 0.4em;

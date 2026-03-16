@@ -12,17 +12,17 @@
     "devDependencies": {
         "@portabletext/types": "^4.0.2",
         "@sveltejs/adapter-auto": "^7.0.1",
-        "@sveltejs/kit": "^2.53.4",
+        "@sveltejs/kit": "^2.55.0",
         "@sveltejs/vite-plugin-svelte": "^7.0.0",
-        "sass-embedded": "^1.97.3",
-        "svelte": "^5.53.7",
-        "svelte-check": "^4.4.4",
-        "vite": "^7.3.1"
+        "sass-embedded": "^1.98.0",
+        "svelte": "^5.53.12",
+        "svelte-check": "^4.4.5",
+        "vite": "^8.0.0"
     },
     "type": "module",
     "dependencies": {
         "@portabletext/to-html": "^5.0.2",
-        "@sanity/client": "^7.16.0",
+        "@sanity/client": "^7.17.0",
         "@sanity/image-url": "^2.0.3",
         "swiper": "^12.1.2"
     }
