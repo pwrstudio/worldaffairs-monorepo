@@ -4,13 +4,12 @@
 
     import Footer from '$lib/components/Footer/Footer.svelte';
 
-    const { title, yearDisplay, media, intro, tags, credits, onSelectSlide, pageLastUpdated } =
+    const { title, yearDisplay, media, intro, credits, onSelectSlide, pageLastUpdated } =
         $props<{
             title: string;
             yearDisplay: string;
             media: MediaItem[];
             intro?: string | null;
-            tags?: string[] | null;
             credits?: string | null;
             onSelectSlide: (index: number) => void;
             pageLastUpdated?: string | null;
@@ -19,13 +18,10 @@
 
 <div class="table-wrapper">
     <h3 class="information-title">{title} ({yearDisplay})</h3>
-    {#if intro || (tags && tags.length > 0) || credits}
+    {#if intro || credits}
         <div class="text-content">
             {#if intro}
                 <div class="intro">{intro}</div>
-            {/if}
-            {#if tags && tags.length > 0}
-                <div class="tags">{tags.join(', ')}</div>
             {/if}
             {#if credits}
                 <div class="credits">{credits}</div>
@@ -118,10 +114,6 @@
 
         .intro {
             white-space: pre-wrap;
-        }
-
-        .tags {
-            font-style: italic;
         }
 
         .credits {

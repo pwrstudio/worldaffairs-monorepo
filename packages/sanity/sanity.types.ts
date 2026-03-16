@@ -12,6 +12,14 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
+type ArrayOf<T> = Array<
+    T & {
+        _key: string;
+    }
+>;
+
 // Source: schema.json
 export type WorkReference = {
     _ref: string;
@@ -61,7 +69,6 @@ export type Work = {
     intro?: string;
     yearStart: number;
     yearEnd?: number;
-    tags?: Array<string>;
     credits?: string;
     media?: Array<
         | {
@@ -446,11 +453,3 @@ export type AllSanitySchemaTypes =
     | SanityAssetSourceData
     | SanityImageAsset
     | Geopoint;
-
-export declare const internalGroqTypeReferenceTo: unique symbol;
-
-type ArrayOf<T> = Array<
-    T & {
-        _key: string;
-    }
->;

@@ -60,15 +60,6 @@ export default {
             validation: (Rule: any) => Rule.integer().min(1900).max(2100),
         },
         {
-            title: 'Tags',
-            name: 'tags',
-            type: 'array',
-            of: [{ type: 'string' }],
-            options: {
-                layout: 'tags',
-            },
-        },
-        {
             title: 'Credits',
             name: 'credits',
             type: 'text',

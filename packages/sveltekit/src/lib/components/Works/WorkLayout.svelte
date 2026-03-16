@@ -75,7 +75,7 @@
                 {yearDisplay}
                 {media}
                 intro={work.intro}
-                tags={work.tags}
+
                 credits={work.credits}
                 onSelectSlide={handleSelectSlide}
                 pageLastUpdated={lastUpdated}
