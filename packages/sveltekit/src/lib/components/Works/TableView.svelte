@@ -98,7 +98,7 @@
 
     .information-title {
         font-size: var(--font-size-large);
-        margin: 0.5em 0 0.5em 0;
+        margin: 1em 0 0.5em 0;
         color: var(--table-border-color);
     }
 

@@ -2,10 +2,11 @@
     import type { Work } from '@sanity-types';
     import WorkLayout from '$lib/components/Works/WorkLayout.svelte';
     import { urlFor } from '$lib/modules/sanity';
-    import { afterNavigate } from '$app/navigation';
+    import { onMount } from 'svelte';
 
-    afterNavigate(() => {
-        window.scrollTo(0, 0);
+    onMount(() => {
+        history.scrollRestoration = 'manual';
+        requestAnimationFrame(() => window.scrollTo(0, 0));
     });
 
     export let data: {
