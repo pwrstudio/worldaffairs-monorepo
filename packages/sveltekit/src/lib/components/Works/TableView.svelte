@@ -187,13 +187,22 @@
         }
 
         .col-thumb {
-            width: 140px;
+            width: 100px;
+
+            @media (max-width: 800px) {
+                width: 80px;
+            }
 
             img {
                 display: block;
-                width: 140px;
-                height: 140px;
+                width: 100px;
+                height: 100px;
                 object-fit: cover;
+
+                @media (max-width: 800px) {
+                    width: 80px;
+                    height: 80px;
+                }
             }
         }
 
@@ -201,8 +210,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 140px;
-            height: 140px;
+            width: 100px;
+            height: 100px;
+
+            @media (max-width: 800px) {
+                width: 80px;
+                height: 80px;
+            }
             background: var(--table-row-even-bg);
             font-size: 18px;
         }
