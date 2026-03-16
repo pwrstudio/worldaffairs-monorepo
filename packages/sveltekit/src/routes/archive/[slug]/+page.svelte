@@ -2,6 +2,11 @@
     import type { Work } from '@sanity-types';
     import WorkLayout from '$lib/components/Works/WorkLayout.svelte';
     import { urlFor } from '$lib/modules/sanity';
+    import { afterNavigate } from '$app/navigation';
+
+    afterNavigate(() => {
+        window.scrollTo(0, 0);
+    });
 
     export let data: {
         work: Work;
