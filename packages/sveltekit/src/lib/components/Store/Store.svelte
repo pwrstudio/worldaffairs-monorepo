@@ -15,12 +15,21 @@
         { type: 'linkList', label: 'Links', hide: false },
     ];
 
+    const decodeEntities = (s: string) =>
+        s
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&(?:apos|#39);/g, "'")
+            .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d)))
+            .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)))
+            .replace(/&amp;/g, '&'); // last so &amp;lt; survives as &lt;
+
     const firstParagraphText = (html: string) => {
         const match = html.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
         const inner = match ? match[1] : html;
-        return inner
-            .replace(/<[^>]+>/g, '')
-            .replace(/&nbsp;/g, ' ')
+        return decodeEntities(inner.replace(/<[^>]+>/g, ''))
             .replace(/\s+/g, ' ')
             .trim();
     };
