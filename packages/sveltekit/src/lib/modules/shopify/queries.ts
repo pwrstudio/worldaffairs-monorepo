@@ -7,7 +7,7 @@ export const PRODUCTS_LISTING_QUERY = /* GraphQL */ `
                         id
                         handle
                         title
-                        description
+                        descriptionHtml
                         availableForSale
                         updatedAt
                         priceRange {

@@ -7,7 +7,7 @@ export type ShopifyProduct = {
     id: string;
     handle: string;
     title: string;
-    description: string;
+    descriptionHtml: string;
     availableForSale: boolean;
     priceRange: { minVariantPrice: ShopifyMoney };
     updatedAt: string;

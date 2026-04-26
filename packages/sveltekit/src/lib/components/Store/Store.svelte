@@ -15,13 +15,20 @@
         { type: 'linkList', label: 'Links', hide: false },
     ];
 
-    // Storefront API's `description` is stripped HTML — paragraphs become \n\n.
-    const firstParagraph = (text: string) => text.split(/\n\s*\n/)[0]?.trim() ?? '';
+    const firstParagraphText = (html: string) => {
+        const match = html.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+        const inner = match ? match[1] : html;
+        return inner
+            .replace(/<[^>]+>/g, '')
+            .replace(/&nbsp;/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    };
 
     const rows = $derived(
         products.map((p: ShopifyProduct) => ({
             title: p.title,
-            information: firstParagraph(p.description),
+            information: firstParagraphText(p.descriptionHtml),
             links: [{ label: 'Buy', url: productUrl(p.handle) }],
         }))
     );
