@@ -27,7 +27,6 @@ export default {
                         { type: 'tourDate' },
                         { type: 'release' },
                         { type: 'video' },
-                        { type: 'product' },
                     ],
                 },
             ],

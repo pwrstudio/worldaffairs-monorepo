@@ -1,5 +1,6 @@
 <script lang="ts">
-    import type { About, Release, Video, Tour, TourDate, Product } from '@sanity-types';
+    import type { About, Release, Video, Tour, TourDate } from '@sanity-types';
+    import type { ShopifyProduct } from '$lib/modules/shopify';
 
     import Ticker from '$lib/components/Ticker/Ticker.svelte';
     import ClockGroup from '$lib/components/Clock/ClockGroup.svelte';
@@ -20,7 +21,7 @@
         videos: Video[];
         tourDates: TourDate[];
         newPosts: (Release | Tour | TourDate | Video)[];
-        products: Product[];
+        products: ShopifyProduct[];
         siteLastUpdated: string;
     };
 

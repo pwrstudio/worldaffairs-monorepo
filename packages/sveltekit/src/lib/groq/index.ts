@@ -9,7 +9,6 @@ export const queries = {
         "releases": *[_type == "release"] | order(date desc),
         "videos": *[_type == "video"] | order(date desc),
         "tourDates": *[_type == "tourDate"] | order(date asc),
-        "newPosts": *[_type == "newPosts"][0] {title, posts[]->{...}},
-        "storeList": *[_type == "storeList"][0] {title, posts[]->{...}}
+        "newPosts": *[_type == "newPosts"][0] {title, posts[]->{...}}
     }`,
 };

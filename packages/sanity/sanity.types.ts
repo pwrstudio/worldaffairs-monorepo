@@ -12,46 +12,15 @@
  * ---------------------------------------------------------------------------------
  */
 
-// Source: schema.json
-export type ProductReference = {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'product';
-};
+export declare const internalGroqTypeReferenceTo: unique symbol;
 
-export type StoreList = {
-    _id: string;
-    _type: 'storeList';
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title: string;
-    posts?: Array<
-        {
-            _key: string;
-        } & ProductReference
-    >;
-};
-
-export type Product = {
-    _id: string;
-    _type: 'product';
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title: string;
-    information?: string;
-    date?: string;
-    price?: string;
-    links?: Array<{
-        label: string;
-        url: string;
-        _type: 'link';
+type ArrayOf<T> = Array<
+    T & {
         _key: string;
-    }>;
-};
+    }
+>;
 
+// Source: schema.json
 export type TourReference = {
     _ref: string;
     _type: 'reference';
@@ -86,10 +55,8 @@ export type NewPosts = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title: string;
-    posts?: Array<
-        TourReference | TourDateReference | ReleaseReference | VideoReference | ProductReference
-    >;
+    title?: string;
+    posts?: ArrayOf<TourReference | TourDateReference | ReleaseReference | VideoReference>;
 };
 
 export type TourDate = {
@@ -98,14 +65,14 @@ export type TourDate = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    artist: string;
-    date: string;
+    artist?: string;
+    date?: string;
     dateEnd?: string;
-    location: string;
-    venue: string;
+    location?: string;
+    venue?: string;
     links?: Array<{
-        label: string;
-        url: string;
+        label?: string;
+        url?: string;
         _type: 'link';
         _key: string;
     }>;
@@ -117,12 +84,12 @@ export type Video = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title: string;
-    artist: string;
-    date: string;
+    title?: string;
+    artist?: string;
+    date?: string;
     links?: Array<{
-        label: string;
-        url: string;
+        label?: string;
+        url?: string;
         _type: 'link';
         _key: string;
     }>;
@@ -134,13 +101,13 @@ export type Tour = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title: string;
-    artist: string;
-    region: string;
+    title?: string;
+    artist?: string;
+    region?: string;
     date?: string;
     links?: Array<{
-        label: string;
-        url: string;
+        label?: string;
+        url?: string;
         _type: 'link';
         _key: string;
     }>;
@@ -152,13 +119,13 @@ export type Release = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title: string;
-    type: string;
-    artist: string;
-    date: string;
+    title?: string;
+    type?: string;
+    artist?: string;
+    date?: string;
     links?: Array<{
-        label: string;
-        url: string;
+        label?: string;
+        url?: string;
         _type: 'link';
         _key: string;
     }>;
@@ -170,7 +137,7 @@ export type About = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title: string;
+    title?: string;
     contactEmail?: string;
     contactLinks?: Array<{
         label?: string;
@@ -200,9 +167,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
     _type: 'sanity.imageDimensions';
-    height: number;
-    width: number;
-    aspectRatio: number;
+    height?: number;
+    width?: number;
+    aspectRatio?: number;
 };
 
 export type SanityImageMetadata = {
@@ -212,24 +179,25 @@ export type SanityImageMetadata = {
     palette?: SanityImagePalette;
     lqip?: string;
     blurHash?: string;
+    thumbHash?: string;
     hasAlpha?: boolean;
     isOpaque?: boolean;
 };
 
 export type SanityImageHotspot = {
     _type: 'sanity.imageHotspot';
-    x: number;
-    y: number;
-    height: number;
-    width: number;
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
 };
 
 export type SanityImageCrop = {
     _type: 'sanity.imageCrop';
-    top: number;
-    bottom: number;
-    left: number;
-    right: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
 };
 
 export type SanityFileAsset = {
@@ -293,14 +261,11 @@ export type Geopoint = {
 
 export type Slug = {
     _type: 'slug';
-    current: string;
+    current?: string;
     source?: string;
 };
 
 export type AllSanitySchemaTypes =
-    | ProductReference
-    | StoreList
-    | Product
     | TourReference
     | TourDateReference
     | ReleaseReference
@@ -320,5 +285,5 @@ export type AllSanitySchemaTypes =
     | SanityFileAsset
     | SanityAssetSourceData
     | SanityImageAsset
-    | Geopoint;
-export declare const internalGroqTypeReferenceTo: unique symbol;
+    | Geopoint
+    | Slug;
