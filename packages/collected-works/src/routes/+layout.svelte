@@ -1,11 +1,22 @@
 <script lang="ts">
+    import { page } from '$app/state';
     import '$lib/styles/global.css';
 
     let { children } = $props();
+
+    /*
+		Which routes take the wider measure. The choice belongs to the page, but only the column
+		can apply it and the column lives here — custom properties flow down, so a page cannot
+		widen its own container. Naming the routes keeps that decision in one readable place
+		rather than scattering `:global()` overrides through the pages.
+	*/
+    const WIDE_ROUTES = ['/exhibition-text'];
+
+    let wide = $derived(WIDE_ROUTES.includes(page.route.id ?? ''));
 </script>
 
 <div class="page">
-    <main class="column">
+    <main class="column" class:wide>
         {@render children()}
     </main>
 </div>
@@ -36,5 +47,10 @@
         padding-block: var(--space-top) var(--space-bottom);
         margin: auto;
         text-align: center;
+    }
+
+    /* Redefining the token on the column itself, which is what its own `width` above reads */
+    .column.wide {
+        --column-width: var(--column-width-wide);
     }
 </style>

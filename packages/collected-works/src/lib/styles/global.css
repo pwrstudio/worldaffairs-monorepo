@@ -6,17 +6,20 @@
     --color-fg: #000;
     /* The hairlines between sections, which sit back from the text they separate */
     --color-fg-semi: rgba(0, 0, 0, 0.3);
-    --color-highlight: #b3121b;
 
     --page-padding: clamp(0.75rem, 2.5vmin, 2rem);
 
     /*
         The column every page sits in, and the rhythm inside it. Held here rather than on a
-        component because both the poster and the exhibition text are set in the same measure
-        — the layout owns the column, and pages only fill it. Anything specific to one page
-        (the artwork keyline, the logo) stays with that component.
+        component because the layout owns the column and pages only fill it. Anything specific
+        to one page (the artwork keyline, the logo) stays with that component.
+
+        Two measures: the poster's stacked lines are set narrow, while the exhibition text runs
+        as prose and takes a wider one. Which page gets which is decided in +layout.svelte,
+        since only the column itself can apply it.
     */
     --column-width: 360px;
+    --column-width-wide: 460px;
 
     --space-top: 48px;
     --space-bottom: 32px;
@@ -30,7 +33,7 @@
     --line-height-medium: 1.1;
 
     /* Running prose needs more air than the poster's stacked lines */
-    --line-height-body: 1.4;
+    --line-height-body: 1.2;
 
     /* The hairlines between sections */
     --rule-width: 1px;
@@ -54,13 +57,21 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+/*
+    Underlined by default and set back from the text, coming up to full strength on hover.
+    Moved here from the poster, so the exhibition text's links match rather than falling back
+    to a bare browser underline.
+*/
 a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-fg-semi);
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration-color: var(--color-fg);
 }
 
 img {
@@ -69,7 +80,114 @@ img {
     display: block;
 }
 
+/* The same tint the hairlines use, so a selection reads as part of the sheet */
 ::selection {
-    background: var(--color-highlight);
-    color: var(--color-bg);
+    background: var(--color-fg-semi);
+    color: var(--color-fg);
+}
+
+/* ------------------------------------------------------------------ the billing
+
+   Artist, title and years, set as three stacked lines. Shared: it heads the poster and
+   the exhibition text alike, which is why it lives here rather than in either component.
+*/
+
+.billing {
+    font-size: var(--type-size-large);
+    line-height: var(--line-height-large);
+    font-weight: 400;
+}
+
+.billing span {
+    display: block;
+}
+
+.billing .title,
+.billing .years {
+    font-weight: 700;
+}
+
+.billing .years {
+    font-style: italic;
+}
+
+/* ------------------------------------------------------------------- the poster
+
+   The poster's own blocks. Global rather than scoped to the component so the exhibition
+   text can borrow the pieces it shares — see Poster.svelte, which now carries no styles.
+*/
+
+.poster {
+    /* The keyline around the artwork */
+    --line-width: 3px;
+
+    /* The mark inside the logo bar, which is otherwise the full column width */
+    --logo-width: 64px;
+}
+
+/*
+    The blocks are block-level, so they already fill the column and share its centre line.
+    Each only declares the space under it; the last one leans on the column's own padding.
+*/
+.poster > * {
+    margin-bottom: var(--space-section);
+}
+
+.poster .visiting,
+.poster .links {
+    margin-bottom: var(--half-space-section);
+    font-size: var(--type-size-medium);
+    line-height: var(--line-height-medium);
+}
+
+/*
+    The keyline is drawn rather than photographed, and sits inside the column
+    (`box-sizing: border-box`), so the painting itself is `--line-width` narrower on each
+    side. The source file is square, which is what keeps the framed block square too.
+*/
+.poster .artwork {
+    display: block;
+    width: 100%;
+    border: var(--line-width) solid var(--color-fg);
+    user-select: none;
+}
+
+.poster .links {
+    border-top: var(--rule-width) solid var(--color-fg-semi);
+    padding-top: var(--half-space-section);
+}
+
+/*
+    The link is the full column so its hairline matches the one above the links, but the
+    mark inside keeps its own size — 17.55% of the column, the proportion it had against
+    the artwork on the reference sheet.
+*/
+.poster .logo {
+    display: block;
+    margin-bottom: 0;
+    border-top: var(--rule-width) solid var(--color-fg-semi);
+    padding-top: var(--half-space-section);
+    text-decoration: none;
+}
+
+/*
+    The poster prints the mark as a 40% tint of the ink rather than solid black; it is
+    lifted a little from that and comes up to full strength on hover, which is the only
+    state on the page that reads as interactive. The tint is on the mark alone, so the
+    hairline above it stays the same weight as the one above the links.
+*/
+.poster .logo svg {
+    width: var(--logo-width);
+    margin-inline: auto;
+    opacity: 0.5;
+}
+
+.poster .logo:hover svg,
+.poster .logo:focus-visible svg {
+    opacity: 1;
+}
+
+.poster .logo:focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 4px;
 }

@@ -1,13 +1,12 @@
 <script lang="ts">
     import { resolve } from '$app/paths';
+    import Billing from '$lib/components/Billing/Billing.svelte';
     import WorldAffairsLogo from '$lib/components/WorldAffairsLogo/WorldAffairsLogo.svelte';
     import type { PosterInfo } from '$lib/content';
-    import { formatYears } from '$lib/modules/utils';
     import { renderText } from '$lib/modules/sanity';
 
     let { poster }: { poster: PosterInfo } = $props();
 
-    let years = $derived(formatYears(poster));
     let visiting = $derived(renderText(poster.visiting));
 
     /*
@@ -24,11 +23,7 @@
 	under it.
 -->
 <article class="poster">
-    <h1 class="billing">
-        <span class="artist">{poster.artist}</span>
-        <span class="title">{poster.title}</span>
-        <span class="years">{years}</span>
-    </h1>
+    <Billing billing={poster} />
 
     <!--
 		One `<img>` rather than a `<picture>`: `urlFor()` builds these URLs with `auto=format`,
@@ -64,120 +59,3 @@
         <WorldAffairsLogo />
     </a>
 </article>
-
-<style>
-    /*
-		The column, its rhythm, its type and the hairline colour all come from `:root` in
-		global.css, which the exhibition text shares. Only what belongs to the poster alone
-		is declared here.
-	*/
-    .poster {
-        /* The keyline around the artwork */
-        --line-width: 3px;
-
-        /* The mark inside the logo bar, which is otherwise the full column width */
-        --logo-width: 64px;
-    }
-
-    /*
-		The blocks are block-level, so they already fill the column and share its centre line.
-		Each only declares the space under it; the last one leans on the column's own padding.
-	*/
-    .poster > * {
-        margin-bottom: var(--space-section);
-    }
-
-    .visiting,
-    .links {
-        margin-bottom: var(--half-space-section);
-    }
-
-    .logo {
-        margin-bottom: 0;
-    }
-
-    .billing {
-        font-size: var(--type-size-large);
-        line-height: var(--line-height-large);
-        font-weight: 400;
-    }
-
-    .billing span {
-        display: block;
-    }
-
-    .billing .title {
-        font-weight: 700;
-    }
-
-    .billing .years {
-        font-weight: 700;
-        font-style: italic;
-    }
-
-    /*
-		The keyline is drawn rather than photographed, and sits inside the column
-		(`box-sizing: border-box`), so the painting itself is `--line-width` narrower on each
-		side. The source file is square, which is what keeps the framed block square too.
-	*/
-    .artwork {
-        display: block;
-        width: 100%;
-        border: var(--line-width) solid var(--color-fg);
-    }
-
-    .visiting,
-    .links {
-        font-size: var(--type-size-medium);
-        line-height: var(--line-height-medium);
-    }
-
-    /* Links in the visiting lines get the same underline as those below them */
-    .visiting :global(a) {
-        text-decoration: underline;
-    }
-
-    .links {
-        border-top: var(--rule-width) solid var(--color-fg-semi);
-        padding-top: var(--half-space-section);
-    }
-
-    /*
-		The link is the full column so its hairline matches the one above the links, but the
-		mark inside keeps its own size — 17.55% of the column, the proportion it had against
-		the artwork on the reference sheet.
-	*/
-    .logo {
-        display: block;
-        border-top: var(--rule-width) solid var(--color-fg-semi);
-        padding-top: var(--half-space-section);
-        text-decoration: none;
-    }
-
-    /*
-		The poster prints the mark as a 40% tint of the ink rather than solid black; it is
-		lifted a little from that and comes up to full strength on hover, which is the only
-		state on the page that reads as interactive. The tint is on the mark alone, so the
-		hairline above it stays the same weight as the one above the links.
-	*/
-    .logo :global(svg) {
-        width: var(--logo-width);
-        margin-inline: auto;
-        opacity: 0.5;
-    }
-
-    .logo:hover,
-    .logo:focus-visible {
-        text-decoration: none;
-    }
-
-    .logo:hover :global(svg),
-    .logo:focus-visible :global(svg) {
-        opacity: 1;
-    }
-
-    .logo:focus-visible {
-        outline: 2px solid var(--color-fg);
-        outline-offset: 4px;
-    }
-</style>

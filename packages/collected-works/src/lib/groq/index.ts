@@ -7,12 +7,17 @@
  * poster uses. `hotspot` and `crop` are kept because `urlFor()` reads them when it crops.
  */
 
+/** The billing lines, which head both pages and so are projected by both queries */
+const BILLING_FIELDS = `
+	artist,
+	title,
+	yearStart,
+	yearEnd
+`;
+
 export const posterInfoQuery = `
 	*[_type == "posterInfo" && _id == "posterInfo"][0]{
-		artist,
-		title,
-		yearStart,
-		yearEnd,
+		${BILLING_FIELDS},
 		visiting,
 		artwork{
 			alt,
@@ -27,10 +32,19 @@ export const posterInfoQuery = `
 	}
 `;
 
+/*
+	Two documents in one round trip: the text itself, and the billing from `posterInfo` that
+	heads the page above it.
+*/
 export const exhibitionTextQuery = `
-	*[_type == "exhibitionText" && _id == "exhibitionText"][0]{
-		title,
-		author,
-		body
+	{
+		"text": *[_type == "exhibitionText" && _id == "exhibitionText"][0]{
+			title,
+			author,
+			body
+		},
+		"billing": *[_type == "posterInfo" && _id == "posterInfo"][0]{
+			${BILLING_FIELDS}
+		}
 	}
 `;

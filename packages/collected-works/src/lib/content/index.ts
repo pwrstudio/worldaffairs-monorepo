@@ -49,18 +49,26 @@ export interface PosterArtwork {
     height: number;
 }
 
-type PosterInfoText = Required<
-    Pick<SanityPosterInfo, 'artist' | 'title' | 'yearStart' | 'visiting'>
-> &
+/** The three stacked lines that head both pages */
+export type Billing = Required<Pick<SanityPosterInfo, 'artist' | 'title' | 'yearStart'>> &
     /** Omitted when the same as `yearStart` */
     Pick<SanityPosterInfo, 'yearEnd'>;
 
-export type PosterInfo = PosterInfoText & { artwork: PosterArtwork };
+export type BillingResult = Pick<SanityPosterInfo, 'artist' | 'title' | 'yearStart' | 'yearEnd'>;
+
+export type PosterInfo = Billing &
+    Required<Pick<SanityPosterInfo, 'visiting'>> & { artwork: PosterArtwork };
 
 /* -------------------------------------------------------------- exhibition text */
 
-/** What `exhibitionTextQuery` returns */
-export type ExhibitionTextResult = Pick<SanityExhibitionText, 'title' | 'author' | 'body'>;
+/**
+ * What `exhibitionTextQuery` returns. The page heads itself with the same billing as the
+ * poster, so the projection pulls that from `posterInfo` in the same round trip.
+ */
+export type ExhibitionTextResult = {
+    text: Pick<SanityExhibitionText, 'title' | 'author' | 'body'> | null;
+    billing: BillingResult | null;
+};
 
 export type ExhibitionText = Required<Pick<SanityExhibitionText, 'title' | 'body'>> &
     /** Omitted to print the text unsigned */
