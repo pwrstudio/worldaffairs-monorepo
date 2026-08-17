@@ -112,17 +112,27 @@ puts behind it.
 
 ## Deploying
 
-A separate Netlify site from the same repo, ideally with its base directory set to
-`packages/collected-works` — which is how `netlify.toml` in this directory gets picked up
-without touching the main site, whose build is configured from the Netlify dashboard.
+A separate Netlify site from the same repo, configured with:
 
-The adapter is `@sveltejs/adapter-netlify` by name rather than `adapter-auto`, and has to be.
-Auto detects the platform at build time and then fetches the real adapter with a live
-`pnpm add`; Netlify installs against a frozen lockfile, so that step fails and takes the whole
-build down before anything reaches `build/`. Naming the adapter removes the install entirely.
+| Setting           | Value                                        |
+| ----------------- | -------------------------------------------- |
+| Base directory    | `/`                                          |
+| Package directory | `packages/collected-works`                   |
+| Build command     | `pnpm --filter collected-works... run build` |
+| Publish directory | `packages/collected-works/build`             |
+
+The command and publish directory belong in the dashboard rather than in `netlify.toml` —
+that file explains at length why, but the short version is that Netlify resolves them against
+the base directory (the repo root) while the adapter resolves the same `publish` key against
+this package. One value cannot satisfy both. `netlify.toml` therefore carries nothing but
+`NODE_VERSION`, which Netlify does read from here because the package directory points at it.
+
+The adapter is `@sveltejs/adapter-netlify` by name rather than `adapter-auto`. Auto detects
+the platform at build time and then fetches the real adapter with a live `pnpm add`, which is
+a step worth not depending on in CI; naming the adapter removes it.
 
 Both routes prerender, so `build/` is a complete static site on its own and the adapter's
 serverless function in `.netlify/functions-internal/` goes unused. Drop `prerender` from a
-route and that stops being true — at which point the base directory has to be
-`packages/collected-works`, or Netlify will look for the function at the repo root and not
-find it.
+route and that stops being true, at which point where Netlify looks for that function starts
+to matter — the fix then is to move the base directory to `packages/collected-works` and put
+the command and publish directory back in `netlify.toml`, where they become consistent again.
