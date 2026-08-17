@@ -1,2 +1,7 @@
 packages:
     - packages/*
+allowBuilds:
+    # Both ship prebuilt binaries via optional platform packages; their install
+    # scripts are source-build/validation fallbacks we don't need.
+    '@parcel/watcher': false
+    esbuild: false

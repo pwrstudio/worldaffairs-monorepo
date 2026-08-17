@@ -10,8 +10,8 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "@sanity/client": "^7.22.0",
+        "@sanity/client": "^8.0.0",
         "dotenv": "^17.4.2",
-        "uuid": "^14.0.0"
+        "uuid": "^14.0.1"
     }
 }
