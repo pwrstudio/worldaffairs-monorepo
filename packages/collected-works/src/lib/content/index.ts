@@ -1,40 +1,35 @@
-import type { Exhibition as SanityExhibition } from '@sanity-types';
+import type {
+    PosterInfo as SanityPosterInfo,
+    ExhibitionText as SanityExhibitionText,
+} from '@sanity-types';
 
 /**
- * Hardcoded exhibition content.
+ * Hardcoded content for the two collected-works singletons.
  *
- * The text fields are derived from the `exhibition` singleton in
- * packages/sanity/schemaTypes/Exhibition.ts, so renaming a field in the studio breaks
- * this file at compile time rather than quietly emptying the page. Typegen marks every
- * field optional (it cannot see validation rules); the page always renders these, so
- * they are required here.
+ * Both shapes are derived from the studio's own types rather than written out by hand, so
+ * renaming a field in packages/sanity/schemaTypes/ breaks this file at compile time instead
+ * of quietly emptying a page. Typegen marks every field optional (it cannot see validation
+ * rules); the pages always render these, so they are required here.
  *
- * Run `pnpm typegen` from the repo root after changing the schema.
+ * Run `pnpm typegen:sanity` from the repo root after changing either schema.
  */
-type ExhibitionText = Required<
-    Pick<
-        SanityExhibition,
-        | 'artist'
-        | 'title'
-        | 'yearStart'
-        | 'startDate'
-        | 'endDate'
-        | 'venue'
-        | 'openingHours'
-        | 'admission'
-    >
+
+/* ------------------------------------------------------------------ poster info */
+
+type PosterInfoText = Required<
+    Pick<SanityPosterInfo, 'artist' | 'title' | 'yearStart' | 'visiting'>
 > &
     /** Omitted when the same as `yearStart` */
-    Pick<SanityExhibition, 'yearEnd'>;
+    Pick<SanityPosterInfo, 'yearEnd'>;
 
 /** One `<source>` ahead of the `<img>`, for a format the browser may or may not read */
-export interface ExhibitionArtworkSource {
+export interface PosterArtworkSource {
     /** `image/avif`, `image/webp`, ... */
     type: string;
     srcset: string;
 }
 
-export interface ExhibitionArtwork {
+export interface PosterArtwork {
     /** Described for screen readers */
     alt: string;
     caption?: string;
@@ -45,23 +40,35 @@ export interface ExhibitionArtwork {
      * Offered before `src`, most efficient format first. Sanity serves this from one URL
      * with `auto=format`, so this drops away when the artwork moves to the studio.
      */
-    sources?: ExhibitionArtworkSource[];
+    sources?: PosterArtworkSource[];
     width: number;
     height: number;
 }
 
-export type Exhibition = ExhibitionText & { artwork: ExhibitionArtwork };
+export type PosterInfo = PosterInfoText & { artwork: PosterArtwork };
 
-export const exhibition: Exhibition = {
+export const posterInfo: PosterInfo = {
     artist: 'Jonatan Leandoer Håstad',
     title: 'Collected Works',
     yearStart: 2016,
     yearEnd: 2026,
-    startDate: '2026-09-25',
-    endDate: '2026-10-11',
-    venue: 'Torsgatan 22 Stockholm',
-    openingHours: 'Open daily 10–19 except Mondays',
-    admission: 'Free admission',
+    /*
+        One paragraph per line on the poster. Written out as Portable Text so it matches what
+        the studio will return, which is why each block carries the `_type`/`_key`/`markDefs`
+        a real block would.
+    */
+    visiting: [
+        '25 September – 11 October 2026',
+        'Torsgatan 22 Stockholm',
+        'Open daily 10–19 except Mondays',
+        'Free admission',
+    ].map((text, i) => ({
+        _type: 'block' as const,
+        _key: `visiting-${i}`,
+        style: 'normal' as const,
+        markDefs: [],
+        children: [{ _type: 'span' as const, _key: `visiting-${i}-0`, text, marks: [] }],
+    })),
     artwork: {
         alt:
             'Expressionist oil painting on a deep red ground: pale pink figures entangled at the centre, ' +
@@ -81,4 +88,53 @@ export const exhibition: Exhibition = {
         width: 1250,
         height: 1250,
     },
+};
+
+/* -------------------------------------------------------------- exhibition text */
+
+export type ExhibitionText = Required<Pick<SanityExhibitionText, 'title' | 'body'>> &
+    /** Omitted to print the text unsigned */
+    Pick<SanityExhibitionText, 'author'>;
+
+/*
+    PLACEHOLDER COPY — not the real exhibition text. It is here so the route renders and
+    prerenders while the studio document is still empty; replace it, or switch the loader in
+    src/routes/exhibition-text/+page.ts over to Sanity once the document exists.
+
+    Written as Portable Text so it matches what the studio will return, which is why each
+    block carries the `_type`/`_key`/`markDefs` a real block would.
+*/
+export const exhibitionText: ExhibitionText = {
+    title: 'Collected Works',
+    author: undefined,
+    body: [
+        {
+            _type: 'block',
+            _key: 'placeholder-1',
+            style: 'normal',
+            markDefs: [],
+            children: [
+                {
+                    _type: 'span',
+                    _key: 'placeholder-1-0',
+                    text: 'Placeholder text. The exhibition text has not been written into the studio yet — this paragraph stands in for it so the page has something to lay out.',
+                    marks: [],
+                },
+            ],
+        },
+        {
+            _type: 'block',
+            _key: 'placeholder-2',
+            style: 'normal',
+            markDefs: [],
+            children: [
+                {
+                    _type: 'span',
+                    _key: 'placeholder-2-0',
+                    text: 'A second paragraph, to show the spacing between them and the measure the column sets for running prose.',
+                    marks: [],
+                },
+            ],
+        },
+    ],
 };

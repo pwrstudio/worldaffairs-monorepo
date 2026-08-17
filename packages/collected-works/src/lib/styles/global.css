@@ -4,9 +4,36 @@
 
     --color-bg: #3c9518;
     --color-fg: #000;
+    /* The hairlines between sections, which sit back from the text they separate */
+    --color-fg-semi: rgba(0, 0, 0, 0.3);
     --color-highlight: #b3121b;
 
     --page-padding: clamp(0.75rem, 2.5vmin, 2rem);
+
+    /*
+        The column every page sits in, and the rhythm inside it. Held here rather than on a
+        component because both the poster and the exhibition text are set in the same measure
+        — the layout owns the column, and pages only fill it. Anything specific to one page
+        (the artwork keyline, the logo) stays with that component.
+    */
+    --column-width: 360px;
+
+    --space-top: 48px;
+    --space-bottom: 32px;
+    --space-section: 16px;
+    --half-space-section: calc(var(--space-section) / 2);
+
+    --type-size-large: 24px;
+    --line-height-large: 0.9;
+
+    --type-size-medium: 18px;
+    --line-height-medium: 1.1;
+
+    /* Running prose needs more air than the poster's stacked lines */
+    --line-height-body: 1.4;
+
+    /* The hairlines between sections */
+    --rule-width: 1px;
 }
 
 * {

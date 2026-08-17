@@ -1,57 +1,61 @@
 <script lang="ts">
+    import { resolve } from '$app/paths';
     import WorldAffairsLogo from '$lib/components/WorldAffairsLogo/WorldAffairsLogo.svelte';
-    import type { Exhibition } from '$lib/content';
-    import { formatDateRange, formatYears } from '$lib/modules/utils';
+    import type { PosterInfo } from '$lib/content';
+    import { formatYears } from '$lib/modules/utils';
+    import { renderText } from '$lib/modules/sanity';
 
-    let { exhibition }: { exhibition: Exhibition } = $props();
+    let { poster }: { poster: PosterInfo } = $props();
 
-    let years = $derived(formatYears(exhibition));
-    let dates = $derived(formatDateRange(exhibition.startDate, exhibition.endDate));
+    let years = $derived(formatYears(poster));
+    let visiting = $derived(renderText(poster.visiting));
 
     /*
 		The painting fills the column, so it is drawn at `--column-width` until the viewport is
 		narrower than that. The page padding is ignored, which reads a little high and so errs
-		towards the larger source file. Keep in step with `--column-width` below.
+		towards the larger source file. Keep in step with `--column-width` in global.css.
 	*/
     const ARTWORK_SIZES = 'min(100vw, 360px)';
 </script>
 
 <!--
-	A single centred column. Every block below is a plain block-level child of it, so they all
-	take the column's width and line up without a width or a margin of their own — the only
-	thing a block sets is the space under it.
+	The layout supplies the column, so every block below is a plain block-level child of it and
+	lines up without a width or a margin of its own — the only thing a block sets is the space
+	under it.
 -->
 <article class="poster">
     <h1 class="billing">
-        <span class="artist">{exhibition.artist}</span>
-        <span class="title">{exhibition.title}</span>
+        <span class="artist">{poster.artist}</span>
+        <span class="title">{poster.title}</span>
         <span class="years">{years}</span>
     </h1>
 
     <picture class="artwork">
-        {#each exhibition.artwork.sources ?? [] as source (source.type)}
+        {#each poster.artwork.sources ?? [] as source (source.type)}
             <source type={source.type} srcset={source.srcset} sizes={ARTWORK_SIZES} />
         {/each}
         <img
-            src={exhibition.artwork.src}
-            srcset={exhibition.artwork.srcset}
+            src={poster.artwork.src}
+            srcset={poster.artwork.srcset}
             sizes={ARTWORK_SIZES}
-            width={exhibition.artwork.width}
-            height={exhibition.artwork.height}
-            alt={exhibition.artwork.alt}
+            width={poster.artwork.width}
+            height={poster.artwork.height}
+            alt={poster.artwork.alt}
             fetchpriority="high"
         />
     </picture>
 
-    <div class="visiting">
-        <p>{dates}</p>
-        <p>{exhibition.venue}</p>
-        <p>{exhibition.openingHours}</p>
-        <p>{exhibition.admission}</p>
-    </div>
+    <!--
+		Trusted HTML, on the same terms as the exhibition text: Portable Text from our own
+		studio through `renderText`, which emits only the tags the schema can produce. Each
+		paragraph becomes a `<p>`, and the global reset leaves those unspaced, so a block per
+		line is what sets the four lines here.
+	-->
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    <div class="visiting">{@html visiting}</div>
 
     <div class="links">
-        <p><a href="/exhibition-text">Exhibition text</a></p>
+        <p><a href={resolve('/exhibition-text')}>Exhibition text</a></p>
         <p>For inquiries contact <a href="mailto:info@worldaffairs.se">info@worldaffairs.se</a></p>
     </div>
 
@@ -61,40 +65,17 @@
 </article>
 
 <style>
+    /*
+		The column, its rhythm, its type and the hairline colour all come from `:root` in
+		global.css, which the exhibition text shares. Only what belongs to the poster alone
+		is declared here.
+	*/
     .poster {
-        /* The column. Everything else measures itself against this one width. */
-        --column-width: 360px;
-
-        --space-top: 48px;
-        --space-bottom: 32px;
-        --space-section: 16px;
-        --half-space-section: calc(var(--space-section) / 2);
-
-        --type-size-large: 24px;
-        --line-height-large: 0.9;
-
-        --type-size-medium: 18px;
-        --line-height-medium: 1.1;
-
-        /* The keyline around the artwork, and the hairlines above the links and the logo */
+        /* The keyline around the artwork */
         --line-width: 3px;
-        --rule-width: 1px;
-
-        --color-fg-semi: rgba(0, 0, 0, 0.3);
 
         /* The mark inside the logo bar, which is otherwise the full column width */
         --logo-width: 64px;
-
-        width: min(100%, var(--column-width));
-        padding-block: var(--space-top) var(--space-bottom);
-
-        /*
-			`auto` on all four sides: it centres the column horizontally, and — as the only child
-			of the page's column flexbox — vertically too, without the clipping that
-			`justify-content: center` causes once the column is taller than the window.
-		*/
-        margin: auto;
-        text-align: center;
     }
 
     /*
@@ -151,6 +132,11 @@
     .links {
         font-size: var(--type-size-medium);
         line-height: var(--line-height-medium);
+    }
+
+    /* Links in the visiting lines get the same underline as those below them */
+    .visiting :global(a) {
+        text-decoration: underline;
     }
 
     .links {

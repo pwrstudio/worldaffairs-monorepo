@@ -11,8 +11,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content={SITE_TITLE} />
     <meta property="og:description" content={SITE_DESCRIPTION} />
-    <meta property="og:image" content={data.exhibition.artwork.src} />
+    <meta property="og:image" content={data.poster.artwork.src} />
     <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
-<Poster exhibition={data.exhibition} />
+<Poster poster={data.poster} />

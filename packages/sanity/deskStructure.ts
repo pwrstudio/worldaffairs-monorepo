@@ -6,6 +6,8 @@ import {
     MdHome,
     MdEvent,
     MdCollections,
+    MdImage,
+    MdNotes,
 } from 'react-icons/md';
 
 export default (S: any) =>
@@ -68,11 +70,32 @@ export default (S: any) =>
                         .defaultOrdering([{ field: 'date', direction: 'desc' }])
                 ),
             S.divider(),
-            // Drives works.worldaffairs.se rather than the main site
+            // Everything below drives works.worldaffairs.se rather than the main site
             S.listItem()
-                .title('Exhibition')
+                .title('Collected Works')
                 .icon(MdCollections)
                 .child(
-                    S.editor().id('exhibition').schemaType('exhibition').documentId('exhibition')
+                    S.list()
+                        .title('Collected Works')
+                        .items([
+                            S.listItem()
+                                .title('Poster info')
+                                .icon(MdImage)
+                                .child(
+                                    S.editor()
+                                        .id('posterInfo')
+                                        .schemaType('posterInfo')
+                                        .documentId('posterInfo')
+                                ),
+                            S.listItem()
+                                .title('Exhibition text')
+                                .icon(MdNotes)
+                                .child(
+                                    S.editor()
+                                        .id('exhibitionText')
+                                        .schemaType('exhibitionText')
+                                        .documentId('exhibitionText')
+                                ),
+                        ])
                 ),
         ]);

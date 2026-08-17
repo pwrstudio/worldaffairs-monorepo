@@ -21,6 +21,34 @@ type ArrayOf<T> = Array<
 >;
 
 // Source: schema.json
+export type ExhibitionText = {
+    _id: string;
+    _type: 'exhibitionText';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    author?: string;
+    body?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+        }>;
+        style?: 'normal' | 'blockquote';
+        listItem?: never;
+        markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+        }>;
+        level?: number;
+        _type: 'block';
+        _key: string;
+    }>;
+};
+
 export type SanityImageAssetReference = {
     _ref: string;
     _type: 'reference';
@@ -28,9 +56,9 @@ export type SanityImageAssetReference = {
     [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 };
 
-export type Exhibition = {
+export type PosterInfo = {
     _id: string;
-    _type: 'exhibition';
+    _type: 'posterInfo';
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
@@ -47,11 +75,24 @@ export type Exhibition = {
         caption?: string;
         _type: 'image';
     };
-    startDate?: string;
-    endDate?: string;
-    venue?: string;
-    openingHours?: string;
-    admission?: string;
+    visiting?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+        }>;
+        style?: 'normal';
+        listItem?: never;
+        markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+        }>;
+        level?: number;
+        _type: 'block';
+        _key: string;
+    }>;
 };
 
 export type SanityImageCrop = {
@@ -299,8 +340,9 @@ export type Slug = {
 };
 
 export type AllSanitySchemaTypes =
+    | ExhibitionText
     | SanityImageAssetReference
-    | Exhibition
+    | PosterInfo
     | SanityImageCrop
     | SanityImageHotspot
     | TourReference
