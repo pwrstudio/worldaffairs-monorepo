@@ -47,16 +47,16 @@
             <NewTable {newPosts} />
             <hr />
         {/if}
+        {#if hasExhibitions}
+            <ArtTable {exhibitions} />
+            <hr />
+        {/if}
         <Store {products} />
         <hr />
         <MusicTable {releases} />
         <hr />
         <VideoTable {videos} />
         <hr />
-        {#if hasExhibitions}
-            <ArtTable {exhibitions} />
-            <hr />
-        {/if}
         {#if hasTourDates}
             <TourDateTable {tourDates} />
             <hr />
