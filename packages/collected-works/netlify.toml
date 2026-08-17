@@ -1,24 +1,24 @@
-# Deliberately no [build] block. The site's base directory is the repo root and its package
-# directory is packages/collected-works, which means Netlify reads this file but runs the
-# build from /opt/build/repo — so `command` and `publish` here would be resolved against the
-# root, not against this package. A `publish = "build"` became /opt/build/repo/build, and a
-# `command = "pnpm build"` looked for a build script in the root package.json, which has none.
+# This file is only read by Netlify when the site's base directory is
+# `packages/collected-works`, which it now has to be.
 #
-# Worse, they cannot simply be rewritten root-relative: `@sveltejs/adapter-netlify` reads this
-# same file to decide where to write, and it runs with this package as its working directory,
-# because that is where pnpm runs a package's script from. One `publish` value cannot be
-# correct for two readers with different working directories.
+# The pages are server-rendered, so `build/` holds no HTML at all — every route is served by
+# `.netlify/functions-internal/sveltekit-render.mjs`, which declares its own routing with
+# `path: ["/*"]` and `preferStatic: true`. The adapter writes that function relative to this
+# package, because that is the working directory pnpm runs a package's script from. Netlify
+# has to look for it in the same place, and that is what the base directory decides.
 #
-# So the build command and publish directory live in the Netlify dashboard:
+# With base pointed here, Netlify and the adapter finally share a working directory, so the
+# two keys below mean the same thing to both of them — which they did not when base was the
+# repo root. pnpm walks up to the workspace root for the lockfile, so installing from here
+# still resolves the whole monorepo.
 #
-#   Build command:      pnpm --filter collected-works... run build
-#   Publish directory:  packages/collected-works/build
-#
-# and the adapter falls back to its own default of `build` relative to this package, which
-# lands in exactly that place.
+# Leave the dashboard's build command and publish directory empty; these take precedence.
 
-# Read by Netlify from here, which the build log confirms. Vite 8 requires
-# Node ^20.19 || >=22.12, and nothing else in the repo pins a version, so without this the
-# build runs on whatever the build image defaults to.
+[build]
+    command = "pnpm build"
+    publish = "build"
+
+# Vite 8 requires Node ^20.19 || >=22.12, and nothing else in the repo pins a version, so
+# without this the build runs on whatever the build image defaults to.
 [build.environment]
     NODE_VERSION = "22"

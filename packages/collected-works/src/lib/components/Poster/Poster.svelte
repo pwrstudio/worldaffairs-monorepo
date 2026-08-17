@@ -30,20 +30,21 @@
         <span class="years">{years}</span>
     </h1>
 
-    <picture class="artwork">
-        {#each poster.artwork.sources ?? [] as source (source.type)}
-            <source type={source.type} srcset={source.srcset} sizes={ARTWORK_SIZES} />
-        {/each}
-        <img
-            src={poster.artwork.src}
-            srcset={poster.artwork.srcset}
-            sizes={ARTWORK_SIZES}
-            width={poster.artwork.width}
-            height={poster.artwork.height}
-            alt={poster.artwork.alt}
-            fetchpriority="high"
-        />
-    </picture>
+    <!--
+		One `<img>` rather than a `<picture>`: `urlFor()` builds these URLs with `auto=format`,
+		so the browser is served AVIF or WebP from the same `src` and there is no second format
+		to offer in a `<source>`.
+	-->
+    <img
+        class="artwork"
+        src={poster.artwork.src}
+        srcset={poster.artwork.srcset}
+        sizes={ARTWORK_SIZES}
+        width={poster.artwork.width}
+        height={poster.artwork.height}
+        alt={poster.artwork.alt}
+        fetchpriority="high"
+    />
 
     <!--
 		Trusted HTML, on the same terms as the exhibition text: Portable Text from our own
@@ -121,9 +122,6 @@
 	*/
     .artwork {
         display: block;
-    }
-
-    .artwork img {
         width: 100%;
         border: var(--line-width) solid var(--color-fg);
     }

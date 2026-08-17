@@ -4,11 +4,16 @@ import { toHTML } from '@portabletext/to-html';
 import type { PortableTextBlock } from '@portabletext/types';
 import { SANITY_ID, SANITY_DATASET } from '$lib/constants';
 
+/*
+	`useCdn` on, now that the pages fetch per request rather than at build time: every visit
+	would otherwise hit the uncached API. The CDN serves a published edit within seconds, which
+	is the right trade for content that is read far more often than it is written.
+*/
 export const client = createClient({
     projectId: SANITY_ID,
     dataset: SANITY_DATASET,
     apiVersion: '2024-01-01',
-    useCdn: false,
+    useCdn: true,
 });
 
 const builder = createImageUrlBuilder(client);

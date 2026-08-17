@@ -1,10 +1,10 @@
 /**
- * Projections for the two collected-works singletons. Each matches the shape of its
- * counterpart in $lib/content, so a page moves from hardcoded content to Sanity by swapping
- * the loader in its `+page.ts` and nothing else.
+ * Projections for the two collected-works singletons. Both documents are pinned to a known
+ * `_id`, which is what the studio's desk structure creates them as.
  *
- * Both documents are singletons pinned to a known `_id`, which is what the studio's desk
- * structure creates them as.
+ * The artwork asks for named fields rather than spreading the whole asset: a bare `asset->`
+ * drags in the blurHash, the LQIP data URI and the full colour palette, none of which the
+ * poster uses. `hotspot` and `crop` are kept because `urlFor()` reads them when it crops.
  */
 
 export const posterInfoQuery = `
@@ -17,8 +17,12 @@ export const posterInfoQuery = `
 		artwork{
 			alt,
 			caption,
-			...,
-			asset->
+			hotspot,
+			crop,
+			asset->{
+				_id,
+				metadata { dimensions { width, height } }
+			}
 		}
 	}
 `;

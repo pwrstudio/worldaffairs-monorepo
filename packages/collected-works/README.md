@@ -29,18 +29,20 @@ studio singleton rather than sprinkled through the markup:
   `pnpm typegen:sanity` from the repo root after editing either schema.
 - `src/lib/groq/index.ts` holds the matching projection for each.
 
-Neither document exists in the dataset yet — create them in the studio first. After that the
-two pages differ in how much work is left:
+Nothing prerenders: each page fetches on every request, so a published studio edit is live on
+the next page load without a rebuild. Both loaders are `+page.server.ts` rather than
+`+page.ts` — a universal load would also run in the browser on client-side navigation, and a
+browser calling the Sanity API needs the site's origin added to the project's CORS allowlist.
+Keeping the fetch server-side avoids that, and `useCdn` is on so the reads are cached.
 
-- **`/exhibition-text` is a true loader swap.** Replace the body of
-  `src/routes/exhibition-text/+page.ts` with the `loadData(exhibitionTextQuery)` call
-  commented in that file. Its copy is a placeholder today, marked as such in `content/index.ts`.
-- **`/` is not**, because `artwork` is a static file rather than a Sanity image. The
-  `<picture>` in `Poster.svelte` points at five pre-rendered widths in `static/`; a Sanity
-  image would come through `urlFor()` instead, and the AVIF `<source>` would drop away since
-  `urlFor()` serves that negotiation from one URL with `auto=format`.
+A loader that finds no document, or one missing a required field, calls `error()` with a
+specific message rather than rendering a page full of `undefined`.
 
-Drop `prerender` from a page if its content should be fetched per request rather than baked in.
+The artwork comes through `urlFor()`, at widths matched to the column: `--column-width` caps
+it at 360 CSS px, so the five offered are 1x, 1.5x, 2x, 3x and a little headroom. Anything
+larger could never be picked at that measure. There is no AVIF `<source>` and no `<picture>`,
+because `auto('format')` serves AVIF or WebP from the same `src`. Revisit the widths in
+`+page.server.ts` if `--column-width` changes, along with `ARTWORK_SIZES` in `Poster.svelte`.
 
 ## The column
 
@@ -96,10 +98,13 @@ Three details worth knowing before editing it:
 The background is `#3c9518` and the type is Times New Roman with metric-compatible
 fallbacks, both sampled from the reference sheet.
 
-The artwork is served from `static/` at five widths (640, 900, 1250, 1600 and 2000px) as both
-AVIF and JPEG, offered through a `<picture>`. Its `sizes` is `ARTWORK_SIZES` at the top of the
-component and repeats `--column-width` as a literal, since an HTML attribute cannot read a
-custom property — keep the two in step.
+The artwork's `sizes` is `ARTWORK_SIZES` at the top of the component, and repeats
+`--column-width` as a literal since an HTML attribute cannot read a custom property — keep
+the two in step. Its `srcset` is built in `+page.server.ts`; see above.
+
+The `artwork-*.avif` and `artwork-*.jpg` files still in `static/` are left over from before
+the artwork came from Sanity, and nothing references them any more. They are 5.5 MB of the
+deploy.
 
 `src/lib/components/WorldAffairsLogo/WorldAffairsLogo.svelte` holds the mark inline so its
 colours are addressable. It fills whatever box it is given and takes `color`, `background`
@@ -112,27 +117,32 @@ puts behind it.
 
 ## Deploying
 
-A separate Netlify site from the same repo, configured with:
+A separate Netlify site from the same repo. **The base directory has to be
+`packages/collected-works`** — leave the dashboard's build command and publish directory
+empty, since `netlify.toml` supplies both:
 
-| Setting           | Value                                        |
-| ----------------- | -------------------------------------------- |
-| Base directory    | `/`                                          |
-| Package directory | `packages/collected-works`                   |
-| Build command     | `pnpm --filter collected-works... run build` |
-| Publish directory | `packages/collected-works/build`             |
+| Setting           | Value                      |
+| ----------------- | -------------------------- |
+| Base directory    | `packages/collected-works` |
+| Build command     | _(from netlify.toml)_      |
+| Publish directory | _(from netlify.toml)_      |
 
-The command and publish directory belong in the dashboard rather than in `netlify.toml` —
-that file explains at length why, but the short version is that Netlify resolves them against
-the base directory (the repo root) while the adapter resolves the same `publish` key against
-this package. One value cannot satisfy both. `netlify.toml` therefore carries nothing but
-`NODE_VERSION`, which Netlify does read from here because the package directory points at it.
+That base directory is not a preference. Nothing here prerenders, so `build/` contains no HTML
+at all — every route is served by `.netlify/functions-internal/sveltekit-render.mjs`, which
+declares its own routing with `path: ["/*"]` and `preferStatic: true`. The adapter writes that
+function relative to this package, because that is the working directory pnpm runs a package's
+script from, and Netlify has to look for it in the same place. With the base directory at the
+repo root it looks there instead, finds nothing, and every page 404s.
+
+It is also what makes `netlify.toml` coherent: Netlify and the adapter then share a working
+directory, so `publish = "build"` means the same thing to both. Set base to the repo root and
+that stops being true, which is why the command and publish directory cannot simply live in
+the dashboard any more.
 
 The adapter is `@sveltejs/adapter-netlify` by name rather than `adapter-auto`. Auto detects
 the platform at build time and then fetches the real adapter with a live `pnpm add`, which is
 a step worth not depending on in CI; naming the adapter removes it.
 
-Both routes prerender, so `build/` is a complete static site on its own and the adapter's
-serverless function in `.netlify/functions-internal/` goes unused. Drop `prerender` from a
-route and that stops being true, at which point where Netlify looks for that function starts
-to matter — the fix then is to move the base directory to `packages/collected-works` and put
-the command and publish directory back in `netlify.toml`, where they become consistent again.
+Every request invokes the function, which is the cost of live content. If that gets
+expensive, a short `cache-control` via `setHeaders` in the loaders would let Netlify's CDN
+absorb most of it, at the price of that much staleness after an edit.
