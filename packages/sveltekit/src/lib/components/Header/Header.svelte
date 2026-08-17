@@ -18,6 +18,11 @@
                 <a href="#new">New</a>
             </h2>
         {/if}
+        {#if hasExhibitions}
+            <h2 class="toc-link">
+                <a href="#art">Art</a>
+            </h2>
+        {/if}
         <h2 class="toc-link">
             <a href="#store">Store</a>
         </h2>
@@ -27,11 +32,7 @@
         <h2 class="toc-link">
             <a href="#video">Video</a>
         </h2>
-        {#if hasExhibitions}
-            <h2 class="toc-link">
-                <a href="#art">Art</a>
-            </h2>
-        {/if}
+
         {#if hasTourDates}
             <h2 class="toc-link">
                 <a href="#tour-dates">Tour Dates</a>
