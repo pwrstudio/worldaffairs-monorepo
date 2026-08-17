@@ -55,6 +55,7 @@
 		the poster centres it, and this page and the prose below share one edge.
 	*/
     .billing-block {
+        margin-top: var(--space-section);
         text-align: left;
     }
 

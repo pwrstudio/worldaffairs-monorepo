@@ -7,7 +7,7 @@
     /* The hairlines between sections, which sit back from the text they separate */
     --color-fg-semi: rgba(0, 0, 0, 0.3);
 
-    --page-padding: clamp(0.75rem, 2.5vmin, 2rem);
+    --page-padding: clamp(1rem, 2.5vmin, 2rem);
 
     /*
         The column every page sits in, and the rhythm inside it. Held here rather than on a
@@ -139,7 +139,6 @@ img {
     font-size: var(--type-size-medium);
     line-height: var(--line-height-medium);
 }
-
 /*
     The keyline is drawn rather than photographed, and sits inside the column
     (`box-sizing: border-box`), so the painting itself is `--line-width` narrower on each

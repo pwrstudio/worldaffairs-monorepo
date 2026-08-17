@@ -117,15 +117,26 @@ puts behind it.
 
 ## Deploying
 
-A separate Netlify site from the same repo. **The base directory has to be
-`packages/collected-works`** — leave the dashboard's build command and publish directory
-empty, since `netlify.toml` supplies both:
+A separate Netlify site from the same repo, with these dashboard settings:
 
 | Setting           | Value                      |
 | ----------------- | -------------------------- |
 | Base directory    | `packages/collected-works` |
-| Build command     | _(from netlify.toml)_      |
-| Publish directory | _(from netlify.toml)_      |
+| Package directory | _(empty)_                  |
+| Build command     | `pnpm build`               |
+| Publish directory | `build`                    |
+
+**Every path in those fields is relative to the base directory**, which is the one thing that
+makes this easy to get wrong. Setting base to the package while the other fields still read
+`packages/collected-works/...` from when base was the repo root re-interprets them one level
+deeper, and the publish directory becomes
+`packages/collected-works/packages/collected-works/build`. A package directory left doubled
+the same way also stops Netlify finding this `netlify.toml` at all, at which point it falls
+back to the dashboard values silently.
+
+The build command and publish directory repeat what `netlify.toml` already says. That is
+deliberate: which of the two wins has not been consistent across builds, so it is simpler to
+have them agree than to reason about precedence.
 
 That base directory is not a preference. Nothing here prerenders, so `build/` contains no HTML
 at all — every route is served by `.netlify/functions-internal/sveltekit-render.mjs`, which
