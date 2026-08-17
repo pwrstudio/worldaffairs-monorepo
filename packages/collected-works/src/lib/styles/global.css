@@ -157,6 +157,21 @@ img {
 }
 
 /*
+    More leading in the links on touch, which is the only stack of tap targets on the site:
+    at 1.1 the two lines sit closer together than a fingertip can reliably separate.
+
+    Keyed on the pointer rather than the viewport width, because this is about how the page is
+    touched and not how wide the window is — a narrow desktop window is still being clicked
+    with something precise, and stays tight. Derived from the base leading rather than written
+    out, so the two stay 0.3 apart if that changes.
+*/
+@media (pointer: coarse) {
+    .poster .links {
+        line-height: calc(var(--line-height-medium) + 0.3);
+    }
+}
+
+/*
     The link is the full column so its hairline matches the one above the links, but the
     mark inside keeps its own size — 17.55% of the column, the proportion it had against
     the artwork on the reference sheet.
