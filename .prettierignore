@@ -1,4 +1,5 @@
 node_modules
+.netlify
 .svelte-kit
 build
 dist

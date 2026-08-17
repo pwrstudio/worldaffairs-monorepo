@@ -1,10 +1,21 @@
-# Scoped to this package on purpose. Netlify reads the netlify.toml found in a site's
-# base directory, so this file is only picked up by a site whose base is set to
-# packages/collected-works — it cannot reach the worldaffairs.se site, which carries no
-# netlify.toml of its own and is configured entirely from the dashboard.
+# Read by two different things, which is worth knowing before moving this file:
 #
-# Set the new site's base directory to `packages/collected-works`. pnpm walks up to the
-# workspace root for the lockfile, so the install still resolves the whole monorepo.
+#   1. `@sveltejs/adapter-netlify`, always. It looks in the working directory of the build,
+#      and pnpm runs a package's script from that package's own directory — so the adapter
+#      finds this file whatever the site's base directory is set to, and writes the static
+#      output to `publish` below. Without it the adapter falls back to `build` with a warning.
+#   2. Netlify itself, but only when the site's base directory is `packages/collected-works`.
+#      With base at the repo root Netlify looks for a netlify.toml there, finds none, and
+#      takes the build command and publish directory from the dashboard instead.
+#
+# Either way it cannot reach the worldaffairs.se site, which carries no netlify.toml of its
+# own and is configured entirely from the dashboard.
+#
+# Base directory `packages/collected-works` is the arrangement to prefer: it lines up the
+# adapter's `.netlify/functions-internal` output with where Netlify looks for functions.
+# That does not matter while every route is prerendered, but it will the moment one is not.
+# pnpm walks up to the workspace root for the lockfile, so installing from here still
+# resolves the whole monorepo.
 
 [build]
     command = "pnpm build"

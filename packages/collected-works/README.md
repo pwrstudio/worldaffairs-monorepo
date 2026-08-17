@@ -112,6 +112,17 @@ puts behind it.
 
 ## Deploying
 
-A separate Netlify site from the same repo, with its base directory set to
+A separate Netlify site from the same repo, ideally with its base directory set to
 `packages/collected-works` — which is how `netlify.toml` in this directory gets picked up
 without touching the main site, whose build is configured from the Netlify dashboard.
+
+The adapter is `@sveltejs/adapter-netlify` by name rather than `adapter-auto`, and has to be.
+Auto detects the platform at build time and then fetches the real adapter with a live
+`pnpm add`; Netlify installs against a frozen lockfile, so that step fails and takes the whole
+build down before anything reaches `build/`. Naming the adapter removes the install entirely.
+
+Both routes prerender, so `build/` is a complete static site on its own and the adapter's
+serverless function in `.netlify/functions-internal/` goes unused. Drop `prerender` from a
+route and that stops being true — at which point the base directory has to be
+`packages/collected-works`, or Netlify will look for the function at the repo root and not
+find it.
