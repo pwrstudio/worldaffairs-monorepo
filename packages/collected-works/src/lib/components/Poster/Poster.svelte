@@ -52,7 +52,7 @@
 
     <div class="links">
         <p><a href={resolve('/about')}>About</a></p>
-        <p>For inquiries contact <a href="mailto:info@worldaffairs.se">info@worldaffairs.se</a></p>
+        <p>For inquiries contact <a href="mailto:art@worldaffairs.se">art@worldaffairs.se</a></p>
     </div>
 
     <a class="logo" href="https://worldaffairs.se">
