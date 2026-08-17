@@ -1,5 +1,9 @@
 <script lang="ts">
-    const { hasNewPosts, hasTourDates }: { hasNewPosts: boolean; hasTourDates: boolean } = $props();
+    const {
+        hasNewPosts,
+        hasExhibitions,
+        hasTourDates,
+    }: { hasNewPosts: boolean; hasExhibitions: boolean; hasTourDates: boolean } = $props();
 </script>
 
 <div class="header">
@@ -23,6 +27,11 @@
         <h2 class="toc-link">
             <a href="#video">Video</a>
         </h2>
+        {#if hasExhibitions}
+            <h2 class="toc-link">
+                <a href="#art">Art</a>
+            </h2>
+        {/if}
         {#if hasTourDates}
             <h2 class="toc-link">
                 <a href="#tour-dates">Tour Dates</a>

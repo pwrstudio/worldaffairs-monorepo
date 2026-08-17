@@ -111,6 +111,26 @@ export type SanityImageHotspot = {
     width?: number;
 };
 
+export type Exhibition = {
+    _id: string;
+    _type: 'exhibition';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    artist?: string;
+    title?: string;
+    date?: string;
+    dateEnd?: string;
+    location?: string;
+    notes?: string;
+    links?: Array<{
+        label?: string;
+        url?: string;
+        _type: 'link';
+        _key: string;
+    }>;
+};
+
 export type TourReference = {
     _ref: string;
     _type: 'reference';
@@ -345,6 +365,7 @@ export type AllSanitySchemaTypes =
     | PosterInfo
     | SanityImageCrop
     | SanityImageHotspot
+    | Exhibition
     | TourReference
     | TourDateReference
     | ReleaseReference

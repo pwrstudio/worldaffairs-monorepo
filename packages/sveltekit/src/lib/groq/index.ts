@@ -8,6 +8,9 @@ export const queries = {
         "about": *[_id == "about"][0],
         "releases": *[_type == "release"] | order(date desc),
         "videos": *[_type == "video"] | order(date desc),
+        // Newest first, as with releases and videos: unlike tour dates these are not filtered
+        // to the future, so past shows stay listed below the current one
+        "exhibitions": *[_type == "exhibition"] | order(date desc),
         "tourDates": *[_type == "tourDate"] | order(date asc),
         "newPosts": *[_type == "newPosts"][0] {title, posts[]->{...}}
     }`,

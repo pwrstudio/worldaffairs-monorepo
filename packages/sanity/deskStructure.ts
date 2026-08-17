@@ -8,6 +8,7 @@ import {
     MdCollections,
     MdImage,
     MdNotes,
+    MdPalette,
 } from 'react-icons/md';
 
 export default (S: any) =>
@@ -67,6 +68,18 @@ export default (S: any) =>
                         .showIcons(true)
                         .filter('_type == $type')
                         .params({ type: 'tourDate' })
+                        .defaultOrdering([{ field: 'date', direction: 'desc' }])
+                ),
+            S.divider(),
+            S.listItem()
+                .title('Art')
+                .icon(MdPalette)
+                .child(
+                    S.documentList()
+                        .title('Exhibitions')
+                        .showIcons(true)
+                        .filter('_type == $type')
+                        .params({ type: 'exhibition' })
                         .defaultOrdering([{ field: 'date', direction: 'desc' }])
                 ),
             S.divider(),
