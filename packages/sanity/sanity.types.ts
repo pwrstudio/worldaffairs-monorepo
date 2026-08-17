@@ -21,6 +21,55 @@ type ArrayOf<T> = Array<
 >;
 
 // Source: schema.json
+export type SanityImageAssetReference = {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+};
+
+export type Exhibition = {
+    _id: string;
+    _type: 'exhibition';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    artist?: string;
+    title?: string;
+    yearStart?: number;
+    yearEnd?: number;
+    artwork?: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        caption?: string;
+        _type: 'image';
+    };
+    startDate?: string;
+    endDate?: string;
+    venue?: string;
+    openingHours?: string;
+    admission?: string;
+};
+
+export type SanityImageCrop = {
+    _type: 'sanity.imageCrop';
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+};
+
+export type SanityImageHotspot = {
+    _type: 'sanity.imageHotspot';
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
+};
+
 export type TourReference = {
     _ref: string;
     _type: 'reference';
@@ -184,22 +233,6 @@ export type SanityImageMetadata = {
     isOpaque?: boolean;
 };
 
-export type SanityImageHotspot = {
-    _type: 'sanity.imageHotspot';
-    x?: number;
-    y?: number;
-    height?: number;
-    width?: number;
-};
-
-export type SanityImageCrop = {
-    _type: 'sanity.imageCrop';
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-};
-
 export type SanityFileAsset = {
     _id: string;
     _type: 'sanity.fileAsset';
@@ -266,6 +299,10 @@ export type Slug = {
 };
 
 export type AllSanitySchemaTypes =
+    | SanityImageAssetReference
+    | Exhibition
+    | SanityImageCrop
+    | SanityImageHotspot
     | TourReference
     | TourDateReference
     | ReleaseReference
@@ -280,8 +317,6 @@ export type AllSanitySchemaTypes =
     | SanityImagePalette
     | SanityImageDimensions
     | SanityImageMetadata
-    | SanityImageHotspot
-    | SanityImageCrop
     | SanityFileAsset
     | SanityAssetSourceData
     | SanityImageAsset

@@ -1,4 +1,12 @@
-import { MdMusicNote, MdVideocam, MdTour, MdStar, MdHome, MdEvent } from 'react-icons/md';
+import {
+    MdMusicNote,
+    MdVideocam,
+    MdTour,
+    MdStar,
+    MdHome,
+    MdEvent,
+    MdCollections,
+} from 'react-icons/md';
 
 export default (S: any) =>
     S.list()
@@ -58,5 +66,13 @@ export default (S: any) =>
                         .filter('_type == $type')
                         .params({ type: 'tourDate' })
                         .defaultOrdering([{ field: 'date', direction: 'desc' }])
+                ),
+            S.divider(),
+            // Drives works.worldaffairs.se rather than the main site
+            S.listItem()
+                .title('Exhibition')
+                .icon(MdCollections)
+                .child(
+                    S.editor().id('exhibition').schemaType('exhibition').documentId('exhibition')
                 ),
         ]);

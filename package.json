@@ -5,10 +5,12 @@
     "main": "index.js",
     "scripts": {
         "dev:sveltekit": "pnpm --filter sveltekit dev",
+        "dev:collected-works": "pnpm --filter collected-works dev",
         "dev:sanity": "pnpm --filter sanity start",
         "dev": "mprocs",
         "deploy:sanity": "pnpm --filter sanity deploy",
         "check": "pnpm -r --if-present check",
+        "lint": "pnpm -r --if-present lint",
         "typegen:sanity": "pnpm --filter sanity typegen",
         "format": "prettier --write ."
     },

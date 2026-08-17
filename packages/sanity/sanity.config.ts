@@ -3,7 +3,7 @@ import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './schemaTypes';
 import deskStructure from './deskStructure';
 
-const SINGLETON_TYPES = ['about', 'newPosts'];
+const SINGLETON_TYPES = ['about', 'newPosts', 'exhibition'];
 
 export default defineConfig({
     name: 'default',

@@ -4,5 +4,6 @@ import video from './Video';
 import tour from './Tour';
 import tourDate from './TourDate';
 import newPosts from './NewPosts';
+import exhibition from './Exhibition';
 
-export const schemaTypes = [about, release, tour, video, tourDate, newPosts];
+export const schemaTypes = [about, release, tour, video, tourDate, newPosts, exhibition];

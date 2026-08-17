@@ -2,6 +2,9 @@ procs:
     sveltekit:
         cwd: packages/sveltekit
         shell: pnpm dev
+    collected-works:
+        cwd: packages/collected-works
+        shell: pnpm dev
     sanity:
         cwd: packages/sanity
         shell: pnpm dev

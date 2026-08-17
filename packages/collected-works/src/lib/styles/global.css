@@ -1,0 +1,48 @@
+:root {
+    /* Metric-compatible across macOS, Windows and Linux, matching the printed poster */
+    --font-serif: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
+
+    --color-bg: #3c9518;
+    --color-fg: #000;
+    --color-highlight: #b3121b;
+
+    --page-padding: clamp(0.75rem, 2.5vmin, 2rem);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: var(--color-bg);
+}
+
+body {
+    font-family: var(--font-serif);
+    color: var(--color-fg);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+::selection {
+    background: var(--color-highlight);
+    color: var(--color-bg);
+}
