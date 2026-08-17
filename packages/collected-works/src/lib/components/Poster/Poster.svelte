@@ -51,7 +51,7 @@
     <div class="visiting">{@html visiting}</div>
 
     <div class="links">
-        <p><a href={resolve('/exhibition-text')}>Exhibition text</a></p>
+        <p><a href={resolve('/about')}>About</a></p>
         <p>For inquiries contact <a href="mailto:info@worldaffairs.se">info@worldaffairs.se</a></p>
     </div>
 

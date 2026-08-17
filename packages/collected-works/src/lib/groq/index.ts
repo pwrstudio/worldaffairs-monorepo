@@ -35,10 +35,14 @@ export const posterInfoQuery = `
 /*
 	Two documents in one round trip: the text itself, and the billing from `posterInfo` that
 	heads the page above it.
+
+	The type is still `exhibitionText` because `about` was already taken by the main site's own
+	singleton — the two sites share one studio. Only the id is legacy; the page, the route and
+	the studio's own label all read "About".
 */
-export const exhibitionTextQuery = `
+export const aboutQuery = `
 	{
-		"text": *[_type == "exhibitionText" && _id == "exhibitionText"][0]{
+		"about": *[_type == "exhibitionText" && _id == "exhibitionText"][0]{
 			title,
 			author,
 			body

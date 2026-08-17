@@ -2,7 +2,7 @@ import { defineType, defineField, defineArrayMember } from 'sanity';
 
 /*
     Drives the poster on works.worldaffairs.se — the billing, the artwork and the visiting
-    details, in the order they read down the sheet. Paired with `exhibitionText`, which
+    details, in the order they read down the sheet. Paired with the About text, which
     holds the essay behind the poster's one link.
 
     The visiting details are one rich text field rather than separate dated fields: the poster

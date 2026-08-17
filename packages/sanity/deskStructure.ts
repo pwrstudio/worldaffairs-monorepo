@@ -88,7 +88,7 @@ export default (S: any) =>
                                         .documentId('posterInfo')
                                 ),
                             S.listItem()
-                                .title('Exhibition text')
+                                .title('About')
                                 .icon(MdNotes)
                                 .child(
                                     S.editor()

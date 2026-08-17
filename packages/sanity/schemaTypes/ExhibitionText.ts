@@ -1,12 +1,12 @@
 import { defineType, defineField, defineArrayMember } from 'sanity';
 
 /*
-    The essay behind the poster's one link, at works.worldaffairs.se/exhibition-text.
+    The essay behind the poster's one link, at works.worldaffairs.se/about.
     Paired with `posterInfo`, which holds the sheet itself.
 */
 export default defineType({
     name: 'exhibitionText',
-    title: 'Exhibition text',
+    title: 'About',
     type: 'document',
     fields: [
         defineField({
@@ -69,7 +69,7 @@ export default defineType({
         },
         prepare({ title, author }) {
             return {
-                title: title || 'Exhibition text',
+                title: title || 'About',
                 subtitle: author,
             };
         },

@@ -1,21 +1,21 @@
 import { error } from '@sveltejs/kit';
 import { loadData } from '$lib/modules/sanity';
-import { exhibitionTextQuery } from '$lib/groq';
-import type { Billing, ExhibitionText, ExhibitionTextResult } from '$lib/content';
+import { aboutQuery } from '$lib/groq';
+import type { About, AboutResult, Billing } from '$lib/content';
 
 // Fetched per request and kept server-side, for the same reasons as the poster — see ../+page.server.ts
 
-export async function load(): Promise<{ text: ExhibitionText; billing: Billing }> {
-    const result = await loadData<ExhibitionTextResult | null>(exhibitionTextQuery);
+export async function load(): Promise<{ about: About; billing: Billing }> {
+    const result = await loadData<AboutResult | null>(aboutQuery);
 
-    if (!result?.text) {
-        error(500, 'No exhibitionText document found in Sanity. Create it in the studio first.');
+    if (!result?.about) {
+        error(500, 'No About document found in Sanity. Create it in the studio first.');
     }
 
-    const { title, author, body } = result.text;
+    const { title, author, body } = result.about;
 
     if (!title || !body?.length) {
-        error(500, 'The exhibitionText document is missing its title or body.');
+        error(500, 'The About document is missing its title or body.');
     }
 
     const { artist, title: workTitle, yearStart, yearEnd } = result.billing ?? {};
@@ -26,7 +26,7 @@ export async function load(): Promise<{ text: ExhibitionText; billing: Billing }
 
     // The studio's string fields keep whatever whitespace was typed into them
     return {
-        text: { title: title.trim(), author: author?.trim(), body },
+        about: { title: title.trim(), author: author?.trim(), body },
         billing: { artist, title: workTitle, yearStart, yearEnd },
     };
 }

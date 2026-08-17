@@ -6,19 +6,19 @@
 
     let { data } = $props();
 
-    let body = $derived(renderText(data.text.body));
+    let body = $derived(renderText(data.about.body));
 </script>
 
 <svelte:head>
-    <title>{data.text.title} — {SITE_TITLE}</title>
-    <meta name="description" content="Exhibition text for {SITE_TITLE}" />
+    <title>{data.about.title} — {SITE_TITLE}</title>
+    <meta name="description" content="About the exhibition — {SITE_TITLE}" />
 </svelte:head>
 
 <!--
 	The layout supplies the column, so — as on the poster — each block below is a plain
 	block-level child of it and only declares the space under it.
 -->
-<article class="text">
+<article class="about">
     <nav class="back">
         <a href={resolve('/')}>Back</a>
     </nav>
@@ -29,7 +29,7 @@
 
     <!--
 		Trusted HTML: it is Portable Text from our own studio, put through `renderText`, which
-		emits only the handful of tags the `exhibitionText` schema can produce. The one value
+		emits only the handful of tags the About schema can produce. The one value
 		interpolated raw is a link's `href`, and the schema types that field as `url`, whose
 		default validation admits nothing but http and https — so `javascript:` never reaches
 		here. This is the same shape as the main site's `renderBlockText`.
@@ -37,19 +37,19 @@
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <div class="body">{@html body}</div>
 
-    {#if data.text.author}
-        <p class="author">{data.text.author}</p>
+    {#if data.about.author}
+        <p class="author">{data.about.author}</p>
     {/if}
 </article>
 
 <style>
-    .text > * {
+    .about > * {
         margin-bottom: var(--space-section);
     }
 
     /*
 		A wrapper around the `<Billing>` component, for two reasons. Svelte's scoped selectors
-		do not reach a child component's root element, so `.text > *` above cannot give the
+		do not reach a child component's root element, so `.about > *` above cannot give the
 		billing its bottom margin directly — but it does reach this div. And `text-align`
 		inherits down to it, which ranges the billing left here without a `:global` override:
 		the poster centres it, and this page and the prose below share one edge.

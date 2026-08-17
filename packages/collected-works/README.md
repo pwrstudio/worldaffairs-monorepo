@@ -9,21 +9,26 @@ under mprocs together with the main site and the studio.
 
 ## The two pages
 
-| Route              | Document         | Renders                                |
-| ------------------ | ---------------- | -------------------------------------- |
-| `/`                | `posterInfo`     | the poster — `Poster.svelte`           |
-| `/exhibition-text` | `exhibitionText` | the essay behind the poster's one link |
+| Route    | Document                       | Renders                                |
+| -------- | ------------------------------ | -------------------------------------- |
+| `/`      | `posterInfo`                   | the poster — `Poster.svelte`           |
+| `/about` | `exhibitionText`, titled About | the essay behind the poster's one link |
+
+**The About page's studio type is still called `exhibitionText`.** `about` was already taken
+by the main site's own singleton, and the two sites share one studio, so the id could not
+follow the rename. Only the id is legacy: the route, the page, the types in this package and
+the studio's own label all read "About". Renaming the type properly would orphan the existing
+document and need a migration; there was nothing in it worth that at the time.
 
 ## How the content is wired
 
-Both pages are still hardcoded in `src/lib/content/index.ts`, but each is shaped like its
-studio singleton rather than sprinkled through the markup:
+Each page's shape is derived from its studio singleton rather than written out by hand:
 
 - The schemas live in `packages/sanity/schemaTypes/PosterInfo.ts` and `ExhibitionText.ts` —
   the same studio the main site uses, on project `fzoco9f8`. Both are registered as
   singletons in `sanity.config.ts` and sit together under **Collected Works** at the foot of
   the desk structure.
-- Their fields are pulled into this package's `PosterInfo` and `ExhibitionText` types from the
+- Their fields are pulled into this package's `PosterInfo` and `About` types from the
   generated `packages/sanity/sanity.types.ts` via the `@sanity-types` alias, so renaming a
   field in the studio breaks the build instead of quietly emptying a page. Run
   `pnpm typegen:sanity` from the repo root after editing either schema.

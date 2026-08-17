@@ -59,17 +59,23 @@ export type BillingResult = Pick<SanityPosterInfo, 'artist' | 'title' | 'yearSta
 export type PosterInfo = Billing &
     Required<Pick<SanityPosterInfo, 'visiting'>> & { artwork: PosterArtwork };
 
-/* -------------------------------------------------------------- exhibition text */
+/* ------------------------------------------------------------------------ about */
+
+/*
+    The studio type behind this page is still called `exhibitionText`: `about` was already
+    taken by the main site's own singleton, and the two share one studio. Only the id is
+    legacy — it reads as "About" everywhere an editor or a visitor sees it.
+*/
 
 /**
- * What `exhibitionTextQuery` returns. The page heads itself with the same billing as the
- * poster, so the projection pulls that from `posterInfo` in the same round trip.
+ * What `aboutQuery` returns. The page heads itself with the same billing as the poster, so
+ * the projection pulls that from `posterInfo` in the same round trip.
  */
-export type ExhibitionTextResult = {
-    text: Pick<SanityExhibitionText, 'title' | 'author' | 'body'> | null;
+export type AboutResult = {
+    about: Pick<SanityExhibitionText, 'title' | 'author' | 'body'> | null;
     billing: BillingResult | null;
 };
 
-export type ExhibitionText = Required<Pick<SanityExhibitionText, 'title' | 'body'>> &
+export type About = Required<Pick<SanityExhibitionText, 'title' | 'body'>> &
     /** Omitted to print the text unsigned */
     Pick<SanityExhibitionText, 'author'>;

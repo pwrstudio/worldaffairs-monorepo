@@ -10,7 +10,7 @@
 		widen its own container. Naming the routes keeps that decision in one readable place
 		rather than scattering `:global()` overrides through the pages.
 	*/
-    const WIDE_ROUTES = ['/exhibition-text'];
+    const WIDE_ROUTES = ['/about'];
 
     let wide = $derived(WIDE_ROUTES.includes(page.route.id ?? ''));
 </script>
