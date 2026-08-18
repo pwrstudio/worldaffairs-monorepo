@@ -1,6 +1,7 @@
 <script lang="ts">
     import { resolve } from '$app/paths';
     import Billing from '$lib/components/Billing/Billing.svelte';
+    import Meta from '$lib/components/Meta/Meta.svelte';
     import { renderText } from '$lib/modules/sanity';
     import { SITE_TITLE } from '$lib/constants';
 
@@ -9,10 +10,15 @@
     let body = $derived(renderText(data.about.body));
 </script>
 
-<svelte:head>
-    <title>{data.about.title} — {SITE_TITLE}</title>
-    <meta name="description" content="About the exhibition — {SITE_TITLE}" />
-</svelte:head>
+<!--
+	Only the tab differs: the card is the exhibition's, identical to the poster's, so this page
+	passes the same share image and lets <Meta> supply everything else.
+
+	"About" is written out rather than taken from `data.about.title`, which reads "Collected
+	Works 2016–2026" in the studio and so titled this tab with the billing twice over. The
+	route, the link on the poster and the studio's own label all say About; the tab now agrees.
+-->
+<Meta title="About — {SITE_TITLE}" image={data.share} />
 
 <!--
 	The layout supplies the column, so — as on the poster — each block below is a plain

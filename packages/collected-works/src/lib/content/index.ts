@@ -19,6 +19,26 @@ import type {
  * message rather than rendering a page full of `undefined`.
  */
 
+/* --------------------------------------------------------------------- artwork */
+
+/**
+ * The painting as the queries project it. One type for both, because both pages need it —
+ * the poster to print it, the About page only to share itself with it. The About query asks
+ * for the two fields `buildShareImage()` reads and stops there; the poster query fills in
+ * `caption`, `hotspot`, `crop` and the asset's dimensions on top. Anything a page did not ask
+ * for is absent, which is why everything below is optional.
+ */
+export type ArtworkResult = {
+    alt?: string;
+    caption?: string;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    asset?: {
+        _id: string;
+        metadata?: { dimensions?: { width: number; height: number } };
+    };
+};
+
 /* ------------------------------------------------------------------ poster info */
 
 /** What `posterInfoQuery` returns: the studio's own optionality, artwork left unresolved. */
@@ -26,16 +46,7 @@ export type PosterInfoResult = Pick<
     SanityPosterInfo,
     'artist' | 'title' | 'yearStart' | 'yearEnd' | 'visiting'
 > & {
-    artwork?: {
-        alt?: string;
-        caption?: string;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        asset?: {
-            _id: string;
-            metadata?: { dimensions?: { width: number; height: number } };
-        };
-    };
+    artwork?: ArtworkResult;
 };
 
 /** The artwork as the poster wants it: URLs already built, ready for `<img>`. */
@@ -59,6 +70,25 @@ export type BillingResult = Pick<SanityPosterInfo, 'artist' | 'title' | 'yearSta
 export type PosterInfo = Billing &
     Required<Pick<SanityPosterInfo, 'visiting'>> & { artwork: PosterArtwork };
 
+/* ------------------------------------------------------------------ the share card */
+
+/**
+ * The single image both pages are shared with, built once by `buildShareImage()`.
+ *
+ * The dimensions and the media type travel with the URL rather than being written out again
+ * in the `<Meta>` component, because it is the builder that decides them — a crawler is told
+ * exactly what it is about to fetch, and the two cannot drift apart.
+ */
+export interface ShareImage {
+    url: string;
+    /** Described for anyone reading the card with a screen reader */
+    alt: string;
+    width: number;
+    height: number;
+    /** An `og:image:type`, e.g. `image/jpeg` */
+    type: string;
+}
+
 /* ------------------------------------------------------------------------ about */
 
 /*
@@ -68,12 +98,13 @@ export type PosterInfo = Billing &
 */
 
 /**
- * What `aboutQuery` returns. The page heads itself with the same billing as the poster, so
- * the projection pulls that from `posterInfo` in the same round trip.
+ * What `aboutQuery` returns. The page heads itself with the same billing as the poster and
+ * shares itself with the same artwork, so the projection pulls both from `posterInfo` in the
+ * same round trip.
  */
 export type AboutResult = {
     about: Pick<SanityExhibitionText, 'title' | 'author' | 'body'> | null;
-    billing: BillingResult | null;
+    posterInfo: (BillingResult & { artwork?: ArtworkResult }) | null;
 };
 
 export type About = Required<Pick<SanityExhibitionText, 'title' | 'body'>> &

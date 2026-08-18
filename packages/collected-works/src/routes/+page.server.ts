@@ -1,7 +1,8 @@
 import { error } from '@sveltejs/kit';
 import { loadData, urlFor } from '$lib/modules/sanity';
+import { buildShareImage } from '$lib/modules/share';
 import { posterInfoQuery } from '$lib/groq';
-import type { PosterInfo, PosterInfoResult, PosterArtwork } from '$lib/content';
+import type { PosterInfo, PosterInfoResult, PosterArtwork, ShareImage } from '$lib/content';
 
 /*
 	Fetched per request rather than baked at build time, so a studio edit is live on the next
@@ -52,7 +53,7 @@ function buildArtwork(artwork: PosterInfoResult['artwork']): PosterArtwork {
     };
 }
 
-export async function load(): Promise<{ poster: PosterInfo }> {
+export async function load(): Promise<{ poster: PosterInfo; share: ShareImage }> {
     const result = await loadData<PosterInfoResult | null>(posterInfoQuery);
 
     if (!result) {
@@ -77,5 +78,7 @@ export async function load(): Promise<{ poster: PosterInfo }> {
             visiting,
             artwork: buildArtwork(result.artwork),
         },
+        // The same card the About page carries — see $lib/modules/share
+        share: buildShareImage(result.artwork),
     };
 }

@@ -49,6 +49,38 @@ larger could never be picked at that measure. There is no AVIF `<source>` and no
 because `auto('format')` serves AVIF or WebP from the same `src`. Revisit the widths in
 `+page.server.ts` if `--column-width` changes, along with `ARTWORK_SIZES` in `Poster.svelte`.
 
+## Sharing and the head
+
+`src/lib/components/Meta/Meta.svelte` writes every tag in the head that `app.html` does not,
+and both pages render it. What is shared is the exhibition rather than the page it was copied
+from, so `og:title`, `og:description` and the image are identical on `/` and `/about`. The
+only thing a page passes is its own `<title>`, which is a different job — it names the tab and
+the search result, so it does say which page you are on. The copy itself is in
+`src/lib/constants/index.ts`.
+
+`og:url` and the canonical link are built from the route and `SITE_URL` rather than from the
+URL the visitor arrived on, so a link pasted with campaign parameters still names the page
+itself and not a copy of it.
+
+The card's image is built by `buildShareImage()` in `src/lib/modules/share/`, from the same
+`posterInfo` artwork the poster prints — a new painting in the studio is a new card on the
+next scrape, with no second copy in `static/` to remember to replace. Both loaders call it,
+and the About query already reads `posterInfo` for its billing, so the two extra fields cost
+no round trip. Three things about it are load-bearing:
+
+- **1200 x 630, filled rather than cropped.** The painting is square and the card is not, so
+  `fit=fill` prints the work whole on the sheet's green rather than cutting a letterbox out of
+  it. That green is `SITE_BG`, the third place the hex is written down — keep it in step with
+  `--color-bg` in `global.css` and `theme-color` in `app.html`.
+- **`ignoreImageParams()` is not optional.** Handed both a width and a height, `urlFor()`
+  resolves the image's crop and hotspot into a `rect` and cuts a 1200:630 band out of the
+  source before the fit is ever applied — it does this even with neither set in the studio,
+  defaulting to a centre hotspot against the dimensions the asset id carries. The flag is what
+  leaves the fill anything to do. Drop it and the card becomes the middle of a painting.
+- **JPEG, pinned.** The poster's own `<img>` uses `auto('format')`, which negotiates on the
+  `Accept` header. A crawler's is unreliable or absent, and one handed AVIF or WebP may render
+  no card at all.
+
 ## The column
 
 `src/routes/+layout.svelte` owns the column both pages sit in, and `:root` in
@@ -60,17 +92,18 @@ artwork keyline and the logo size, and nothing else.
 
 The tokens, in `global.css` unless marked otherwise:
 
-| Property                                      | Is                                               |
-| --------------------------------------------- | ------------------------------------------------ |
-| `--column-width`                              | the column, 360px                                |
-| `--space-top` / `--space-bottom`              | the column's own padding, 48px / 32px            |
-| `--space-section` / `--half-space-section`    | between blocks, 16px / 8px                       |
-| `--type-size-large` / `--line-height-large`   | the billing and the text title, 24px / 0.9       |
-| `--type-size-medium` / `--line-height-medium` | stacked lines, 18px / 1.1                        |
-| `--line-height-body`                          | running prose on the text page, 1.4              |
-| `--rule-width` / `--color-fg-semi`            | the hairlines between sections, 1px              |
-| `--line-width`                                | the artwork keyline, 3px — `Poster.svelte`       |
-| `--logo-width`                                | the mark in the logo bar, 64px — `Poster.svelte` |
+| Property                                      | Is                                                        |
+| --------------------------------------------- | --------------------------------------------------------- |
+| `--page-padding` / `--page-padding-inline`    | the margin round the column, 2rem at the sides on a phone |
+| `--column-width`                              | the column, 360px                                         |
+| `--space-top` / `--space-bottom`              | the column's own padding, 48px / 32px                     |
+| `--space-section` / `--half-space-section`    | between blocks, 16px / 8px                                |
+| `--type-size-large` / `--line-height-large`   | the billing and the text title, 24px / 0.9                |
+| `--type-size-medium` / `--line-height-medium` | stacked lines, 18px / 1.1                                 |
+| `--line-height-body`                          | running prose on the text page, 1.2                       |
+| `--rule-width` / `--color-fg-semi`            | the hairlines between sections, 1px                       |
+| `--line-width`                                | the artwork keyline, 3px — `Poster.svelte`                |
+| `--logo-width`                                | the mark in the logo bar, 64px — `Poster.svelte`          |
 
 `margin: auto` on the column rather than `justify-content: center` on the page wrapper: auto
 margins take the free space when there is some and collapse to nothing when there is not, so
