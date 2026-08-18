@@ -8,6 +8,8 @@
     --color-fg-semi: rgba(0, 0, 0, 0.3);
 
     --page-padding: clamp(1rem, 2.5vmin, 2rem);
+    /* The sides can part company with the top and bottom; see the phone override below */
+    --page-padding-inline: var(--page-padding);
 
     /*
         The column every page sits in, and the rhythm inside it. Held here rather than on a
@@ -37,6 +39,20 @@
 
     /* The hairlines between sections */
     --rule-width: 1px;
+}
+
+/*
+    On a phone the clamp above sits at its floor, since 2.5vmin of a narrow viewport is less than
+    a rem — and the column, which is only as wide as the viewport lets it be before it reaches
+    its own measure, then runs nearly edge to edge. The sides take the clamp's ceiling instead,
+    the same margin a large window gets, so the sheet keeps an edge the eye reads as one.
+
+    Sides only: the top and bottom already carry the column's own --space-top / --space-bottom.
+*/
+@media (max-width: 480px) {
+    :root {
+        --page-padding-inline: 2rem;
+    }
 }
 
 * {

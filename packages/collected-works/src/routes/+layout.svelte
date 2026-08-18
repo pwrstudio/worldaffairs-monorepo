@@ -33,7 +33,7 @@
         min-height: 100dvh;
         display: flex;
         flex-direction: column;
-        padding: var(--page-padding);
+        padding: var(--page-padding) var(--page-padding-inline);
         background: var(--color-bg);
     }
 
