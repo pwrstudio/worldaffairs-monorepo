@@ -1,4 +1,4 @@
-import type { About, Release, Video, NewPosts, TourDate } from '@sanity-types';
+import type { About, Release, Video, NewPosts, TourDate, Exhibition } from '@sanity-types';
 import type { PageServerLoad } from './$types';
 import { loadData } from '$lib/modules/sanity';
 import { loadProducts } from '$lib/modules/shopify';
@@ -10,6 +10,7 @@ export const load = (async () => {
             about: About | null;
             releases: Release[] | null;
             videos: Video[] | null;
+            exhibitions: Exhibition[] | null;
             tourDates: TourDate[] | null;
             newPosts: NewPosts | null;
         } | null>,
@@ -20,6 +21,7 @@ export const load = (async () => {
         about = null,
         releases = null,
         videos = null,
+        exhibitions = null,
         tourDates = null,
         newPosts: newPostsDocument = null,
     } = allData ?? {};
@@ -54,6 +56,7 @@ export const load = (async () => {
         newPostsDocument?._updatedAt,
         ...(releases ?? []).map((r) => r._updatedAt),
         ...(videos ?? []).map((v) => v._updatedAt),
+        ...(exhibitions ?? []).map((e) => e._updatedAt),
         ...filteredTourDates.map((t) => t._updatedAt),
         ...products.map((p) => p.updatedAt),
     ].filter((t): t is string => Boolean(t));
@@ -74,6 +77,7 @@ export const load = (async () => {
         about,
         releases: releases ?? [],
         videos: videos ?? [],
+        exhibitions: exhibitions ?? [],
         tourDates: filteredTourDates,
         newPosts,
         products,

@@ -21,7 +21,7 @@
     <thead>
         <tr>
             {#each columns as column}
-                <th class:hide-on-mobile={column.hide}>
+                <th class:hide-on-mobile={column.hide} class:nowrap={column.nowrap}>
                     {column.label}
                 </th>
             {/each}
@@ -31,7 +31,11 @@
         {#each data as row, i}
             <tr>
                 {#each columns as column}
-                    <td class={column.type} class:hide-on-mobile={column.hide}>
+                    <td
+                        class={column.type}
+                        class:hide-on-mobile={column.hide}
+                        class:nowrap={column.nowrap}
+                    >
                         {#if column.type === 'icon'}
                             <!-- Icon -->
                             <img src="/images/fire.gif" alt="new" />
@@ -137,6 +141,17 @@
         .hide-on-mobile {
             @media (max-width: 768px) {
                 display: none;
+            }
+        }
+
+        /*
+            Only above the mobile breakpoint. Below it the wide columns are already hidden and
+            the row has far less room, so holding these on one line would push the table wider
+            than the screen rather than simply redistributing space.
+        */
+        @media (min-width: 769px) {
+            .nowrap {
+                white-space: nowrap;
             }
         }
 

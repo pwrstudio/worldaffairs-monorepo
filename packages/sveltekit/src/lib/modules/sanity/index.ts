@@ -8,7 +8,7 @@ export const client = createClient({
     projectId: SANITY_ID,
     dataset: 'production',
     token: '', // or leave blank to be anonymous user
-    useCdn: true, // `false` if you want to ensure fresh data
+    useCdn: false, // `false` if you want to ensure fresh data
     apiVersion: '2025-06-01',
 });
 
