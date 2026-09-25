@@ -31,3 +31,10 @@ export const SITE_BG = '3c9518';
 export const SITE_TITLE = 'Jonatan Leandoer Håstad — Collected Works 2016–2026';
 export const SITE_DESCRIPTION =
     'Collected Works 2016–2026. 25 September – 11 October 2026 at Torsgatan 22 Stockholm. Free admission.';
+
+/*
+	The 3D version of the exhibition, which the poster's button opens in a new tab. A separate
+	site with its own deploy, so a full URL here rather than a route.
+*/
+export const SITE_3D_URL = 'https://collected-works-3d.worldaffairs.se';
+export const SITE_3D_TITLE = 'Collected Works 3D';

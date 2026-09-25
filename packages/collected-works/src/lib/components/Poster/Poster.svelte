@@ -4,6 +4,7 @@
     import WorldAffairsLogo from '$lib/components/WorldAffairsLogo/WorldAffairsLogo.svelte';
     import type { PosterInfo } from '$lib/content';
     import { renderText } from '$lib/modules/sanity';
+    import { SITE_3D_URL, SITE_3D_TITLE } from '$lib/constants';
 
     let { poster }: { poster: PosterInfo } = $props();
 
@@ -49,6 +50,15 @@
 	-->
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <div class="visiting">{@html visiting}</div>
+
+    <!--
+		The 3D version of the exhibition is a separate site, so the button leaves this one: a
+		new tab, and `rel="external"`, which tells SvelteKit's router — and the lint rule that
+		polices links — not to treat it as a route.
+	-->
+    <div class="cta">
+        <a class="button" href={SITE_3D_URL} target="_blank" rel="external">{SITE_3D_TITLE}</a>
+    </div>
 
     <div class="links">
         <p><a href={resolve('/about')}>About</a></p>

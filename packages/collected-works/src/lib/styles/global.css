@@ -3,6 +3,8 @@
     --font-serif: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
 
     --color-bg: #3c9518;
+    /* The green pressed: the button's ground on hover, a fifth of the way to the ink */
+    --color-bg-dark: color-mix(in srgb, var(--color-bg), var(--color-fg) 20%);
     --color-fg: #000;
     /* The hairlines between sections, which sit back from the text they separate */
     --color-fg-semi: rgba(0, 0, 0, 0.3);
@@ -23,7 +25,7 @@
     --column-width: 360px;
     --column-width-wide: 460px;
 
-    --space-top: 48px;
+    --space-top: 32px;
     --space-bottom: 32px;
     --space-section: 16px;
     --half-space-section: calc(var(--space-section) / 2);
@@ -170,6 +172,41 @@ img {
 .poster .links {
     border-top: var(--rule-width) solid var(--color-fg-semi);
     padding-top: var(--half-space-section);
+}
+
+/* A full section of air above and below, where the neighbouring blocks take half */
+.poster .cta {
+    border-top: var(--rule-width) solid var(--color-fg-semi);
+    margin-bottom: var(--space-section);
+    padding-top: var(--space-section);
+}
+
+/*
+    The button is the full column, bevelled into the sheet rather than drawn on it: a deep
+    `inset` border in the hairline tint, which the browser shades into a pressed edge. The
+    ground darkens on hover, the ink stays. No underline, unlike the site's other links — the
+    bevel already says it is pressable.
+*/
+.poster .button {
+    display: block;
+    border: 20px inset var(--color-fg-semi);
+    padding: 0.5em;
+    font-size: var(--type-size-medium);
+    line-height: var(--line-height-medium);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.poster .button:hover,
+.poster .button:focus-visible {
+    /* background: var(--color-bg-dark); */
+    border-style: outset;
+    color: var(--color-fg);
+}
+
+.poster .button:focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 4px;
 }
 
 /*

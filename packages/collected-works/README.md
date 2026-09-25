@@ -9,10 +9,10 @@ under mprocs together with the main site and the studio.
 
 ## The two pages
 
-| Route    | Document                       | Renders                                |
-| -------- | ------------------------------ | -------------------------------------- |
-| `/`      | `posterInfo`                   | the poster — `Poster.svelte`           |
-| `/about` | `exhibitionText`, titled About | the essay behind the poster's one link |
+| Route    | Document                       | Renders                                  |
+| -------- | ------------------------------ | ---------------------------------------- |
+| `/`      | `posterInfo`                   | the poster — `Poster.svelte`             |
+| `/about` | `exhibitionText`, titled About | the essay behind the poster's About link |
 
 **The About page's studio type is still called `exhibitionText`.** `about` was already taken
 by the main site's own singleton, and the two sites share one studio, so the id could not
@@ -92,18 +92,19 @@ artwork keyline and the logo size, and nothing else.
 
 The tokens, in `global.css` unless marked otherwise:
 
-| Property                                      | Is                                                        |
-| --------------------------------------------- | --------------------------------------------------------- |
-| `--page-padding` / `--page-padding-inline`    | the margin round the column, 2rem at the sides on a phone |
-| `--column-width`                              | the column, 360px                                         |
-| `--space-top` / `--space-bottom`              | the column's own padding, 48px / 32px                     |
-| `--space-section` / `--half-space-section`    | between blocks, 16px / 8px                                |
-| `--type-size-large` / `--line-height-large`   | the billing and the text title, 24px / 0.9                |
-| `--type-size-medium` / `--line-height-medium` | stacked lines, 18px / 1.1                                 |
-| `--line-height-body`                          | running prose on the text page, 1.2                       |
-| `--rule-width` / `--color-fg-semi`            | the hairlines between sections, 1px                       |
-| `--line-width`                                | the artwork keyline, 3px — `Poster.svelte`                |
-| `--logo-width`                                | the mark in the logo bar, 64px — `Poster.svelte`          |
+| Property                                      | Is                                                           |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| `--page-padding` / `--page-padding-inline`    | the margin round the column, 2rem at the sides on a phone    |
+| `--column-width`                              | the column, 360px                                            |
+| `--space-top` / `--space-bottom`              | the column's own padding, 32px / 32px                        |
+| `--space-section` / `--half-space-section`    | between blocks, 16px / 8px                                   |
+| `--type-size-large` / `--line-height-large`   | the billing and the text title, 24px / 0.9                   |
+| `--type-size-medium` / `--line-height-medium` | stacked lines, 18px / 1.1                                    |
+| `--line-height-body`                          | running prose on the text page, 1.2                          |
+| `--rule-width` / `--color-fg-semi`            | the hairlines between sections, 1px                          |
+| `--color-bg-dark`                             | the green a fifth of the way to the ink: the button, hovered |
+| `--line-width`                                | the artwork keyline, 3px — `Poster.svelte`                   |
+| `--logo-width`                                | the mark in the logo bar, 64px — `Poster.svelte`             |
 
 `margin: auto` on the column rather than `justify-content: center` on the page wrapper: auto
 margins take the free space when there is some and collapse to nothing when there is not, so
@@ -113,16 +114,21 @@ reach above it.
 ## The poster
 
 `src/lib/components/Poster/Poster.svelte` is taken from the printed sheet rather than
-reproducing its geometry. Its five blocks — billing, artwork, visiting details, links, logo —
-are plain block-level children of the column, each declaring only the space under it via
-`.poster > *`. Adding a sixth is a matter of dropping it into the markup.
+reproducing its geometry. Its six blocks — billing, artwork, visiting details, the 3D button,
+links, logo — are plain block-level children of the column, each declaring only the space
+under it via `.poster > *`. Adding a seventh is a matter of dropping it into the markup.
 
-Three details worth knowing before editing it:
+Four details worth knowing before editing it:
 
 - **The keyline around the artwork is drawn, not photographed.** `box-sizing: border-box`
   keeps the framed block at exactly `--column-width`, so the painting itself is
   `--line-width` narrower on each side. The source file is square, which is what keeps the
   framed block square.
+- **The 3D button is bevelled into the sheet, not drawn on it.** A deep `inset` border in
+  the hairline tint, which the browser shades into a pressed edge; the ground darkens on hover
+  and the ink stays. It takes a full section of air above and below where its neighbours
+  take half. It opens the 3D site in a new tab; `rel="external"` tells SvelteKit's router
+  and the link lint rule that it is not a route.
 - **The logo bar is the full column, the mark inside it is not.** The `<a>` spans the column
   so its hairline matches the one above the links; the mark is sized by `--logo-width` and
   centred inside it. 64px is 17.55% of the column — the proportion the mark had against the
