@@ -37,4 +37,4 @@ export const SITE_DESCRIPTION =
 	site with its own deploy, so a full URL here rather than a route.
 */
 export const SITE_3D_URL = 'https://collected-works-3d.worldaffairs.se';
-export const SITE_3D_TITLE = 'Collected Works 3D';
+export const SITE_3D_TITLE = "ENTER THE VIRTUAL EXHIBITION";
