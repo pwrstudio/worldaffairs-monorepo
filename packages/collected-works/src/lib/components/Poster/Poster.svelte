@@ -20,7 +20,7 @@
 
 <!--
 	The layout supplies the column, so every block below is a plain block-level child of it and
-	lines up without a width or a margin of its own — the only thing a block sets is the space
+	lines up without a width or a margin of its own – the only thing a block sets is the space
 	under it.
 -->
 <article class="poster">
@@ -53,8 +53,8 @@
 
     <!--
 		The 3D version of the exhibition is a separate site, so the button leaves this one: a
-		new tab, and `rel="external"`, which tells SvelteKit's router — and the lint rule that
-		polices links — not to treat it as a route.
+		new tab, and `rel="external"`, which tells SvelteKit's router – and the lint rule that
+		polices links – not to treat it as a route.
 	-->
     <div class="cta">
         <a class="button" href={SITE_3D_URL} target="_blank" rel="external">{SITE_3D_TITLE}</a>
@@ -63,6 +63,26 @@
     <div class="links">
         <p><a href={resolve('/about')}>About</a></p>
         <p>For inquiries contact <a href="mailto:art@worldaffairs.se">art@worldaffairs.se</a></p>
+    </div>
+
+    <div class="credits">
+        <div>
+            <p>Kaj Lindhé Gimdal – <span class="role">Curator, World Affairs</span></p>
+            <p>Andrea Belosi – <span class="role">Exhibition Designer</span></p>
+            <p>Slobodan Zivic – <span class="role">Art Consultant</span></p>
+            <p>
+                Nils Wikander – <span class="role">Exhibition Construction &amp; Installation</span>
+            </p>
+            <p>Rasmus Svensson – <span class="role">Graphic Designer</span></p>
+            <p>Bianca Peruzzi – <span class="role">Lighting Designer</span></p>
+            <p>Heith – <span class="role">Soundscape</span></p>
+            <p>TokyoBuild – <span class="role">Exhibition Maquette</span></p>
+        </div>
+        <div>
+            <p>
+                Mathieu Nilsson – <span class="role">Exhibition Producer, World Affairs</span>
+            </p>
+        </div>
     </div>
 
     <a class="logo" href="https://worldaffairs.se">

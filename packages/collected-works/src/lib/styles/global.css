@@ -152,7 +152,8 @@ img {
 }
 
 .poster .visiting,
-.poster .links {
+.poster .links,
+.poster .credits {
     margin-bottom: var(--half-space-section);
     font-size: var(--type-size-medium);
     line-height: var(--line-height-medium);
@@ -169,9 +170,33 @@ img {
     user-select: none;
 }
 
-.poster .links {
+.poster .links{
     border-top: var(--rule-width) solid var(--color-fg-semi);
     padding-top: var(--half-space-section);
+}
+
+.poster .credits {
+        border-top: var(--rule-width) solid var(--color-fg-semi);
+        padding-top: var(--space-section);
+        padding-bottom: var(--half-space-section);
+}
+
+/*
+    The longer credits run past the column and turn, and `balance` splits those evenly rather
+    than leaving one word alone under a full line — which, centred, reads as a mistake.
+*/
+.poster .credits p {
+    text-wrap: balance;
+}
+
+/* The role in italic, as the billing sets its years, so the name reads first */
+.poster .credits .role {
+    font-style: italic;
+}
+
+/* The producer stands apart from the team above */
+.poster .credits div + div {
+    margin-top: var(--space-section);
 }
 
 /* A full section of air above and below, where the neighbouring blocks take half */
